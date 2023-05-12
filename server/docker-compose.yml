@@ -1,0 +1,52 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  # mongo:
+  #   image: mongo:4.2
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: leno
+  #     MONGO_INITDB_ROOT_PASSWORD: test123
+  #     networks:
+  #       nlink-api
+  #     ports: 
+  #       27017:27017
+  #     expose: 
+  #       27017
+
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: leno
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: test123
+  #     ME_CONFIG_MONGODB_URL: mongodb://leno:test123@mongo:27017/
+
+  app:
+    build: .
+    command: sh -c "npx prisma db push && yarn start:dev"
+    container_name: api-link
+    # depends_on:
+    #   - mongo
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    env_file:
+      - .env
+    # links:
+    #   - mongo
+    volumes:
+      - .:/usr/app
+    networks:
+      - nlink-api
+volumes:
+  app:
+    driver: local
+networks:
+  nlink-api: 
+    driver: bridge

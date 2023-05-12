@@ -1,0 +1,67 @@
+.register, .login{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    background-color: var(--bkg-white-shaded);
+    border: .2px solid var(--bkg-button);
+    border-radius: 7px;
+    box-shadow: var(--shadow-elevation-medium);
+}
+.register-prints, .login-prints{
+    width: 100%;
+    max-width: 600px;
+    background-image: url("../../public/img/register.jpg");
+    background-size: cover;
+    min-height: 300px;
+}
+.register-prints h1, .login-prints h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container-form{
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+}
+.form-register, .form-login{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    font-size: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
+}
+.form-register label, .form-login label{
+    width: 100%;
+    margin: 1rem auto;
+}
+.form-register label > input, .form-login label > input{
+    width: 100%;
+    max-width: 400px;
+    padding: .5rem;
+    font-size: 1rem;
+    border: .5px solid var(--color-text-black-soft);
+    border-radius: 5px;
+}
+.form-register label > input:focus,
+.form-login label > input:focus{
+   outline: .8px solid var(--bkg-button);
+}
+.form-register button, .form-login button{
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    border-radius: 7px;
+    padding: .8rem;
+    font-size: 1rem;
+    background-color: var(--bkg-button);
+}
+@media (min-width: 700px) {
+    .login-prints, .register-prints{
+        min-height: 400px;
+    }
+}

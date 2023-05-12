@@ -1,0 +1,54 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+main{
+  max-width: 1280px;
+  padding: 0 2rem;
+}
+.spinner-global{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+}
+@font-face {
+  font-family: 'Yeseva One';
+  src: url('../font/YesevaOne-Regular.ttf');
+  font-weight: bold;
+}
+h1{
+  font-family: 'Yeseva One', cursive;
+  color: #202020;
+}
+a{
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text-destaque);
+  transition: 0.4s;
+}
+.link-animation::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-text-black-soft);
+  transition: 200ms all;
+}
+.link-animation:hover::before{
+  width: 100%;
+}
+.like-active{
+  color: red;
+}
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-link-hover);
+  }
+}
