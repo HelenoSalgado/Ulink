@@ -12,6 +12,7 @@ RUN yarn install
 
 COPY . /usr/app
 
+RUN npx prisma generate
 RUN yarn build
 
 #RUN npm run prisma:migrate
