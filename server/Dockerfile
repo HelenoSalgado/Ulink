@@ -4,6 +4,7 @@ WORKDIR /usr/app
 
 COPY package*.json /usr/app
 COPY tsconfig.json /usr/app
+COPY yarn.lock /usr/app
 
 # RUN npm install -g npm@9.6.6
 # NODE_ENV=development 
