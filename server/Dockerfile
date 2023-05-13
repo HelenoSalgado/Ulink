@@ -11,8 +11,10 @@ RUN yarn install
 
 COPY . /usr/app
 
-# RUN npm run prisma:migrate
+RUN yarn build
 
-# EXPOSE 3000
+#RUN npm run prisma:migrate
 
-# CMD ["npm", "run", "dev"]
+EXPOSE 3000
+
+CMD ["yarn", "start"]
