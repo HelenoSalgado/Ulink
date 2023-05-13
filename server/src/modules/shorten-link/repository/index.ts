@@ -9,7 +9,13 @@ export class ShortenLinkRepository {
     return this.prisma.link.create({
       data,
       select: {
+        id: true,
+        idUrl: true,
         shortUrl: true,
+        originUrl: true,
+        title: true,
+        description: true,
+        urlImg: true,
       }
     });
   }
@@ -19,7 +25,11 @@ export class ShortenLinkRepository {
       where: { idUrl },
       select: {
         id: true,
+        idUrl: true,
         originUrl: true,
+        title: true,
+        description: true,
+        urlImg: true,
       }
     });
   }
@@ -36,7 +46,11 @@ export class ShortenLinkRepository {
   async findAll(){
     return await this.prisma.link.findMany({
       select: {
+        idUrl: true,
         originUrl: true,
+        title: true,
+        description: true,
+        urlImg: true,
       }
     });
   }

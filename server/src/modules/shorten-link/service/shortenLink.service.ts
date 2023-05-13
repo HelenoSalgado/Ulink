@@ -10,6 +10,7 @@ import { Cache } from 'cache-manager';
 import { modelAnalytics } from 'src/constants/modelAnalytics';
 import config from 'src/config';
 import { analyticRequest } from '../utils/analyticRequest';
+import createPreview from '../utils/createPreview';
 
 type AnalyticUrl = Omit<Partial<CreateLinkDto>, 
 'urlId' | 
@@ -46,7 +47,12 @@ export class ShortenLinkService {
     dataUrl.shortUrl = baseHost+uniqueId;
 
     await this.repo.createAnalytics(dataUrl.id, modelAnalytics);
-    return this.repo.create(dataUrl);
+
+    const dataLink = await this.repo.create(dataUrl);
+
+    await createPreview(dataLink);
+
+    return dataLink;
 
   }
 

@@ -21,24 +21,16 @@ export class CreateLinkDto {
   @IsOptional()
   shortUrl: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  clicks?: number;
+  title:    string;
 
   @IsString()
   @IsOptional()
-  fontTrafic?: string
+  description: string;
 
   @IsString()
   @IsOptional()
-  SO?:         string
-
-  @IsString()
-  @IsOptional()
-  browser?:    string
-  
-  @IsString()
-  @IsOptional()
-  device?:     string
+  urlImg:      string;
 
 }

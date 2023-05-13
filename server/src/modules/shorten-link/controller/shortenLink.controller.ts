@@ -1,16 +1,17 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Head, Param, Post, Render, Req, Res } from '@nestjs/common';
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { Request, Response } from 'express';
+import createPreview from '../utils/createPreview';
 
-@Controller()
+@Controller('h')
 export class ShortenLinkController {
   constructor(private readonly shortenService: ShortenLinkService) {}
 
-  @Post('short-link')
-  shortenUrl(@Body() createLinkDto: CreateLinkDto) {
+  @Post('shorten')
+  async shortenUrl(@Body() createLinkDto: CreateLinkDto) {
 
-    return this.shortenService.shortenUrl(createLinkDto);
+    return await this.shortenService.shortenUrl(createLinkDto);
 
   }
 
@@ -19,18 +20,18 @@ export class ShortenLinkController {
     @Res() res: Response, 
     @Req() req: Request, 
     @Param('idUrl') idUrl: string) {
+      
 
-    const analytics = req;
-
-    const origin = await this.shortenService.redirectUrl(idUrl, analytics);
-    //return res.redirect(origin);
+    const origin = await this.shortenService.redirectUrl(idUrl, req);
+    return res.redirect(origin);
 
   }
 
-  @Get('short-link-analytics')
+  @Get('urls-analytics')
   async analyticUrls() {
 
     //return await this.shortenService.analyticUrl();
 
   }
 }
+

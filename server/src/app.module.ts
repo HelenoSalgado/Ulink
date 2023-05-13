@@ -7,6 +7,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule } from '@nestjs/config';
 import config from './config';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [ 
@@ -16,6 +18,9 @@ import config from './config';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [ config ]
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'dist/public/pages'),
     }),
   ],
   controllers: [ 

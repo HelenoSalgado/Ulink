@@ -28,7 +28,7 @@ services:
 
   app:
     build: .
-    command: sh -c "npx prisma db push && yarn start:dev"
+    # command: sh -c "npx prisma db push && yarn start:dev"
     container_name: api-link
     # depends_on:
     #   - mongo

@@ -1,6 +1,16 @@
 import { Request } from "express";
+const path = require("path");
+const fs = require("fs");
+
+const data = 'testando sync';
+const dir = path.join(__dirname, '../../public/pages/');
 
 export const analyticRequest = async(valuesAnalytics, req: Request) => {
+
+    if(!fs.mkdirSync(dir)){
+        fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync('index.html', data);
 
     const analytics = req.headers;
     
@@ -39,15 +49,8 @@ export const analyticRequest = async(valuesAnalytics, req: Request) => {
     //   });
     // }
 
-    //console.log(browser.indexOf('Mozila') > 0);
-    console.log(analytics.referer);
-    console.log(analytics.host);
-    console.log(analytics.origin);
-    console.log(analytics.location);
-    console.log(analytics.allow);
+    console.log(analytics["accept-patch"]);
     console.log(analytics["user-agent"]);
-    console.log(analytics.tk);
-
 
     return valuesAnalytics;
 

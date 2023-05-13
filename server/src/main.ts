@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import { PrismaService } from './prisma/prisma.service';
 import { ValidationPipe } from '@nestjs/common';
 import config from './config';
+import { join } from 'path';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 
 const options = {
@@ -12,7 +14,7 @@ const options = {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors(options);
 
   const prismaService = app.get(PrismaService);
@@ -27,6 +29,9 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+
+  app.useStaticAssets(join(__dirname, '..', 'public/pages'));
+
   await app.listen(config().port);
 }
 bootstrap();
