@@ -1,16 +1,35 @@
 <script setup lang="ts">
 import type { CommentCreate } from '../interface/Comment';
-import Comment from '../api/Comment'
+//import Comment from '../api/Comment'
 import { ref, reactive, onMounted } from 'vue';
 import { marked } from 'marked';
 
-const isAutentication = ref(false);
+//const isAutentication = ref(false);
 const comnts = reactive<CommentCreate[]>([]);
 
 //const { idPost } = defineProps(['idPost']);
 onMounted(async () => {
-  const idPost = 'xM7nsKTUL2Y';
-  const comments: CommentCreate[] = await Comment.getAll(idPost);
+  //const idPost = 'xM7nsKTUL2Y';
+  //const comments: CommentCreate[] = await Comment.getAll(idPost);
+
+  const comments: CommentCreate[] = [
+  {
+		"id": "bJLempegX9A",
+		"profile": {
+			"name": "Heleno Salgado",
+			"avatar": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4'
+		},
+		"content": "Post top demais!"
+	},
+	{
+		"id": "KfmjkcFmeii",
+		"profile": {
+			"name": "Heleno Salgado",
+			"avatar": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4'
+		},
+		"content": "Post top demais!"
+	}
+  ]
 
   for (let i = 0; i < 4; i++) {
 

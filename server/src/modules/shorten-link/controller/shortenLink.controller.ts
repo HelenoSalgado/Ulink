@@ -2,7 +2,6 @@ import { Body, Controller, Get, Head, Param, Post, Render, Req, Res } from '@nes
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { Request, Response } from 'express';
-import createPreview from '../utils/createPreview';
 
 @Controller('h')
 export class ShortenLinkController {
@@ -15,23 +14,27 @@ export class ShortenLinkController {
 
   }
 
-  @Get(':idUrl')
-  async redirectUrl(
-    @Res() res: Response, 
-    @Req() req: Request, 
-    @Param('idUrl') idUrl: string) {
+  // @Get(':idUrl')
+  // async redirectUrl(
+  //   @Res() res: Response, 
+  //   @Req() req: Request, 
+  //   @Param('idUrl') idUrl: string) {
       
 
-    const origin = await this.shortenService.redirectUrl(idUrl, req);
-    return res.redirect(origin);
+  //   const origin = await this.shortenService.redirectUrl(idUrl, req);
+  //   return res.redirect(origin);
 
-  }
+  // }
 
   @Get('urls-analytics')
   async analyticUrls() {
 
     //return await this.shortenService.analyticUrl();
+  }
 
+  @Get('generate-previas')
+  async generatePreviews(){
+    return await this.shortenService.generatePreviews();
   }
 }
 

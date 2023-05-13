@@ -43,11 +43,13 @@ export class ShortenLinkRepository {
     });
   }
 
-  async findAll(){
+  async findAllUrls(){
     return await this.prisma.link.findMany({
       select: {
+        id: true,
         idUrl: true,
         originUrl: true,
+        shortUrl: true,
         title: true,
         description: true,
         urlImg: true,

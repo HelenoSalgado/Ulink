@@ -89,4 +89,16 @@ export class ShortenLinkService {
 
   }
 
+  async generatePreviews(){
+
+    const previews = await this.repo.findAllUrls();
+
+    previews.forEach(async(head) => {
+      await createPreview(head);
+    })
+
+    return {message: 'Prévias geradas com sucesso'};
+    
+  }
+
 }
