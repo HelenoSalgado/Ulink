@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Inject } from '@nestjs/common';
+import { BadRequestException, Inject } from '@nestjs/common';
 import { ShortenLinkRepository } from '../repository';
 import ShortUniqueId from 'short-unique-id';
 import { isURL } from 'class-validator';
@@ -23,7 +23,6 @@ interface Analytics {
   value: number;
 }
 
-@Controller()
 export class ShortenLinkService {
 
   constructor(

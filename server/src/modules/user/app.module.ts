@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ShortenLinkController } from './controller/shortenLink.controller';
-import { ShortenLinkService } from './service/shortenLink.service';
-import { ShortenLinkRepository } from './repository';
+import { UserController } from './controller/user.controller';
+import { UserService } from './service/user.service';
+import { UserRepository } from './repository';
 import { PrismaModule } from 'src/prisma/prisma.module';
-import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
-  imports: [ PrismaModule, CacheModule.register() ],
-  controllers: [ ShortenLinkController ],
-  providers: [ ShortenLinkService, ShortenLinkRepository  ],
+  imports: [ PrismaModule ],
+  controllers: [ UserController ],
+  providers: [ UserService, UserRepository  ],
 })
-export class ShortenLinkModule {}
+export class UserModule {}

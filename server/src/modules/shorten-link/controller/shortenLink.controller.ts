@@ -3,7 +3,7 @@ import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { Request, Response } from 'express';
 
-@Controller('h')
+@Controller()
 export class ShortenLinkController {
   constructor(private readonly shortenService: ShortenLinkService) {}
 

@@ -5,10 +5,10 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateLinkDto {
+export class CreateUserDto {
 
+  @IsString() 
   @IsOptional()
-  @IsString()
   id: string;
 
   @IsString()
@@ -31,9 +31,8 @@ export class CreateLinkDto {
   @ApiProperty()
   password:  string;
 
-  @IsString()
+  @IsString() 
   @IsOptional()
-  @ApiProperty()
-  idsLinks:      string[];
+  idsLinks:  string[];
 
 }

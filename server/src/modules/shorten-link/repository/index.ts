@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../../prisma/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateLinkDto } from '../dto/create-link-dto';
 
 @Injectable()
 export class ShortenLinkRepository {
   constructor(private prisma: PrismaService) {}
 
-  create(data){
+  create(data: CreateLinkDto){
     return this.prisma.link.create({
       data,
       select: {

@@ -9,11 +9,16 @@ import { ConfigModule } from '@nestjs/config';
 import config from './config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { UserService } from './modules/user/service/user.service';
+import { UserRepository } from './modules/user/repository';
+import { UserModule } from './modules/user/app.module';
+import { UserController } from './modules/user/controller/user.controller';
 
 @Module({
   imports: [ 
     PrismaModule, 
     ShortenLinkModule,
+    UserModule,
     CacheModule.register(),
     ConfigModule.forRoot({
       isGlobal: true,
@@ -21,15 +26,21 @@ import { join } from 'path';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'dist/public/pages'),
-      exclude: ['/api/(.*)']
+      exclude: ['/api/(.*)'],
+      serveStaticOptions: {
+        cacheControl: true,
+      }
     }),
   ],
   controllers: [ 
     ShortenLinkController,
+    UserController,
 ],
   providers: [
     ShortenLinkService,
     ShortenLinkRepository,
+    UserService,
+    UserRepository
   ],
 })
 export class AppModule {}

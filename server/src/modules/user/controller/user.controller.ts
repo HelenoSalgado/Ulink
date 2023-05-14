@@ -1,37 +1,69 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { UserService } from '../service/user.service';
 import { CreateUserDto } from '../dto/create-user-dto';
+import { UpdateUserDto } from '../dto/update-user-dto';
+import msg from 'src/constants/msg';
 
-@Controller('user')
-export class ShortenLinkController {
+@Controller('users')
+export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('create')
   async create(@Body() createUserDto: CreateUserDto) {
 
-    return await this.userService.create(createUserDto);
+    try {
+      await this.userService.create(createUserDto);
+      return {statusCode: 200, message: msg.userCreatedSucess};
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
 
   }
 
   @Get(':id')
-  async getUser(){
+  async getUser(@Param('id') id: string){
 
-    return await this.userService.findOne();
-
+    try {
+      return await this.userService.findOne(id);
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+    
   }
 
-  @Put('update')
-  async update() {
+  @Put('update/:id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateUser: UpdateUserDto){
 
-    return await this.userService.update();
-
+    try {
+      return await this.userService.update(id, updateUser);
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+    
   }
 
-  @Delete(':id')
-  async generatePreviews(){
+  @Delete('delete/:id')
+  async delete(@Param('id') id: string){
 
-    return await this.userService.delete();
+    try {
+      return await this.userService.delete(id);
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+    
+  }
 
+  @Get()
+  async getAll(){
+
+    try {
+      return await this.userService.findAll();
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+    
   }
 }
 

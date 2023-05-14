@@ -34,3 +34,8 @@ model LinkAnalytics {
   id         String  @id @map("_id") @db.ObjectId
   analytics  Json[]
 }
+
+enum Role {
+  USER
+  ADMIN
+}
