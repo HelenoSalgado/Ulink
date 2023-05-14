@@ -11,37 +11,29 @@ export class CreateLinkDto {
   @IsString()
   id: string;
 
-  @IsOptional()
   @IsString()
-  idUrl: string;
+  @IsNotEmpty()
+  @ApiProperty()
+  name: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  originUrl: string;
+  username: string;
 
   @IsString()
-  @IsOptional()
-  shortUrl: string;
+  @IsNotEmpty()
+  @ApiProperty()
+  email: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  password:  string;
 
   @IsString()
   @IsOptional()
   @ApiProperty()
-  title:    string;
-
-  @IsString()
-  @IsOptional()
-  @ApiProperty()
-  description: string;
-
-  @IsString()
-  @IsOptional()
-  @ApiProperty()
-  urlImg:      string;
-
-  @IsString()
-  @IsOptional()
-  @ApiProperty()
-  pixel:       string;
+  idsLinks:      string[];
 
 }

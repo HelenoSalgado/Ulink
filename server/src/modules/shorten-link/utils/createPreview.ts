@@ -5,7 +5,7 @@ import { CreateLinkDto } from "../dto/create-link-dto";
 /**
  * 
  * tags para analytics
- * <meta property="fb:app_id" content="your_app_id" />
+ * <meta property="fb:app_id" content="3694052390628380" />
  * <meta name="twitter:site" content="@website-username">
  */
 
@@ -30,6 +30,7 @@ export default async function createPreview(head: CreateLinkDto){
       <meta property="og:description" content="${head.description}" />
       <meta property="og:image" content="${head.urlImg}" />
       <meta property="og:url" content="${head.shortUrl}" />
+      <meta property="fb:app_id" content="3694052390628380" />
       <meta name="twitter:card" content="summary_large_image">
       <meta name="theme-color" content="#157878">
   </head>

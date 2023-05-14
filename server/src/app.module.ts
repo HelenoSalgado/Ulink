@@ -21,6 +21,7 @@ import { join } from 'path';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'dist/public/pages'),
+      exclude: ['/api/(.*)']
     }),
   ],
   controllers: [ 

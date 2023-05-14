@@ -27,6 +27,7 @@ model Link {
   title       String?
   description String?
   urlImg      String?
+  pixel       String?
 }
 
 model LinkAnalytics {
