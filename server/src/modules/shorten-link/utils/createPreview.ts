@@ -24,9 +24,7 @@ export default async function createPreview(head: CreateLinkDto){
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       <script>
       (async () => {
-        const geo = await fetch('http://ip-api.com/json', {
-          referrerPolicy: "unsafe_url" 
-        });
+        const geo = await fetch('http://ip-api.com/json');
         const geoLoc = await geo.json()
         await fetch('https://api-analytics.onrender.com/analytics', {
           headers: {
