@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { analyticRequest } from '../utils/analyticRequest';
@@ -13,30 +13,30 @@ export class ShortenLinkController {
     @Body() createLinkDto: CreateLinkDto,
     @Req() req: Request, 
     ) {
-
-    const ipAddress = req.socket.remoteAddress;
-    console.log(ipAddress);
-
-    let response = await fetch(`http://ip-api.com/json/${ipAddress}?fields=61439`);
-    // Crie a variável usuário e pegue a resposta da requisição
-    let usuario = await response.json();
-    console.log(usuario);
-
     return await this.shortenService.shortenUrl(createLinkDto);
 
   }
 
-  // @Get(':idUrl')
-  // async redirectUrl(
-  //   @Res() res: Response, 
-  //   @Req() req: Request, 
-  //   @Param('idUrl') idUrl: string) {
+  @Get(':idUrl')
+  async redirectUrl(
+    @Res() res: Response, 
+    @Req() req: Request, 
+    @Param('idUrl') idUrl: string) {
       
+      const ipAddress = (req.headers['x-forwarded-for'] || '').toString().split(',').pop() ||
+      req.ip ||
+      req.socket.remoteAddress;
+  
+      console.log(ipAddress);
+  
+      let response = await fetch(`http://ip-api.com/json/${ipAddress}`);
+      let usuario = await response.json();
+      console.log(usuario);
+  
+    //const origin = await this.shortenService.redirectUrl(idUrl, req);
+    //return res.redirect(origin);
 
-  //   const origin = await this.shortenService.redirectUrl(idUrl, req);
-  //   return res.redirect(origin);
-
-  // }
+  }
 
   @Get('urls-analytics')
   async analyticUrls() {
