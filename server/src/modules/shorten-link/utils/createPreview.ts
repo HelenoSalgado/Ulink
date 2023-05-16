@@ -8,6 +8,7 @@ import { CreateLinkDto } from "../dto/create-link-dto";
  * <meta property="fb:app_id" content="3694052390628380" />
  * <meta name="twitter:site" content="@website-username">
  */
+  
 
 export default async function createPreview(head: CreateLinkDto){
 
@@ -20,6 +21,27 @@ export default async function createPreview(head: CreateLinkDto){
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script>
+      (async () => {
+        const geo = await fetch('http://ip-api.com/json/');
+        const geoLoc = await geo.json()
+        await fetch('http://localhost:3000/analytics', {
+          headers: {
+            "Content-Type": "application/json",
+            "Id_analytic": "${head.id}",
+            "City": geoLoc.city,
+            "Region_code": geoLoc.region,
+            "Country": geoLoc.country,
+            "code_postal": geoLoc.zip,
+            "lat": geoLoc.lat,
+            "lon": geoLoc.lon,
+            "timezone": geoLoc.timezone,
+            "ip": geoLoc.query,
+            "referrer": document.referrer
+          },
+        });
+      })()
+      </script>
       <meta http-equiv="refresh" content="0;url=${head.originUrl}" />
       <title>
           ${head.title}

@@ -16,23 +16,29 @@ model User {
   username   String
   email      String
   password   String?
-  idsLinks   String[]
+  role         Role             @default(USER)
+  createAt  DateTime @default(now())
 }
 
 model Link {
   id          String @id @map("_id") @db.ObjectId
   idUrl       String
+  idUser      String
   originUrl   String
   shortUrl    String
   title       String?
   description String?
   urlImg      String?
   pixel       String?
+  createAt  DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model LinkAnalytics {
   id         String  @id @map("_id") @db.ObjectId
+  clicks     Int?
   analytics  Json[]
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {

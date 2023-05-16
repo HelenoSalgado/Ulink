@@ -35,7 +35,6 @@ export class UserRepository {
         name: true,
         email: true,
         username: true,
-        idsLinks: true,
       }
     });
   }
@@ -60,7 +59,6 @@ export class UserRepository {
         name: true,
         email: true,
         username: true,
-        idsLinks: true,
       }
     });
   }

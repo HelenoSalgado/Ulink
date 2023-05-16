@@ -18,6 +18,11 @@ export class CreateLinkDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
+  idUser: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
   originUrl: string;
 
   @IsString()

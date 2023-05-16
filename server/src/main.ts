@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 import config from './config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as path from 'path';
 
 
 const options = {
@@ -47,6 +48,8 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+
+  app.useStaticAssets(path.join(__dirname, './public/js'));
 
   await app.listen(config.port);
   console.log(`🏁 Application is running on: ${await app.getUrl()} 🚀`);

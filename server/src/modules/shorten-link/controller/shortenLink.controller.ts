@@ -3,6 +3,9 @@ import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { analyticRequest } from '../utils/analyticRequest';
 import { Request } from 'express';
+import { Public } from 'src/config/route.public';
+import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
+import { RequestAnalyticHeaderDto } from '../dto/request-header-analytics.dto';
 
 @Controller()
 export class ShortenLinkController {
@@ -17,32 +20,20 @@ export class ShortenLinkController {
 
   }
 
-  @Get(':idUrl')
-  async redirectUrl(
-    @Res() res: Response, 
-    @Req() req: Request, 
-    @Param('idUrl') idUrl: string) {
-      
-      const ipAddress = (req.headers['x-forwarded-for'] || '').toString().split(',').pop() ||
-      req.ip ||
-      req.socket.remoteAddress;
-  
-      console.log(ipAddress);
-  
-      let response = await fetch(`http://ip-api.com/json/${ipAddress}`);
-      let usuario = await response.json();
-      console.log(usuario);
-  
-    //const origin = await this.shortenService.redirectUrl(idUrl, req);
-    //return res.redirect(origin);
+  @Public()
+  @Get('analytics')
+  async analyticsShortLink(
+    @Req() req: Request){
+
+    this.shortenService.analyticsShortLink(req.headers);
 
   }
 
-  @Get('urls-analytics')
-  async analyticUrls() {
+  // @Get('urls-analytics')
+  // async analyticUrls() {
 
-    //return await this.shortenService.analyticUrl();
-  }
+  //   //return await this.shortenService.analyticUrl();
+  // }
 
   @Get('generate-previas')
   async generatePreviews(){

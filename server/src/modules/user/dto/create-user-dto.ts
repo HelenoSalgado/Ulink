@@ -31,8 +31,4 @@ export class CreateUserDto {
   @ApiProperty()
   password:  string;
 
-  @IsString() 
-  @IsOptional()
-  idsLinks:  string[];
-
 }

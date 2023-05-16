@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
+import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 
 @Injectable()
 export class ShortenLinkRepository {
@@ -12,6 +13,7 @@ export class ShortenLinkRepository {
       select: {
         id: true,
         idUrl: true,
+        idUser: true,
         shortUrl: true,
         originUrl: true,
         title: true,
@@ -28,6 +30,7 @@ export class ShortenLinkRepository {
       select: {
         id: true,
         idUrl: true,
+        idUser: true,
         originUrl: true,
         title: true,
         description: true,
@@ -40,7 +43,8 @@ export class ShortenLinkRepository {
     return await this.prisma.linkAnalytics.findFirst({
      where: { id },
      select: {
-      analytics: true,
+        clicks: true,
+        analytics: true,
      }
     });
   }
@@ -50,6 +54,7 @@ export class ShortenLinkRepository {
       select: {
         id: true,
         idUrl: true,
+        idUser: true,
         originUrl: true,
         shortUrl: true,
         title: true,
@@ -59,18 +64,22 @@ export class ShortenLinkRepository {
       }
     });
   }
-  async createAnalytics(id: string, analytics){
+  async createAnalytics(id: string){
     await this.prisma.linkAnalytics.create({
       data: {
         id,
-        analytics,
       }
     });
   }
-  async updateAnalytics(id: string, analytics){
+  async updateAnalytics(id: string, clicks: number, analytics){
     await this.prisma.linkAnalytics.update({
       where: { id },
-      data: { analytics },
+      data: {
+        clicks,
+        analytics: {
+          push: analytics
+        }
+      }
     });
   }
 }

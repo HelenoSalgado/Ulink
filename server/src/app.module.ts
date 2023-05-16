@@ -32,9 +32,6 @@ import { AuthGuard } from './modules/auth/auth.guard';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'dist/public/pages'),
       exclude: ['/api/(.*)'],
-      serveStaticOptions: {
-        cacheControl: true,
-      }
     }),
   ],
   controllers: [ 

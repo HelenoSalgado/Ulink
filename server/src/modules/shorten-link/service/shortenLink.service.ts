@@ -7,20 +7,13 @@ import { ObjectId } from 'bson'
 import { Request } from 'express';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { modelAnalytics } from 'src/constants/modelAnalytics';
+import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import config from 'src/config';
-import { analyticRequest } from '../utils/analyticRequest';
 import createPreview from '../utils/createPreview';
 
-type AnalyticUrl = Omit<Partial<CreateLinkDto>, 
-'urlId' | 
-'shortUrl' |
-'device'
->;
-
-interface Analytics {
-  name: string;
-  value: number;
+interface AnalyticUrl{
+  clicks: number;
+  analytics: ReqHeaderAnalytics;
 }
 
 @Injectable()
@@ -37,6 +30,8 @@ export class ShortenLinkService {
       throw new BadRequestException('URL não é válida.')
     }
 
+    // Criar verificação de usuário para ver se o mesmo existe.
+
     const id = new ShortUniqueId();
     const uniqueId = id(5);
 
@@ -46,7 +41,7 @@ export class ShortenLinkService {
     const baseHost = config.localhost+':'+config.port.toString()+'/';
     dataUrl.shortUrl = baseHost+uniqueId;
 
-    await this.repo.createAnalytics(dataUrl.id, modelAnalytics);
+    await this.repo.createAnalytics(dataUrl.id);
 
     const dataLink = await this.repo.create(dataUrl);
 
@@ -63,29 +58,50 @@ export class ShortenLinkService {
     const nameCacheAnalytics = `'analyticUrl${idUrl}'`;
     const idAnalytics = url.id;
 
-    const analyticsInCache = await this.cache.get(nameCacheAnalytics);
-
-    if(analyticsInCache){
-      this.analyticsUrl( idAnalytics, nameCacheAnalytics, analyticsInCache, req);
-    }else{
-      const analyticsInDb = (await this.repo.findOneAnalytics(idAnalytics)).analytics;
-      await this.cache.set(nameCacheAnalytics, analyticsInDb, 0);
-      await this.analyticsUrl(idAnalytics, nameCacheAnalytics, analyticsInDb, req);
-    }
-
     return url.originUrl;
   }
 
-  async analyticsUrl(idAnalytics, nameCacheAnalytics, valuesAnalytics, req: Request){
+  async analyticsShortLink(headers: any){
 
-    console.table(valuesAnalytics[0].so)
+    const {
+      id_analytic,
+      referrer,
+      city,
+      region,
+      code_postal,
+      country,
+      lat,
+      lon,
+      ip,
+      timezone,
+    } = headers;
 
-    //const dataAnalytics = await analyticRequest(valuesAnalytics, req);
+    const id = id_analytic;
 
-    //await this.cache.set(nameCacheAnalytics, dataAnalytics, 0);
+    const data = {
+      referrer,
+      city,
+      region,
+      code_postal,
+      country,
+      lat,
+      lon,
+      ip,
+      timezone,
+    }
 
-    //await this.repo.updateAnalytics(idAnalytics, dataAnalytics);
-    
+    const clicksInCache = await this.cache.get(id)
+    console.log(clicksInCache);
+
+    const { clicks } = await this.repo.findOneAnalytics(id);
+    //console.log(clicks);
+    const t = await this.cache.set(id, clicks, 0)
+    console.log(t);
+    await this.repo.updateAnalytics(
+      id, 
+      clicks+1,
+      data
+    );
 
   }
 
@@ -93,7 +109,7 @@ export class ShortenLinkService {
 
     const previews = await this.repo.findAllUrls();
 
-    previews.forEach(async(head) => {
+    previews.forEach(async(head: CreateLinkDto) => {
       await createPreview(head);
     })
 
