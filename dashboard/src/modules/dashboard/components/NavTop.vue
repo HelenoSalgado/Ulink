@@ -60,6 +60,7 @@ import SearchDashboard from './SearchDashboard.vue';
     border-radius: 5px;
     padding: .3rem;
     transition: 100ms all;
+    cursor: pointer;
 }
 .notifications div:hover{
     box-shadow: var(--shadow-elevation-low);;

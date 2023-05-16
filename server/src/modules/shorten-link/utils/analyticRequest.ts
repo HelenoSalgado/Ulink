@@ -1,11 +1,38 @@
 import { Request } from "express";
+import request from 'request';
 
-export const analyticRequest = async(valuesAnalytics, req: Request) => {
 
-    const analytics = req.headers;
+export const analyticRequest = async() => {
+
+    //const analytics = req.headers;
+
+let url = `http://ip-api.com/json`
+let dados = '';
+ 
+
+request(url, function (err: any, response: any, body: string) {
+    if(err){
+        console.log('error:', err);
+    } else {
+        let ipInfo = JSON.parse(body);
+        dados = `?????????? WHERE AM I ?????????
+                 -------------------------------
+                 IP: ${ipInfo.query}
+                 Country: ${ipInfo.country}
+                 City: ${ipInfo.city}
+                 Region: ${ipInfo.regionName}
+                 Lat: ${ipInfo.lat}
+                 Lon: ${ipInfo.lon}
+                 Organization: ${ipInfo.org}
+                 -------------------------------
+                 Dev by CP 2019`
+        console.log(dados);
+    }
+ });
+   
     
     //const so = JSON.parse(analytics['sec-ch-ua-platform'].toString());
-    const browser = analytics['sec-ch-ua'];
+    //const browser = analytics['sec-ch-ua'];
     
     // System Operation
     // if (so === 'Linux') {
@@ -39,9 +66,9 @@ export const analyticRequest = async(valuesAnalytics, req: Request) => {
     //   });
     // }
 
-    console.log(analytics["accept-patch"]);
-    console.log(analytics["user-agent"]);
+    //console.log(analytics["accept-patch"]);
+    //console.log(analytics["user-agent"]);
 
-    return valuesAnalytics;
+    //return valuesAnalytics;
 
 }

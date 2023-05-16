@@ -1,57 +1,61 @@
 <script setup lang="ts">
 import Chart from 'chart.js/auto';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const graphic1 = ref('GraphicId01');
+const graphic2 = ref('GraphicId02');
+const graphic0 = ref('GraphicId00');
 
 const estados = [
     {
-        es: 'DF',
-        views: 10
+        name: 'DF',
+        value: 10
     },
     {
-        es: 'SC',
-        views: 11
+        name: 'SC',
+        value: 11
     },
     {
-        es: 'MG',
+        name: 'MG',
         views: 0
     },
     {
-        es: 'BA',
-        views: 7
+        name: 'BA',
+        value: 7
     },
     {
-        es: 'RS',
-        views: 15
+        name: 'RS',
+        value: 15
     },
     {
-        es: 'SP',
-        views: 5
+        name: 'SP',
+        value: 5
     },
     {
-        es: 'RJ',
-        views: 2
+        name: 'RJ',
+        value: 2
     },
 ];
 const cities = [
     {
-        city: 'Brasília',
-        views: 10
+        name: 'Brasília',
+        value: 10
     },
     {
-        city: 'Belo Horizonte',
-        views: 11
+        name: 'Belo Horizonte',
+        value: 11
     },
     {
-        city: 'São Sebastião',
-        views: 0
+        name: 'São Sebastião',
+        value: 0
     },
     {
-        city: 'Florianópolis',
-        views: 7
+        name: 'Florianópolis',
+        value: 7
     },
     {
-        city: 'Jundiaí',
-        views: 15
+        name: 'Jundiaí',
+        value: 15
     },
 ]
 
@@ -61,50 +65,47 @@ onMounted(() => {
     let boxRegion = document.querySelector('.region-acess');
     boxRegion?.classList.toggle('region-extend') 
    });
-   
+
    new Chart(
-    document.getElementById('statesAnalytics'),
+    graphic0.value,
     {
-      type: 'polarArea',
+      type: 'line',
       data: {
-        labels:  estados.map(es => { return es.es}),
+        labels:  cities.map((es: any) => { return es.name}),
         datasets: [
           {
             label: 'visitas',
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            borderRadius: 5,
-            data: estados.map(es => es.views)
+            indexAxis: 'y',
+            data: cities.map((es: any) => es.value)
           }
         ]
       }
     }
   );
+   
 new Chart(
-    document.getElementById('citiesAnalytics'),
+    graphic1.value,
     {
       type: 'bar',
       data: {
-        labels:  cities.map(es => { return es.city}),
+        labels:  cities.map((es: any) => { return es.name}),
         datasets: [
           {
             label: 'visitas',
             borderRadius: 5,
             indexAxis: 'y',
-            data: cities.map(es => es.views)
+            data: cities.map((es: any) => es.value)
           }
         ]
       }
     }
   );
   new Chart(
-    document.getElementById('traficFontAnalytics'),
+    graphic2.value,
     {
       type: 'bar',
       data: {
-        labels:  estados.map(es => { return es.es}),
+        labels:  estados.map((es: any) => { return es.name}),
         datasets: [
           {
             label: 'visitas',
@@ -113,7 +114,7 @@ new Chart(
             maxBarThickness: 8,
             minBarLength: 2,
             borderRadius: 5,
-            data: estados.map(es => es.views)
+            data: estados.map((es: any) => es.value)
           }
         ]
       }
@@ -128,14 +129,14 @@ new Chart(
     </span>
     <div class="states">
         <h2>Estados</h2>
-        <canvas id="statesAnalytics"></canvas>
+        <canvas id="GraphicId01"></canvas>
     </div>
     <div class="cities">
         <h2>Cidades</h2>
-        <canvas id="citiesAnalytics"></canvas>
+        <canvas id="GraphicId00"></canvas>
         <div class="trafic-font">
             <h2>Fonte do Tráfico</h2>
-            <canvas id="traficFontAnalytics"></canvas>
+            <canvas id="GraphicId02"></canvas>
         </div>
     </div>
     

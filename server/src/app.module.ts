@@ -11,18 +11,23 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { UserService } from './modules/user/service/user.service';
 import { UserRepository } from './modules/user/repository';
-import { UserModule } from './modules/user/app.module';
+import { UserModule } from './modules/user/user.module';
 import { UserController } from './modules/user/controller/user.controller';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthController } from './modules/auth/auth.controller';
+import { AuthService } from './modules/auth/auth.service';
+import { AuthGuard } from './modules/auth/auth.guard';
 
 @Module({
   imports: [ 
+    AuthModule,
     PrismaModule, 
     ShortenLinkModule,
     UserModule,
     CacheModule.register(),
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [ config ]
+      load: [ () => { return config } ]
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'dist/public/pages'),
@@ -33,10 +38,12 @@ import { UserController } from './modules/user/controller/user.controller';
     }),
   ],
   controllers: [ 
+    AuthController,
     ShortenLinkController,
     UserController,
 ],
   providers: [
+    AuthService,
     ShortenLinkService,
     ShortenLinkRepository,
     UserService,

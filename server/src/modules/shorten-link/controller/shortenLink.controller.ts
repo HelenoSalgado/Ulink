@@ -1,14 +1,26 @@
-import { Body, Controller, Get, Head, Param, Post, Render, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
-import { Request, Response } from 'express';
+import { analyticRequest } from '../utils/analyticRequest';
+import { Request } from 'express';
 
 @Controller()
 export class ShortenLinkController {
   constructor(private readonly shortenService: ShortenLinkService) {}
 
   @Post('shorten')
-  async shortenUrl(@Body() createLinkDto: CreateLinkDto) {
+  async shortenUrl(
+    @Body() createLinkDto: CreateLinkDto,
+    @Req() req: Request, 
+    ) {
+
+    const ipAddress = req.socket.remoteAddress;
+    console.log(ipAddress);
+
+    let response = await fetch(`http://ip-api.com/json/${ipAddress}?fields=61439`);
+    // Crie a variável usuário e pegue a resposta da requisição
+    let usuario = await response.json();
+    console.log(usuario);
 
     return await this.shortenService.shortenUrl(createLinkDto);
 

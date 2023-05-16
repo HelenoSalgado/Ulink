@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import type { UpdateUserDto } from '../dto/update-user-dto';
-import { CreateUserDto } from '../dto/create-user-dto';
+import type { CreateUserDto } from '../dto/create-user-dto';
 
 @Injectable()
 export class UserRepository {
-
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateUserDto){
@@ -18,7 +17,6 @@ export class UserRepository {
   }
 
   async findOneAuthentication(email: string){
-    console.log('rfgfgr');
     return this.prisma.user.findFirst({
       where: { email },
       select: {
@@ -30,7 +28,6 @@ export class UserRepository {
   }
 
   async findOne(id: string){
-    console.log('rfgfgr');
     return this.prisma.user.findFirst({
       where: { id },
       select: {
@@ -57,7 +54,6 @@ export class UserRepository {
   }
 
   async findAll(){
-    console.log('rfgfgr');
     return this.prisma.user.findMany({
       select: {
         id: true,

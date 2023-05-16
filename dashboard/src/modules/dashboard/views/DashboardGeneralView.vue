@@ -11,14 +11,14 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
         <div class="blocks-analytics">
             <div class="blocks-info">
             <BlocksInfoGeneral 
-            name="Visitas"
+            name="Clicks"
             action="5000k"
-            icon="pi pi-user"
+            icon="pi pi-external-link"
             />
             <BlocksInfoGeneral 
-            name="comentários"
+            name="Links"
             action="300k"
-            icon="pi pi-comments"
+            icon="pi pi-chart-line"
             />
             <BlocksInfoGeneral 
             name="Curtidas"
@@ -37,9 +37,9 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
             <CommentsRecent />
         </div>
     </div>
-    <AnalyticsRegion />
+    <!-- <AnalyticsRegion /> -->
     <div class="group-posts-devices">
-        <PostsRecent />
+        <!-- <PostsRecent /> -->
         <UsedDeviceVue />
     </div>
 </template>
@@ -50,7 +50,7 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
     flex-wrap: wrap;
 }
 .group-analytics-comments, .group-posts-devices{
-    margin-top: 3rem;
+    margin-top: 0rem;
     display: flex;
     gap: 1rem;
     justify-content: space-between;

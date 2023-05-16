@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Chart } from 'chart.js/auto';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 interface Data {
    name: string;
@@ -9,13 +9,15 @@ interface Data {
 }
 const { data, type, label, id } = defineProps(['data', 'type', 'label', 'id']);
 
+const graphic = ref('GraphicId');
+
 onMounted(() => {
    new Chart(
-    document.getElementById(id),
+    graphic.value,
     {
       type,
       data: {
-        labels:  data.map(n => { return n.name}),
+        labels:  data.map((n: any) => { return n.name}),
         datasets: [
           {
             label,
@@ -24,7 +26,7 @@ onMounted(() => {
             maxBarThickness: 8,
             minBarLength: 2,
             borderRadius: 5,
-            data: data.map(n => n.value)
+            data: data.map((n: any) => n.value)
           }
         ]
       }
@@ -34,7 +36,7 @@ onMounted(() => {
 </script>
 <template>
 <div class="container-graphic">
-<canvas v-if="id" :id="id"></canvas>
+<canvas id="GraphicId"></canvas>
 </div>
 </template>
 <style scoped>

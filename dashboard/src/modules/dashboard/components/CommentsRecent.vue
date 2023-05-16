@@ -2,93 +2,115 @@
 import type { CommentCreate } from '../interface/Comment';
 //import Comment from '../api/Comment'
 import { ref, reactive, onMounted } from 'vue';
-import { marked } from 'marked';
+
+interface LinkCreate{
+  id: string;
+  title: string;
+  description: string;
+  urlImage: string;
+  urlOrigin: string;
+  clicks: number;
+}
 
 //const isAutentication = ref(false);
-const comnts = reactive<CommentCreate[]>([]);
+const refLinks = reactive<LinkCreate[]>([]);
 
-//const { idPost } = defineProps(['idPost']);
 onMounted(async () => {
-  //const idPost = 'xM7nsKTUL2Y';
-  //const comments: CommentCreate[] = await Comment.getAll(idPost);
-
-  const comments: CommentCreate[] = [
+  
+  const links: LinkCreate[] = [
   {
 		"id": "bJLempegX9A",
-		"profile": {
-			"name": "Heleno Salgado",
-			"avatar": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4'
-		},
-		"content": "Post top demais!"
+    "title": "Topkipokpkpk dfkmbofdfi dosifo f9if",
+		"description": "dfgh fghf hfghfgh fghn gh",
+		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+    "urlOrigin": "fdsfsdfdgffdgfdg",
+    "clicks": 9
 	},
-	{
-		"id": "KfmjkcFmeii",
-		"profile": {
-			"name": "Heleno Salgado",
-			"avatar": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4'
-		},
-		"content": "Post top demais!"
-	}
+  {
+		"id": "bJLempegX9A",
+    "title": "Topkipokpkpk",
+		"description": "ldtgfdghfehfghghfghgfhfgh fdgh ",
+		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+    "urlOrigin": "fdsfsdfdgffdgfdg",
+    "clicks": 9
+	},
   ]
 
   for (let i = 0; i < 4; i++) {
 
-    const comment = {
-      id: comments[i].id,
-      profile: comments[i].profile,
-      content: marked(comments[i].content),
-      likes: comments[i].likes,
+    const link = {
+      id: links[i].id,
+      title: links[i].title,
+      description: links[i].description,
+      urlImage: links[i].urlImage,
+      urlOrigin: links[i].urlOrigin,
+      clicks: links[i].clicks
     }
-    comnts.push(comment);
+    refLinks.push(link);
   }
 });
 
 
 </script>
 <template>
-<div class="container-comments">
-    <h3>Comentários Recentes</h3>
-<div v-for="c in comnts" :key="c.id" class="comments">
-    <div class="comment-author-info">
-      <img v-if="c?.profile?.avatar != null" :src="c?.profile?.avatar" />
+<div class="container-links">
+<h3 class="title-main">Top Links</h3>
+<div v-for="link in refLinks" :key="link.id" class="links">
+    <div class="link">
+      <img v-if="link?.urlImage != null" :src="link.urlImage" />
       <span v-else class="pi pi-user" style="font-size: 1.5rem;"></span>
-      <div>
-        <h5>{{ c?.profile?.name }}</h5>
+    </div>
+    <div>
+      <h3 class="title-top-link">{{ link?.title }}</h3>
+    </div>
+    <div class="link-content">
+       <p v-html="link.description"></p>
+    </div>
+      <div class="info-top-links">
+          <a href="#">rr5yrtyhtrht</a>
+          <i class="pi pi-external-link"></i>
+          <span>1000k</span>
       </div>
-    </div>
-    <div class="comment-content">
-       <p v-html="c?.content"></p>
-    </div>
+     
     </div>
   </div>
 </template>
 <style scoped>
-.container-comments{
+.container-links{
     max-width: 300px;
     height: calc(100% - 3rem);
     background-color: var(--bkg-box);
-    padding: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     border-radius: 15px;
 }
-.comments{
+.title-main{
+  margin-bottom: 1rem;
+}
+.links{
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 }
-.comment-author-info{
-  margin-top: 1rem;
-  max-width: 200px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.title-top-link{
+  font-weight: bold;
 }
-.comment-author-info h5{
-  font-weight: 600;
+.link{
+  height: 100px;
+  overflow: hidden;
 }
-.comment-author-info img{
-  width: 30px;
+.link img{
+  width: 100%;
   border-radius: 5px;
 }
-.comment-content{
+.link-description{
   margin: .5rem 0;
+}
+.info-top-links{
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.info-top-links i{
+  font-size: .8rem;
 }
 </style>

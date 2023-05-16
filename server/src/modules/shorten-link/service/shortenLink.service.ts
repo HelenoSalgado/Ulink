@@ -1,4 +1,4 @@
-import { BadRequestException, Inject } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ShortenLinkRepository } from '../repository';
 import ShortUniqueId from 'short-unique-id';
 import { isURL } from 'class-validator';
@@ -23,6 +23,7 @@ interface Analytics {
   value: number;
 }
 
+@Injectable()
 export class ShortenLinkService {
 
   constructor(
@@ -42,7 +43,7 @@ export class ShortenLinkService {
     dataUrl.id = new ObjectId().toString();
     dataUrl.idUrl = uniqueId;
 
-    const baseHost = config().localhost+':'+config().port.toString()+'/';
+    const baseHost = config.localhost+':'+config.port.toString()+'/';
     dataUrl.shortUrl = baseHost+uniqueId;
 
     await this.repo.createAnalytics(dataUrl.id, modelAnalytics);
@@ -79,11 +80,11 @@ export class ShortenLinkService {
 
     console.table(valuesAnalytics[0].so)
 
-    const dataAnalytics = await analyticRequest(valuesAnalytics, req);
+    //const dataAnalytics = await analyticRequest(valuesAnalytics, req);
 
-    await this.cache.set(nameCacheAnalytics, dataAnalytics, 0);
+    //await this.cache.set(nameCacheAnalytics, dataAnalytics, 0);
 
-    await this.repo.updateAnalytics(idAnalytics, dataAnalytics);
+    //await this.repo.updateAnalytics(idAnalytics, dataAnalytics);
     
 
   }

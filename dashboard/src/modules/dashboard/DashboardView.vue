@@ -26,7 +26,7 @@ import './assets/css/global.css';
 .background{
     width: 100%;
     background-color: var(--bkg-black);
-    padding: 0 2rem 0 0;
+    padding: 0 2rem 0 12rem;
     min-height: 100vh;
 }
 .container-dashboard{

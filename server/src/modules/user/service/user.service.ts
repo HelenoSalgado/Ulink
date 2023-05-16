@@ -2,23 +2,23 @@ import { UserRepository } from '../repository';
 import type { CreateUserDto } from '../dto/create-user-dto';
 import type { UpdateUserDto } from '../dto/update-user-dto';
 import { ObjectId } from 'bson'
-import bcrypt from 'bcryptjs';
-import { BadRequestException } from '@nestjs/common';
+import { genSaltSync, hashSync } from 'bcryptjs';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
+@Injectable()
 export class UserService {
 
   constructor(private readonly repo: UserRepository) {}
 
   async create(data: CreateUserDto) {
-    console.log(data);
-    const userExist = await this.repo.findOneAuthentication('leno@gmail.com');
 
-    if(userExist) {
-      throw new BadRequestException('Usuário já existe.')
-    }
+    const userExist = await this.repo.findOneAuthentication(data.email);
+
+    if(userExist) throw new BadRequestException('Usuário já existe.')
+
     data.id = new ObjectId().toString();
-    const salt = bcrypt.genSaltSync(10);
-    data.password = bcrypt.hashSync(data.password, salt);
+    const salt = genSaltSync(12);
+    data.password = hashSync(data.password, salt);
 
     return await this.repo.create(data);
 

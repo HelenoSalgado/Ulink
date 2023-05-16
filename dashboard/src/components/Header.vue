@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import MenuCompont from './Menu.vue';
 import Search from './Search.vue';
+import ButtonDashboard from './ButtonDashboard.vue';
 </script>
 
 <template>
     <header class="header">
         <MenuCompont/>
-        <Search/>
+        <!-- <Search/> -->
+        <ButtonDashboard/>
     </header>
 </template>
 
 <style>
   .header{
-    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
     align-items: center;

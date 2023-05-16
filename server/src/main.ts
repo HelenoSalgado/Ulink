@@ -48,7 +48,7 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(config().port);
+  await app.listen(config.port);
   console.log(`🏁 Application is running on: ${await app.getUrl()} 🚀`);
 }
 bootstrap();

@@ -64,18 +64,18 @@ const topSocialMedia = [
 <template>
 <div class="container-analytics">
 <div class="container-posts-views">
-<h2>Visitas</h2>
+<h2>Clicks</h2>
 <div class="posts-analytics">
   <Graphic 
   :data="dataPosts"
   type="bar"
-  label="visitas"
+  label="Clicks"
   id="01"
   />
 </div>
 </div>
 <div class="conatiner-top-media-shared">
-<TopSocialMedia :media="topSocialMedia"/>
+<TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
 </div>
 </div>
 </template>

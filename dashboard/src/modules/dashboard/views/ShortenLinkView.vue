@@ -1,23 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import ShortLink from '../api/ShortLink';
-import AnalyticsShortLinks from "../components/AnalyticsShortLinks.vue";
-import BlocksInfoGeneral from '../components/BlocksInfoGeneral.vue';
+import LinksRecent from '../components/LinksRecent.vue';
+import FileUpload from 'primevue/fileupload';
 
+const titleLink = ref('')
 const inputLink = ref('');
-const outputLink = ref('http://localhost:3000/');
+const outputLink = ref('');
+const IsExtend = ref(true);
 
 async function generateShortLink() {
     const { shortUrl } = await ShortLink.generate(inputLink.value);
     outputLink.value = shortUrl;
 }
 
+function onUpload(){
+    console.log(event);
+};
+
+onMounted(() => {
+    const extend = document.querySelector('.extend');
+    extend?.addEventListener('click', (e) => {
+        let boxGenerateLink = document.querySelector('.toggler');
+        boxGenerateLink?.classList.toggle('toggler-extend');
+    });
+})
+
 </script>
 <template>
     <div class="container-short-link">
     <div class="short-link">
-        <h1>Links</h1>
-        <div class="blocks-infos-general">
+        <h1 class="title">Encurte um Link</h1>
+        <!-- <div class="blocks-infos-general">
           <BlocksInfoGeneral 
           name="Clicks"
           action="200k"
@@ -28,120 +42,147 @@ async function generateShortLink() {
           action="100k"
           icon="pi pi-link"
           />
+        </div> -->
+        <div class="container-generate-link">
+        <span 
+         class="extend"><i class="pi pi-angle-down"
+         @click="IsExtend = !IsExtend"
+         v-bind:class="{'pi-angle-up': IsExtend}"></i>
+        </span>
+        <div class="toggler">
+        <label class="link-title">
+            <p>Título</p>
+            <input type="text" :value="titleLink" placeholder="">
+        </label>
+        <div>
+        <label class="description">
+            <p>Descrição</p>
+            <textarea placeholder=""></textarea>
+        </label>
+        <label class="input-url-img"> 
+            <p>URL de imagem</p>
+            <div>
+            <input type="url" placeholder="">
+            <FileUpload mode="basic" name="demo[]" accept="image/*" :maxFileSize="1000000" @upload="onUpload"/>  
+            </div>
+        </label>
         </div>
         <label class="input-link">
-            <div>
-                <i class="pi pi-link"></i>
-            </div>
-            <input v-model="inputLink" type="text">
+            <p>URL de origin</p> 
+            <input v-model="inputLink" type="url">
         </label>
-        <div class="button-generate-link">
-           <button @click="generateShortLink">
+        <label class="output-link"> 
+            <p>URL encurtada</p>           
+            <input :disabled="true" :value="outputLink" type="url">
+        </label>
+           <button class="button-generate-link"
+            @click="generateShortLink">
               <i class="pi pi-sync"></i>
               <span>Gerar</span>
            </button>
         </div>
-        <div class="output-link">            
-            <i class="pi pi-share-alt"></i>
-            <span>{{ outputLink }}</span>
+        <div class="links-recents">
+        <LinksRecent/>
         </div>
-        <div class="analytics">
-        <AnalyticsShortLinks />
         </div>
     </div>
     </div>
 </template>
 <style scoped>
-.short-link{
-    width: 100%;
+.container-short-link{
     margin-top: 6rem;
-    background-color: aliceblue; 
-    padding: 1rem;
-    border-radius: 15px;
+    width: 100%;
+    height: 88%; 
 }
-.short-link h1{
+.container-generate-link{
+    position: relative;
+    max-width: 800px;
+    margin: auto; 
+}
+.toggler{
+    height: auto;
+    transition: 200ms all;
+    color: var(--bkg-white-shaded); 
+    padding-top: .5rem;
+}
+.toggler-extend{
+    overflow-y: hidden;
+    height: 0;
+}
+.extend{
+    position: absolute;
+    top: 5px;
+    right: .5rem;
+    cursor: pointer;
+    z-index: 1;
+    color: var(--bkg-white-shaded); 
+}
+.title{
     text-align: center;
-    margin: 1rem 0 2rem 0;
+    color: var(--bkg-white-shaded);
 }
-.blocks-infos-general{
+.input-link, .output-link,
+.link-title, .input-url-img, .description{
+    display: block;
+    margin: 1rem 0;
+    padding: 0 .5rem; 
+}
+.description textarea{
+    margin: .5rem 0;
     width: 100%;
     max-width: 800px;
-    margin: auto;
+    height: 100%;
+    min-height: 100px;
+    max-height: 200px;
+    border: none;
+    border-radius: 7px;
+    padding: .5rem;
+    font-size: 1rem;
+    outline: transparent;
+    transition: 100ms ease-in;
+}
+.input-url-img > div{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+/* .blocks-infos-general{
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-bottom: 4rem;
-}
-.input-link, .output-link{
+    margin: 3rem 0;
+} */
+.container-generate-link input{
+    height: 45px;
     width: 100%;
-    max-width: 800px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
-.input-link div{
-    position: absolute;
-    z-index: 1;
-    background-color: var(--bkg-button-action);
-    padding: 9px 20px;
-}
-.input-link div{
-    left: 0;
-    border-radius: 15px 0 0 15px;
-}
-.input-link input, .output-link{
-  height: 40px;
-  width: 100%;
-  padding: .3rem;
-  font-size: 1.1rem;
-  border: 1px solid var(--bkg-black);
-  border-radius: 15px;
-  transition: 200ms all;
-}
-.input-link input{
-    padding-left: 65px;
-}
-.output-link{
-    padding-left: 1rem;
-}
-.input-link input:focus{
-  outline: 1px #919191;
-  box-shadow: var(--shadow-elevation-medium);
-}
-.button-generate-link{
-    padding: 1rem;
-    text-align: center;
-}
-.button-generate-link button{
-    padding: 1rem 2rem;
-    font-size: 1rem;
     border-radius: 7px;
+    margin: .5rem auto;
+    font-size: 1rem;
     border: none;
+    padding: .5rem;
+    outline: transparent;
+    transition: 100ms ease-in;
+} 
+.button-generate-link{
+    display: block;
     background-color: var(--bkg-button-action);
+    border-radius: 7px;
+    padding: 1rem 2rem;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    transition: 300ms;
+    font-size: 1.1rem;
+    border: none;
+    margin: 1rem .5rem;
     cursor: pointer;
 }
-.button-generate-link button:hover{
-    filter: brightness(90%);
-    color: var(--bkg-black);
+.link-title input:focus, .description textarea:focus, 
+.input-url-img input:focus,
+.input-link input:focus, .output-link input:focus{
+    outline: 2px solid var(--bkg-button-action);
 }
-.output-link{
-    display: flex;
-    justify-content: space-between;
-    background-color: #f7f7f7;
-}
-.output-link i{
-    position: absolute;
-    right: -1px;
-    background-color: var(--bkg-button-action);
-    padding: 13px 30px;
-    border-radius: 0 15px 15px 0;
-}
-.analytics{
-    margin-top: 3rem;
+.links-recents{
+    padding: .5rem;
 }
 </style>

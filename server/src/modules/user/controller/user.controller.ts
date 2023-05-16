@@ -3,11 +3,13 @@ import { UserService } from '../service/user.service';
 import { CreateUserDto } from '../dto/create-user-dto';
 import { UpdateUserDto } from '../dto/update-user-dto';
 import msg from 'src/constants/msg';
+import { Public } from 'src/config/route.public';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @Public()
   @Post('create')
   async create(@Body() createUserDto: CreateUserDto) {
 
@@ -37,7 +39,8 @@ export class UserController {
     @Body() updateUser: UpdateUserDto){
 
     try {
-      return await this.userService.update(id, updateUser);
+      await this.userService.update(id, updateUser);
+      return {statusCode: 200, message: msg.userUpdatedSucess};
     } catch (err) {
       throw new BadRequestException(err.message);
     }
@@ -48,7 +51,8 @@ export class UserController {
   async delete(@Param('id') id: string){
 
     try {
-      return await this.userService.delete(id);
+      await this.userService.delete(id);
+      return {statusCode: 202, message: msg.userDeletedSucess};
     } catch (err) {
       throw new BadRequestException(err.message);
     }

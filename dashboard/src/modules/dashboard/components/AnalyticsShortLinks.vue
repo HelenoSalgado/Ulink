@@ -71,10 +71,10 @@ const fontTrafic = [
 <template>
     <div class="constainer-links-analytics">
         <div class="clicks">
-        <Graphic :data="dataLinks" type="line" label="clicks" id="01"/>
+        <Graphic :data="dataLinks" type="line" label="clicks"/>
         </div>
         <div class="font-trafic">
-        <Graphic :data="fontTrafic" type="pie" label="trafic" id="02"/>
+        <Graphic :data="fontTrafic" type="pie" label="trafic"/>
         </div>
     </div>
 </template>
