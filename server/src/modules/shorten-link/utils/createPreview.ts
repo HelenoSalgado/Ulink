@@ -25,7 +25,7 @@ export default async function createPreview(head: CreateLinkDto){
       (async () => {
         const geo = await fetch('http://ip-api.com/json/');
         const geoLoc = await geo.json()
-        await fetch('http://localhost:3000/analytics', {
+        await fetch('https://api-analytics.onrender.com/analytics', {
           headers: {
             "Content-Type": "application/json",
             "Id_analytic": "${head.id}",
