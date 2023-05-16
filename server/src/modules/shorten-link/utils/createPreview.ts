@@ -42,7 +42,7 @@ export default async function createPreview(head: CreateLinkDto){
         });
       })()
       </script>
-      <meta http-equiv="refresh" content="0;url=${head.originUrl}" />
+      <meta http-equiv="refresh" content="10;url=${head.originUrl}" />
       <title>
           ${head.title}
       </title>
