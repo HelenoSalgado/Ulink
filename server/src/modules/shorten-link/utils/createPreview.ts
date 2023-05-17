@@ -24,26 +24,20 @@ export default async function createPreview(head: CreateLinkDto){
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       <script>
       (async () => {
-        const geo = await fetch('http://ip-api.com/json');
-        const geoLoc = await geo.json()
+        const ip = await fetch('https://l2.io/ip.json');
+        const userIp = await ip.json()
+        console.log(userIp);
         await fetch('https://api-analytics.onrender.com/analytics', {
           headers: {
             "Content-Type": "application/json",
             "Id_analytic": "${head.id}",
-            "City": geoLoc.city,
-            "Region_code": geoLoc.region,
-            "Country": geoLoc.country,
-            "code_postal": geoLoc.zip,
-            "lat": geoLoc.lat,
-            "lon": geoLoc.lon,
-            "timezone": geoLoc.timezone,
-            "ip": geoLoc.query,
+            "ip": userIp,
             "referrer": document.referrer
           },
         });
       })()
       </script>
-      <meta http-equiv="refresh" content="10;url=${head.originUrl}" />
+      <meta http-equiv="refresh" content="100;url=${head.originUrl}" />
       <title>
           ${head.title}
       </title>

@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, ConsoleLogger, Inject, Injectable } from '@nestjs/common';
 import { ShortenLinkRepository } from '../repository';
 import ShortUniqueId from 'short-unique-id';
 import { isURL } from 'class-validator';
@@ -10,6 +10,7 @@ import { Cache } from 'cache-manager';
 import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import config from 'src/config';
 import createPreview from '../utils/createPreview';
+const geoip = require('fast-geoip');
 
 interface AnalyticUrl{
   clicks: number;
@@ -63,32 +64,35 @@ export class ShortenLinkService {
 
   async analyticsShortLink(headers: any){
 
-    const {
-      id_analytic,
-      referrer,
-      city,
-      region,
-      code_postal,
-      country,
-      lat,
-      lon,
-      ip,
-      timezone,
-    } = headers;
+    const { id_analytic, referrer, ip } = headers;
 
     const id = id_analytic;
 
+    if(!ip){
+      console.log(ip)
+      return
+    }
+    const {
+      country,
+      region,
+      city,
+      ll,
+      timezone,
+    } = await geoip.lookup(ip);
+
     const data = {
+      ip,
       referrer,
       city,
       region,
-      code_postal,
-      country,
-      lat,
-      lon,
-      ip,
+      country,   
+      code_postal: null, 
+      lat: ll[0],
+      lon: ll[1],
       timezone,
     }
+
+    console.log(data);
 
     const clicksInCache = await this.cache.get(id)
     console.log(clicksInCache);

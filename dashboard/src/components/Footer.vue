@@ -10,6 +10,7 @@ const year = ref(new Date().getFullYear());
 
  </div>
  <p class="reserved-rights">&copy;{{ year }}</p>
+ <a href="http://www.geoplugin.com/geolocation/" target="_new">Geolocalização IP</a> por <a href="http://www.geoplugin.com/" target=" _new">geoPlugin</a>
 </footer>
 </template>
 
