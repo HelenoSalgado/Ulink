@@ -64,10 +64,11 @@ export class ShortenLinkRepository {
       }
     });
   }
-  async createAnalytics(id: string){
+  async createAnalytics(id: string, clicks: number){
     await this.prisma.linkAnalytics.create({
       data: {
         id,
+        clicks
       }
     });
   }

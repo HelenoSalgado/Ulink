@@ -23,16 +23,19 @@ export default async function createPreview(head: CreateLinkDto){
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script>
       (async () => {
+        const ipUser = await fetch('https://jsonip.com/');
+        const { ip } = await ipUser.json();
         await fetch('https://api-analytics.onrender.com/analytics', {
           headers: {
             "Content-Type": "application/json",
+            "ip": ip,
             "Id_analytic": "${head.id}",
             "referrer": document.referrer
           },
         });
       })()
       </script>
-      <meta http-equiv="refresh" content="10;url=${head.originUrl}" />
+      <meta http-equiv="refresh" content="0;url=${head.originUrl}" />
       <title>
           ${head.title}
       </title>

@@ -20,6 +20,7 @@ async function bootstrap() {
   app.enableCors(options);
 
   app.use(requestIp.mw())
+  app.set('trust proxy', true);
 
   // Ativar documentação automática da API
   const configApi = new DocumentBuilder()
