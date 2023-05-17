@@ -5,6 +5,7 @@ import { Request } from 'express';
 import { Public } from 'src/config/route.public';
 import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import { RequestAnalyticHeaderDto } from '../dto/request-header-analytics.dto';
+//import { SocketAddress } from 'net';
 
 
 @Controller()
@@ -25,7 +26,13 @@ export class ShortenLinkController {
   async analyticsShortLink(
     @Req() req: Request){
 
-    this.shortenService.analyticsShortLink(req.headers);
+    type SocketAddress = { address: string; port: number };
+
+    let ip: any = req.ip || req.socket.remoteAddress || req.socket.address() as SocketAddress;
+
+    if(ip.address) ip = ip.address;
+
+    this.shortenService.analyticsShortLink(req.headers, ip);
 
   }
 

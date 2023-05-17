@@ -62,26 +62,25 @@ export class ShortenLinkService {
     return url.originUrl;
   }
 
-  async analyticsShortLink(headers: any){
+  async analyticsShortLink(headers: any, ipPublic: string){
 
-    const { id_analytic, referrer, ip } = headers;
+    const { id_analytic, referrer } = headers;
 
     const id = id_analytic;
 
-    if(!ip){
-      console.log(ip)
-      return
-    }
+    if(!ipPublic) return;
+    if(ipPublic.length < 4) return;
+
     const {
       country,
       region,
       city,
       ll,
       timezone,
-    } = await geoip.lookup(ip);
+    } = await geoip.lookup(ipPublic);
 
     const data = {
-      ip,
+      ip: ipPublic,
       referrer,
       city,
       region,
@@ -92,18 +91,24 @@ export class ShortenLinkService {
       timezone,
     }
 
-    console.log(data);
 
-    const clicksInCache = await this.cache.get(id)
-    console.log(clicksInCache);
+    console.log('data: ' + data);
 
-    const { clicks } = await this.repo.findOneAnalytics(id);
-    //console.log(clicks);
-    const t = await this.cache.set(id, clicks, 0)
-    console.log(t);
+    const clicksInCache: number = await this.cache.get(id)
+    
+    if(!clicksInCache){
+      const { clicks } = await this.repo.findOneAnalytics(id);
+      await this.cache.set(id, clicks, 0);
+      await this.repo.updateAnalytics(
+        id, 
+        clicks+1,
+        data
+      );
+    }
+
     await this.repo.updateAnalytics(
       id, 
-      clicks+1,
+      clicksInCache+1,
       data
     );
 
