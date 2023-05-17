@@ -6,6 +6,7 @@ import config from './config';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as path from 'path';
+import * as requestIp  from 'request-ip';
 
 
 const options = {
@@ -17,6 +18,8 @@ const options = {
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors(options);
+
+  app.use(requestIp.mw())
 
   // Ativar documentação automática da API
   const configApi = new DocumentBuilder()
@@ -49,7 +52,7 @@ async function bootstrap() {
     }),
   );
 
-  app.useStaticAssets(path.join(__dirname, './public/js'));
+  app.useStaticAssets(path.join(__dirname, './public/'));
 
   await app.listen(config.port);
   console.log(`🏁 Application is running on: ${await app.getUrl()} 🚀`);

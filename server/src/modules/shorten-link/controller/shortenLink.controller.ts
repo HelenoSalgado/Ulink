@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { Request } from 'express';
 import { Public } from 'src/config/route.public';
 import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import { RequestAnalyticHeaderDto } from '../dto/request-header-analytics.dto';
+import { IpAddress } from '../decorator/IpDecorator';
 //import { SocketAddress } from 'net';
 
 
@@ -24,13 +25,15 @@ export class ShortenLinkController {
   @Public()
   @Get('analytics')
   async analyticsShortLink(
-    @Req() req: Request){
+    @Req() req: Request,
+    @IpAddress() ip: string){
 
     type SocketAddress = { address: string; port: number };
 
-    let ip: any = req.ip || req.socket.remoteAddress || req.socket.address() as SocketAddress;
+    //let ip: any = req.ip || req.socket.remoteAddress || req.socket.address() as SocketAddress //|| req.header['x-forwarded-for'];
 
-    if(ip.address) ip = ip.address;
+    console.log(ip);
+    //if(ip.address) ip = ip.address;
 
     this.shortenService.analyticsShortLink(req.headers, ip);
 

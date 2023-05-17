@@ -68,6 +68,8 @@ export class ShortenLinkService {
 
     const id = id_analytic;
 
+    console.log(ipPublic);
+
     if(!ipPublic) return;
     if(ipPublic.length < 4) return;
 
