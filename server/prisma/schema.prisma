@@ -16,7 +16,7 @@ model User {
   username   String
   email      String
   password   String?
-  role         Role             @default(USER)
+  role       Role             @default(USER)
   createAt  DateTime @default(now())
 }
 
@@ -36,6 +36,8 @@ model Link {
 
 model LinkAnalytics {
   id         String  @id @map("_id") @db.ObjectId
+  idUrl      String
+  idUser     String
   clicks     Int?
   analytics  Json[]
   updatedAt DateTime @updatedAt

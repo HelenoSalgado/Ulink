@@ -12,7 +12,7 @@ import { CreateLinkDto } from "../dto/create-link-dto";
 
 export default async function createPreview(head: CreateLinkDto){
 
-  const distPath = config.dirPublic+head.idUrl;
+  const distPath = config.dirPublic+'pages/'+head.idUrl;
   mkdirSync(distPath, { recursive: true });
 
   const preview = `<!DOCTYPE html>

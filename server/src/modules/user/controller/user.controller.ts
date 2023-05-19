@@ -3,7 +3,7 @@ import { UserService } from '../service/user.service';
 import { CreateUserDto } from '../dto/create-user-dto';
 import { UpdateUserDto } from '../dto/update-user-dto';
 import msg from 'src/constants/msg';
-import { Public } from 'src/config/route.public';
+import { Public } from 'src/modules/auth/decorators/public.decorator';
 
 @Controller('users')
 export class UserController {

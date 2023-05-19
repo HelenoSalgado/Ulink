@@ -1,41 +1,81 @@
-import { Body, Controller, Get, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ShortenLinkService } from '../service/shortenLink.service';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { Request } from 'express';
-import { Public } from 'src/config/route.public';
+import { Public } from 'src/modules/auth/decorators/public.decorator';
+import { UpdateLinkDto } from '../dto/update-link.dto';
+import { Roles } from 'src/modules/auth/decorators/roles.decorator';
+import { Role } from '@prisma/client';
 
 
-
-@Controller()
+@Controller('links')
 export class ShortenLinkController {
-  constructor(private readonly shortenService: ShortenLinkService) {}
+  constructor(private readonly service: ShortenLinkService) {}
 
-  @Post('shorten')
-  async shortenUrl(
+  @Post('create')
+  async createLink(
     @Body() createLinkDto: CreateLinkDto,
-    @Req() req: Request, 
-    ) {
-    return await this.shortenService.shortenUrl(createLinkDto);
+    ){
+    return await this.service.createLink(createLinkDto);
+
+  }
+
+  @Get('get-unique/:id')
+  async findLink(@Param('idUrl') idUrl: string){
+
+    return await this.service.findLink(idUrl);
+
+  }
+
+  @Get('get-all/:idUser')
+  async findLinks(@Param('idUser') idUser: string){
+
+    return await this.service.findLinksUser(idUser);
+
+  }
+
+  @Put('update/:id')
+  async updateLink(
+    @Param('id') id: string,
+    @Body() updateLinkDto: UpdateLinkDto,
+    ){
+    return await this.service.updateLink(id, updateLinkDto);
 
   }
 
   @Public()
   @Get('analytics')
-  async analyticsShortLink(@Req() req: Request){
+  async insertAnalytics(@Req() req: Request){
 
-    this.shortenService.analyticsShortLink(req.headers);
+    this.service.analytics(req.headers);
 
   }
 
-  // @Get('urls-analytics')
-  // async analyticUrls() {
+  @Get('get-analytics/:idUrl')
+  async analyticsUrl(@Param('idUrl') idUrl: string,) {
 
-  //   //return await this.shortenService.analyticUrl();
-  // }
-
-  @Get('generate-previas')
-  async generatePreviews(){
-    return await this.shortenService.generatePreviews();
+    return await this.service.findAnalyticsUrl(idUrl);
   }
+
+  @Get('get-urls-analytics/:idUser')
+  async analyticsUrls(@Param('idUser') idUser: string) {
+
+    return await this.service.findAnalyticsUrls(idUser);
+
+  }
+
+  @Roles(Role.ADMIN)
+  @Put('generate-previews')
+  async generatePreviews(@Req() req: Request){
+    return await this.service.generatePreviews();
+  }
+
+  @Roles(Role.ADMIN)
+  @Delete('clear-previews')
+  async clearAllPrevias(){
+    return await this.service.clearAllPreviews();
+  }
+
+
 }
 

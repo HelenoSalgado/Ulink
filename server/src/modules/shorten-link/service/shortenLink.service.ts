@@ -10,6 +10,8 @@ import { Cache } from 'cache-manager';
 import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import config from 'src/config';
 import createPreview from '../utils/createPreview';
+import clearPreviews from '../utils/clearPreviews';
+import { UpdateLinkDto } from '../dto/update-link.dto';
 const geoip = require('fast-geoip');
 
 interface AnalyticUrl{
@@ -25,13 +27,11 @@ export class ShortenLinkService {
     @Inject(CACHE_MANAGER) private cache: Cache
     ) {}
 
-  async shortenUrl(dataUrl: CreateLinkDto) {
+  async createLink(dataUrl: CreateLinkDto) {
 
     if(!isURL(dataUrl.originUrl)) {
       throw new BadRequestException('URL não é válida.')
     }
-
-    // Criar verificação de usuário para ver se o mesmo existe.
 
     const id = new ShortUniqueId();
     const uniqueId = id(5);
@@ -42,9 +42,16 @@ export class ShortenLinkService {
     const baseHost = config.localhost+':'+config.port.toString()+'/';
     dataUrl.shortUrl = baseHost+uniqueId;
 
-    await this.repo.createAnalytics(dataUrl.id, 0);
+    const initAnalytics = {
+      id: dataUrl.id,
+      clicks: 0,
+      idUrl: dataUrl.idUrl,
+      idUser: dataUrl.idUser
+    }
 
-    const dataLink = await this.repo.create(dataUrl);
+    await this.repo.createAnalytics(initAnalytics);
+
+    const dataLink = await this.repo.createLink(dataUrl);
 
     await createPreview(dataLink);
 
@@ -52,14 +59,35 @@ export class ShortenLinkService {
 
   }
 
-  async redirectUrl(idUrl: string, req: Request){
+  async updateLink(id: string, data: UpdateLinkDto){
 
-    const url = await this.repo.findOneUrl(idUrl);
+    const updatedLink = await this.repo.updateLink(id, data);
+    await createPreview(updatedLink);
+    return { message: 'Link atualizado com sucesso.' }
 
-    return url.originUrl;
   }
 
-  async analyticsShortLink(headers: any){
+  async findLink(idUrl: string){
+    return await this.repo.findLink(idUrl);
+  }
+
+  async findLinksUser(idUser: string){
+    return await this.repo.findLinksUser(idUser);
+  }
+
+  async findLinks(){
+    return await this.repo.findLinks();
+  }
+
+  async findAnalyticsUrl(idUrl: string){
+    return await this.repo.findAnalyticsUrl(idUrl);
+  }
+
+  async findAnalyticsUrls(idUser: string){
+    return await this.repo.findAnalyticsUrls(idUser);
+  }
+
+  async analytics(headers: any){
 
     const { ip, id_analytic, referrer } = headers;
 
@@ -94,7 +122,7 @@ export class ShortenLinkService {
     console.log(clicksInCache);
     
     if(!clicksInCache){
-      const { clicks } = await this.repo.findOneAnalytics(id);
+      const { clicks } = await this.repo.findAnalyticsUrl(id);
       await this.cache.set(id, clicks, 0);
       await this.repo.updateAnalytics(
         id, 
@@ -115,7 +143,7 @@ export class ShortenLinkService {
 
   async generatePreviews(){
 
-    const previews = await this.repo.findAllUrls();
+    const previews = await this.repo.findLinks();
 
     previews.forEach(async(head: CreateLinkDto) => {
       await createPreview(head);
@@ -123,6 +151,10 @@ export class ShortenLinkService {
 
     return {message: 'Prévias geradas com sucesso'};
     
+  }
+
+  async clearAllPreviews(){
+    return await clearPreviews();
   }
 
 }
