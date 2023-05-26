@@ -75,8 +75,7 @@
 }
 .link{
     margin-top: 2rem;
-    padding: .5rem 1rem 0 1rem;
-    border: 1px solid #455A80;
+    padding: .5rem 1rem;
     border-radius: 15px 15px 0 0;
     max-width: 800px;
     background-color: var(--bkg-box);
@@ -89,18 +88,23 @@
 .title-description{
     width: 80%;
 }
+.title-description h2{
+    margin-bottom: .5rem;
+}
 .previa-img img{
-    max-width: 150px;
+    width: 150px;
+    height: 100%;
     max-height: 150px;
     contain: content;
     border-radius: 7px;
+    background-color: var(--color-text-black-soft);
 }
 .info{
     display: inline-flex;
     align-items: center;
     gap: 1rem;
     border-radius: 0 0 15px 15px;
-    background-color: #455A80;
+    background-color: var(--bkg-button-action);
     padding: .5rem 1rem;
 }
 .info span{
@@ -108,7 +112,11 @@
     gap: 5px;
     align-items: center;
     cursor: pointer;
-    color: var(--bkg-box);
+    color: var(--color-text-black-soft);
     border-radius: 3px;
+    transition: 200ms all;
+}
+.info span:hover{
+    color: #000;
 }
 </style>

@@ -24,6 +24,7 @@ main{
 h1, .title{
   font-family: 'Yeseva One', cursive;
   color: #202020;
+  line-height: 1.3rem;
 }
 a{
   position: relative;

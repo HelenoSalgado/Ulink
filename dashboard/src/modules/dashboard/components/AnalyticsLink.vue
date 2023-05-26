@@ -64,7 +64,7 @@ const topSocialMedia = [
 <template>
 <div class="container-analytics">
 <div class="container-posts-views">
-<h2>Clicks</h2>
+<h2 class="title">Clicks</h2>
 <div class="posts-analytics">
   <Graphic 
   :data="dataPosts"

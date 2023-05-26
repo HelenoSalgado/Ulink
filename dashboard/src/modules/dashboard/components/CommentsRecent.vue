@@ -20,18 +20,18 @@ onMounted(async () => {
   const links: LinkCreate[] = [
   {
 		"id": "bJLempegX9A",
-    "title": "Topkipokpkpk dfkmbofdfi dosifo f9if",
-		"description": "dfgh fghf hfghfgh fghn gh",
+    "title": "Aprendendo o framework JavaScript VueJs.",
+		"description": "Venha estudar na melhor plataforma de programação online.",
 		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
-    "urlOrigin": "fdsfsdfdgffdgfdg",
+    "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
   {
 		"id": "bJLempegX9A",
-    "title": "Topkipokpkpk",
-		"description": "ldtgfdghfehfghghfghgfhfgh fdgh ",
+    "title": "Aprendendo o framework JavaScript VueJs.",
+		"description": "Venha estudar na melhor plataforma de programação online.",
 		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
-    "urlOrigin": "fdsfsdfdgffdgfdg",
+    "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
   ]
@@ -54,20 +54,20 @@ onMounted(async () => {
 </script>
 <template>
 <div class="container-links">
-<h3 class="title-main">Top Links</h3>
+<h3 class="title-main title">Top Links</h3>
 <div v-for="link in refLinks" :key="link.id" class="links">
     <div class="link">
       <img v-if="link?.urlImage != null" :src="link.urlImage" />
       <span v-else class="pi pi-user" style="font-size: 1.5rem;"></span>
     </div>
     <div>
-      <h3 class="title-top-link">{{ link?.title }}</h3>
+      <h3 class="title-top-link title">{{ link?.title }}</h3>
     </div>
     <div class="link-content">
        <p v-html="link.description"></p>
     </div>
       <div class="info-top-links">
-          <a href="#">rr5yrtyhtrht</a>
+          <a href="#">vuenaveia.com</a>
           <i class="pi pi-external-link"></i>
           <span>1000k</span>
       </div>
@@ -99,8 +99,11 @@ onMounted(async () => {
   overflow: hidden;
 }
 .link img{
-  width: 100%;
+  min-width: 100%;
+  min-height: 100px;
   border-radius: 5px;
+  background-color: #cccbcb;
+  filter: brightness(110%);
 }
 .link-description{
   margin: .5rem 0;

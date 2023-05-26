@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import ShortLink from '../api/ShortLink';
+import ShortLink from '../api/Link';
 import LinksRecent from '../components/LinksRecent.vue';
 import FileUpload from 'primevue/fileupload';
+import type { LinkCreate } from '../interface/Link';
 
 const titleLink = ref('')
 const inputLink = ref('');
@@ -10,7 +11,10 @@ const outputLink = ref('');
 const IsExtend = ref(true);
 
 async function generateShortLink() {
-    const { shortUrl } = await ShortLink.generate(inputLink.value);
+    const createLink: LinkCreate = {
+
+    }
+    const { shortUrl } = await ShortLink.create(createLink);
     outputLink.value = shortUrl;
 }
 

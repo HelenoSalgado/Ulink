@@ -29,10 +29,9 @@ import SearchDashboard from './SearchDashboard.vue';
 <style scoped>
 .container-nav-top{
   position: fixed;
-  width: calc(100% - 12rem) ;
-  left: 12rem;
+  width: 100%;
   background-color: var(--bkg-black);
-  z-index: 2;
+  z-index: 1;
   box-shadow: var(--shadow-elevation-low);
 }
 .nav-top{
@@ -43,7 +42,8 @@ import SearchDashboard from './SearchDashboard.vue';
   padding-left: 2rem;
 }
 .search{
-  width: 72%;  
+  width: calc(72% - 12rem);  
+  left: 12rem;
 }
 .infos{
   display: flex;
@@ -87,6 +87,8 @@ import SearchDashboard from './SearchDashboard.vue';
 }
 .user img{
     width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background-color: var(--bkg-box);
 }
 </style>

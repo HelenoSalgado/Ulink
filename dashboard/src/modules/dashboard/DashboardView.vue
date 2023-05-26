@@ -9,11 +9,11 @@ import './assets/css/global.css';
 </script>
 <template>
     <div class="background">
-        <div class="container-dashboard">
+        <div>
+            <NavTop />
             <MenuSide />
-            <div>
-                <NavTop />
-            </div>
+        </div>
+        <div class="container-dashboard">
             <div class="router-view">
                 <Transition>
                 <RouterView />
@@ -26,10 +26,12 @@ import './assets/css/global.css';
 .background{
     width: 100%;
     background-color: var(--bkg-black);
-    padding: 0 2rem 0 12rem;
     min-height: 100vh;
 }
 .container-dashboard{
+    width: 100%;
+    max-width: 1100px;
+    margin-left: 15rem;
     position: relative;
     display: flex;
     gap: 2rem; 

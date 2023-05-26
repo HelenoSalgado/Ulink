@@ -29,8 +29,8 @@ const search = ref('');
     color: var(--bkg-box);
 }
 .label-search input:focus{
-    outline: solid .6px var(--bkg-button);
-    box-shadow: var(--shadow-elevation-medium);
+    outline-width: .5px;
+    outline-color: var(--bkg-box);
 }
 .lupa{
     position: absolute;

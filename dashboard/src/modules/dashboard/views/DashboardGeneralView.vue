@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AnalyticsPost from '../components/AnalyticsPost.vue';
+import AnalyticsLink from '../components/AnalyticsLink.vue';
 import AnalyticsRegion from '../components/AnalyticsRegion.vue';
 import BlocksInfoGeneral from '../components/BlocksInfoGeneral.vue';
 import CommentsRecent from '../components/CommentsRecent.vue';
@@ -21,7 +21,7 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
             icon="pi pi-chart-line"
             />
             <BlocksInfoGeneral 
-            name="Curtidas"
+            name="Esta semana"
             action="300k"
             icon="pi pi-heart-fill"
             />
@@ -31,7 +31,7 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
             icon="pi pi-eye"
             />
             </div>
-            <AnalyticsPost />
+            <AnalyticsLink />
         </div>
         <div class="comments-recent">
             <CommentsRecent />

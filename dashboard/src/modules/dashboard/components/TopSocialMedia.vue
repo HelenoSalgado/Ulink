@@ -3,7 +3,7 @@ const props = defineProps(['title', 'media']);
 </script>
 <template>
     <div class="top-media-shared">
-        <h3>{{ props.title }}</h3>
+        <h3 class="title">{{ props.title }}</h3>
         <div v-for="m in props.media" class="interations-media">
             <div><i :class="m.icon" :style="m.style"></i>
                 <span>{{m.name}}</span><span>{{ m.action }}</span>
