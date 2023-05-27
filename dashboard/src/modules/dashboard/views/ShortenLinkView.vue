@@ -12,7 +12,10 @@ const IsExtend = ref(true);
 
 async function generateShortLink() {
     const createLink: LinkCreate = {
-
+        title: '',
+        description: '',
+        originUrl: '',
+        idUser: '',
     }
     const { shortUrl } = await ShortLink.create(createLink);
     outputLink.value = shortUrl;

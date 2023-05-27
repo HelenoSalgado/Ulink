@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TopSocialMedia from './TopSocialMedia.vue';
 import Graphic from './Graphic.vue';
 
 const dataPosts = [
@@ -33,33 +32,6 @@ const dataPosts = [
     },
 ];
 
-const topSocialMedia = [
-  {
-    name: 'Facebook',
-    action: '200k',
-    icon: 'pi pi-facebook',
-    style: 'color: '
-  },
-  {
-    name: 'Twitter',
-    action: '400k',
-    icon: 'pi pi-twitter',
-    style: 'color: '
-  },
-  {
-    name: 'WhatsApp',
-    action: '100k',
-    icon: 'pi pi-whatsapp',
-    style: 'color: green'
-  },
-  {
-    name: 'Telegram',
-    action: '200k',
-    icon: 'pi pi-telegram',
-    style: 'color: blue'
-  }
-]
- 
 </script>
 <template>
 <div class="container-analytics">
@@ -73,9 +45,6 @@ const topSocialMedia = [
   id="01"
   />
 </div>
-</div>
-<div class="conatiner-top-media-shared">
-<TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
 </div>
 </div>
 </template>

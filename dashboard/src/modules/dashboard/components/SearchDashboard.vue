@@ -21,16 +21,15 @@ const search = ref('');
     font-size: larger;
     border: .5px solid var(--bkg-box);
     border-radius: 7px;
-    margin: 0;
-    transition: 300ms all;
     width: 100%;
     background-color: transparent;
     font-family: initial;
     color: var(--bkg-box);
+    outline: transparent;
+    transition: 100ms ease-in;
 }
 .label-search input:focus{
-    outline-width: .5px;
-    outline-color: var(--bkg-box);
+    outline: 1px solid var(--bkg-box);
 }
 .lupa{
     position: absolute;

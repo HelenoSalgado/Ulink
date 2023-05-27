@@ -4,7 +4,7 @@ const { name, action, icon } = defineProps(['name', 'action', 'icon']);
 <template>
 <div class="blocks-info">
     <div>
-       <i :class="icon" style="color: #8bad50;"></i>
+       <i :class="icon" style="color: #6fc3d8;"></i>
        <div>
         <span>{{ action }}</span>
         <span>{{ name }}</span>

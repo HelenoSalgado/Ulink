@@ -34,6 +34,14 @@ onMounted(async () => {
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
+  {
+		"id": "bJLempegX9A",
+    "title": "Aprendendo o framework JavaScript VueJs.",
+		"description": "Venha estudar na melhor plataforma de programação online.",
+		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+    "urlOrigin": "https://vuenaveia.com.br",
+    "clicks": 9
+	},
   ]
 
   for (let i = 0; i < 4; i++) {
@@ -78,7 +86,7 @@ onMounted(async () => {
 <style scoped>
 .container-links{
     max-width: 300px;
-    height: calc(100% - 3rem);
+    height: calc(100% - 2rem);
     background-color: var(--bkg-box);
     padding: 1rem 1rem 2rem 1rem;
     border-radius: 15px;

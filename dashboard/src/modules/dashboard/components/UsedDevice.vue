@@ -11,6 +11,10 @@ const device = [
         type: 'desktop',
         acess: 5
     },
+    {
+        type: 'tablet',
+        acess: 3
+    },
 ]
 onMounted(() => {
    new Chart(

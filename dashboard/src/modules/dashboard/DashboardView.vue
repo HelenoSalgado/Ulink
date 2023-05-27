@@ -30,8 +30,8 @@ import './assets/css/global.css';
 }
 .container-dashboard{
     width: 100%;
-    max-width: 1100px;
-    margin-left: 15rem;
+    max-width: 900px;
+    margin: auto;
     position: relative;
     display: flex;
     gap: 2rem; 

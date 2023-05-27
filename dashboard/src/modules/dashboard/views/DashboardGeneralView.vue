@@ -1,47 +1,70 @@
 <script setup lang="ts">
 import AnalyticsLink from '../components/AnalyticsLink.vue';
-import AnalyticsRegion from '../components/AnalyticsRegion.vue';
 import BlocksInfoGeneral from '../components/BlocksInfoGeneral.vue';
 import CommentsRecent from '../components/CommentsRecent.vue';
 import PostsRecent from '../components/PostsRecent.vue';
 import UsedDeviceVue from '../components/UsedDevice.vue';
+import TopSocialMedia from '../components/TopSocialMedia.vue';
+import AnalyticsRegion from '../components/AnalyticsRegion.vue';
+
+const topSocialMedia = [
+  {
+    name: 'Facebook',
+    action: '200k',
+    icon: 'pi pi-facebook',
+    style: 'color: '
+  },
+  {
+    name: 'Twitter',
+    action: '400k',
+    icon: 'pi pi-twitter',
+    style: 'color: '
+  },
+  {
+    name: 'WhatsApp',
+    action: '100k',
+    icon: 'pi pi-whatsapp',
+    style: 'color: green'
+  },
+  {
+    name: 'Telegram',
+    action: '200k',
+    icon: 'pi pi-telegram',
+    style: 'color: blue'
+  }
+]
 </script>
 <template>
     <div class="group-analytics-comments">
         <div class="blocks-analytics">
             <div class="blocks-info">
             <BlocksInfoGeneral 
-            name="Clicks"
-            action="5000k"
-            icon="pi pi-external-link"
-            />
-            <BlocksInfoGeneral 
             name="Links"
             action="300k"
             icon="pi pi-chart-line"
+            />
+            <BlocksInfoGeneral 
+            name="Clicks"
+            action="5000k"
+            icon="pi pi-external-link"
             />
             <BlocksInfoGeneral 
             name="Esta semana"
             action="300k"
             icon="pi pi-heart-fill"
             />
-            <BlocksInfoGeneral 
-            name="Visualizações"
-            action="8000k"
-            icon="pi pi-eye"
-            />
             </div>
             <AnalyticsLink />
+            <div class="group-posts-devices">
+               <UsedDeviceVue />
+               <TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
+            </div>
         </div>
         <div class="comments-recent">
             <CommentsRecent />
         </div>
     </div>
-    <!-- <AnalyticsRegion /> -->
-    <div class="group-posts-devices">
-        <!-- <PostsRecent /> -->
-        <UsedDeviceVue />
-    </div>
+    <AnalyticsRegion />
 </template>
 <style scoped>
 .blocks-info{
@@ -58,10 +81,15 @@ import UsedDeviceVue from '../components/UsedDevice.vue';
     color: var(--color-font-box);
 }
 .group-analytics-comments{
-    margin-top: 6rem;
+    margin-top: 7rem;
 }
 .group-posts-devices{
     color: var(--color-font-box);
     padding-bottom: 2rem; 
+}
+.top-media-shared{
+  background-color: var(--bkg-box);
+  padding: 1rem;
+  border-radius: 15px;
 }
 </style>
