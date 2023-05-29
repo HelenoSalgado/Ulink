@@ -7,7 +7,7 @@ import StartedVue from './components/Started.vue';
 <template>
   <HeaderComnt/>
   <main class="apresentation">
-    <img src="./img/home.jpg" alt="">
+    <img src="@/assets/img/multivariate-5917419_1280.webp" alt="">
     <StartedVue/>
   </main>
 </template>
@@ -16,19 +16,16 @@ import StartedVue from './components/Started.vue';
 .apresentation{
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
 .apresentation > img{
   width: 100%;
-  max-width: 600px;
-  border: .5px solid var(--bkg-button);
-  border-radius: 7px;
-  box-shadow: var(--shadow-elevation-low);
+  max-width: 400px;
   transition: 300ms all;
 }
 .apresentation > img:hover{
-  filter: brightness(150%);
+  filter: brightness(110%);
 }
 </style>

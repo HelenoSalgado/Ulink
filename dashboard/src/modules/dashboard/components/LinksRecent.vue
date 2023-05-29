@@ -71,15 +71,15 @@
 }
 .title-link-recent{
     margin-bottom: 1rem;
-    color: #eee;
+    color: #fff;
 }
 .link{
     margin-top: 2rem;
     padding: .5rem 1rem;
+    border: 1px solid var(--bkg-dark-contrast);;
     border-radius: 15px 15px 0 0;
     max-width: 800px;
     background-color: var(--bkg-box);
-    color: var(--color-text-black-soft);
 }
 .link-container-flex{
     display: flex;
@@ -87,9 +87,11 @@
 }
 .title-description{
     width: 80%;
+    color: var(--bkg-dark);
 }
 .title-description h2{
     margin-bottom: .5rem;
+    color: var(--bkg-dark);
 }
 .previa-img img{
     width: 150px;
@@ -97,14 +99,14 @@
     max-height: 150px;
     contain: content;
     border-radius: 7px;
-    background-color: var(--color-text-black-soft);
+    background-color: var(--bkg-dark);
 }
 .info{
     display: inline-flex;
     align-items: center;
     gap: 1rem;
     border-radius: 0 0 15px 15px;
-    background-color: var(--bkg-button-action);
+    background-color: var(--bkg-dark-contrast);
     padding: .5rem 1rem;
 }
 .info span{
@@ -112,7 +114,7 @@
     gap: 5px;
     align-items: center;
     cursor: pointer;
-    color: var(--color-text-black-soft);
+    color: #fff;
     border-radius: 3px;
     transition: 200ms all;
 }

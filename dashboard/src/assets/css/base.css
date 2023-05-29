@@ -3,14 +3,17 @@
   --color-text-black-soft: #383838;
   --color-text-destaque: #353535;
   --color-link-hover: #242424;
+  --bkg-dark: rgb(11, 26, 51);
+  --bkg-dark-contrast: #134E50;
+  --color-font-box: rgb(7, 20, 43);
   --bkg-white-shaded: #fafafa;
   --bkg-border-soft: #4d4d4d;
-  --bkg-button-action: rgb(17, 199, 255);
+  --bkg-button-action: #134E50;
   --bkg-button-delete: #fc5050;
   --color-message-sucess: #00b600;
-  --padding-conteiner: 1rem;
-  --radius-container: 7px;
-  --max-width-conteiner: 1000px
+  --bkg-box: #ffffff;
+  --bkg-menu-side: rgb(244, 248, 255);
+  --color-font-bkg: #fff;
 }
 
 :root {

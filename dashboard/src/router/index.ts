@@ -35,7 +35,12 @@ const router = createRouter({
           path: 'encurta-link',
           name: 'encurta-link',
           component: () => import('@/modules/dashboard/views/ShortenLinkView.vue'),
-        }
+        },
+        {
+          path: 'perfil',
+          name: 'perfil',
+          component: () => import('@/modules/dashboard/views/ProfileView.vue'),
+        },
       ]
     },
   ]

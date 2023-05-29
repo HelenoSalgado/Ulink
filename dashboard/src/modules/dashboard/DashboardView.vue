@@ -5,6 +5,7 @@ import './assets/css/global.css';
 import { RouterView } from 'vue-router';
 import { Transition } from 'vue';
 import './assets/css/global.css';
+import FooterDashboard from './components/FooterDashboard.vue';
 
 </script>
 <template>
@@ -20,12 +21,13 @@ import './assets/css/global.css';
                 </Transition>
             </div> 
         </div>
+        <FooterDashboard />
     </div>
 </template>
 <style scoped>
 .background{
     width: 100%;
-    background-color: var(--bkg-black);
+    background-color: var(--bkg-dark);
     min-height: 100vh;
 }
 .container-dashboard{

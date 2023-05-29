@@ -26,7 +26,7 @@ onMounted(() => {
             maxBarThickness: 8,
             minBarLength: 2,
             borderRadius: 5,
-            data: data.map((n: any) => n.value)
+            data: data.map((n: any) => n.value),
           }
         ]
       }

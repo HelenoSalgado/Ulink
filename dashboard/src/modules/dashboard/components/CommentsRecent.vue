@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommentCreate } from '../interface/Comment';
+//import type { CommentCreate } from '../interface/Comment';
 //import Comment from '../api/Comment'
 import { ref, reactive, onMounted } from 'vue';
 
@@ -99,9 +99,6 @@ onMounted(async () => {
     flex-direction: column;
     margin-bottom: 2rem;
 }
-.title-top-link{
-  font-weight: bold;
-}
 .link{
   height: 100px;
   overflow: hidden;
@@ -113,13 +110,19 @@ onMounted(async () => {
   background-color: #cccbcb;
   filter: brightness(110%);
 }
-.link-description{
-  margin: .5rem 0;
+.link-content{
+  margin: .3rem 0;
+  color: #2c2c2c;
+  line-height: 1.1rem;
 }
 .info-top-links{
   display: inline-flex;
   align-items: center;
   gap: 1rem;
+  color: var(--bkg-dark-contrast);
+}
+.info-top-links a{
+  color: var(--bkg-dark-contrast);
 }
 .info-top-links i{
   font-size: .8rem;

@@ -18,6 +18,7 @@
     "chart": "^0.1.2",
     "chart.js": "^4.3.0",
     "chartjs": "^0.3.24",
+    "chartjs-chart-geo": "^4.2.0",
     "marked": "^5.0.1",
     "markedjs": "^0.0.1-security",
     "pinia": "^2.0.35",

@@ -12,25 +12,25 @@ const topSocialMedia = [
     name: 'Facebook',
     action: '200k',
     icon: 'pi pi-facebook',
-    style: 'color: '
+    style: 'color: var(--bkg-dark-contrast)'
   },
   {
     name: 'Twitter',
     action: '400k',
     icon: 'pi pi-twitter',
-    style: 'color: '
+    style: 'color: var(--bkg-dark-contrast)'
   },
   {
     name: 'WhatsApp',
     action: '100k',
     icon: 'pi pi-whatsapp',
-    style: 'color: green'
+    style: 'color: var(--bkg-dark-contrast)'
   },
   {
     name: 'Telegram',
     action: '200k',
     icon: 'pi pi-telegram',
-    style: 'color: blue'
+    style: 'color: var(--bkg-dark-contrast)'
   }
 ]
 </script>

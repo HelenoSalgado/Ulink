@@ -4,9 +4,9 @@
 
 <template>
     <div class="started">
-      <h1>Comece com uma página simples.</h1>
-      <h2>Você gosta de compartilhar conhecimentos? <br>Escrever para os amigos, talvez.</h2>
-      <p>Abra um conta e ganhe uma página de links para suas redes sociais.</p>
+      <h1>Encurte seu link agora mesmo.</h1>
+      <h2>Você terá acesso a todas as estatísticas. <br>Crie uma conta por apenas R$ 19,00.</h2>
+      <p>De brinde, ganhe uma página de links para suas redes.</p>
         <div class="started-buttons">
 
             <RouterLink to="/register">
@@ -25,15 +25,13 @@
 .started{
     width: 100%;
     max-width: 600px;
-    background-color: #ddd;
-    padding: 1rem;
     border-radius: 7px;
     color: var(--color-text-black-soft);
     background-color: var(--background-gradient-blue-soft);
-    line-height: 1.5;
 }
 .started h1{
     font-weight: 700;
+    margin-bottom: 1rem;
 }
 .started p{
     margin: 1rem 0 3rem 0;
@@ -44,10 +42,12 @@
     gap: 40px;
 }
 .register-btn{
-    background-color: #7eee7e;
+    background-color: var(--bkg-button-action);
+    color: #fff;
 }
 .login-btn{
-    background-color: var(--bkg-button);
+    background-color: #133978;
+    color: #fff;
 }
 .register-btn, .login-btn{
     width: 150px;

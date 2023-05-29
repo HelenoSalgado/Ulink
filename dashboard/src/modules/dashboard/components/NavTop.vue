@@ -2,6 +2,7 @@
 import SearchDashboard from './SearchDashboard.vue';
 </script>
 <template>
+<div class="cristal-effect"></div>
 <div class="container-nav-top">
 <div class="nav-top">
 <div class="search">
@@ -20,19 +21,25 @@ import SearchDashboard from './SearchDashboard.vue';
 </div>
 <div class="user">
     <h3>Olá, Heleno</h3>
-    <img src="https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4" alt="">
+    <img src="@/assets/img/73316162.png" alt="">
 </div>
 </div>
 </div>
 </div>
 </template>
 <style scoped>
-.container-nav-top{
+.cristal-effect, .container-nav-top{
   position: fixed;
   width: 100%;
-  background-color: var(--bkg-black);
   z-index: 1;
-  box-shadow: var(--shadow-elevation-low);
+}
+
+.cristal-effect{
+    background: hsla(218, 65%, 12%, 0.541);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    /* box-shadow: var(--shadow-elevation-low); */
+    height: 70px;
 }
 .nav-top{
   width: 97%;
@@ -40,6 +47,7 @@ import SearchDashboard from './SearchDashboard.vue';
   align-items: center;
   justify-content: space-between;
   padding-left: 2rem;
+  z-index: 2;
 }
 .search{
   width: calc(72% - 12rem);  
@@ -63,7 +71,7 @@ import SearchDashboard from './SearchDashboard.vue';
     cursor: pointer;
 }
 .notifications div:hover{
-    box-shadow: var(--shadow-elevation-low);;
+    box-shadow: var(--shadow-elevation-low);
 }
 .notifications div i{
     margin: .3rem;

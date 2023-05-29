@@ -3,7 +3,7 @@ const props = defineProps(['title', 'media']);
 </script>
 <template>
     <div class="top-media-shared">
-        <h3 class="title">{{ props.title }}</h3>
+        <h3 class="title"><i class="pi pi-chart-line"></i> {{ props.title }}</h3>
         <div v-for="m in props.media" class="interations-media">
             <div><i :class="m.icon" :style="m.style"></i>
                 <span>{{m.name}}</span><span>{{ m.action }}</span>
@@ -24,6 +24,7 @@ const props = defineProps(['title', 'media']);
 .interations-media div i{
     line-height: 0;
     margin-right: .5rem;
+    font-size: 1.3rem;
 }
 .interations-media div span:nth-child(3){
     margin-left: 1rem;
