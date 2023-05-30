@@ -31,6 +31,7 @@ const { name, action, icon } = defineProps(['name', 'action', 'icon']);
 }
 .blocks-info > div span:nth-child(1){
     font-weight: bold;
+    color: var(--color-text-black-soft)
 }
 .pi{
     font-size: 2rem;

@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+function visibleShared(e: string){
+  console.log(e);
+};
+
 </script>
 <template>
 <div class="container-links-recent">
@@ -26,7 +32,15 @@
         <span>
             <i class="pi pi-pencil"></i>
             <p>edite</p>
-        </span> 
+        </span>
+        <span>
+            <i class="pi pi-copy"></i>
+            <p>copy</p>
+        </span>
+        <span>
+            <i class="pi pi-qrcode"></i>
+            <p>qrcode</p>
+        </span>
         <span>
             <i class="pi pi-trash"></i>
             <p>delete</p>
@@ -43,6 +57,7 @@
     </div>
     </div>
 </div>
+<div class="info-shared">
 <div class="info">
         <span>
             <i class="pi pi-external-link"></i>
@@ -57,9 +72,39 @@
             <p>edite</p>
         </span> 
         <span>
+            <i class="pi pi-copy"></i>
+            <p>copy</p>
+        </span>
+        <span>
+            <i class="pi pi-qrcode"></i>
+            <p>qrcode</p>
+        </span>
+        <span @click="visibleShared('sdfsdf')">
+            <i class="pi pi-shared"></i>
+            <p>shared</p>
+        </span>
+        <span>
             <i class="pi pi-trash"></i>
             <p>delete</p>
         </span>     
+</div>
+<div class="shared">
+  <span>
+    <i class="pi pi-whatsapp"></i>
+  </span>
+  <span>
+    <i class="pi pi-facebook"></i>
+  </span>
+  <span>
+    <i class="pi pi-twitter"></i>
+  </span>
+  <span>
+    <i class="pi pi-telegram"></i>
+  </span>
+  <span>
+    <i class="pi pi-facebook"></i>
+  </span>
+</div>
 </div>
 </div>
 </template>
@@ -101,7 +146,23 @@
     border-radius: 7px;
     background-color: var(--bkg-dark);
 }
+.shared{
+    margin-top: 1rem;
+    width: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: var(--bkg-box);
+    color: var(--bkg-dark-contrast);
+    padding: 1rem;
+    border-radius: 15px;
+}
+.shared i{
+    font-size: 1.2rem;
+    cursor: pointer;
+}
 .info{
+    width: 100%;
     display: inline-flex;
     align-items: center;
     gap: 1rem;
@@ -120,5 +181,8 @@
 }
 .info span:hover{
     color: #000;
+}
+.shared{
+    position: absolute;
 }
 </style>

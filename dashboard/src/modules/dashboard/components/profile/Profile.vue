@@ -5,14 +5,21 @@
     <div class="header-profile">
         <img class="avatar-profile" src="@/assets/img/73316162.png" alt="">
         <div>
+            <span class="subtitle-icon">
             <h3>Heleno Salgado</h3>
+            <i class="pi pi-pencil"></i>
+            </span>
             <p>Marketing Manager</p>
             <p>São Romão</p>
         </div>
     </div>
 
     <div class="info-profile">
-    <h2>Informação Pessoal</h2>
+    <span class="subtitle-icon">
+      <h2>Informação Pessoal</h2> 
+      <i class="pi pi-pencil"></i> 
+    </span>
+    
     <div>
     <div class="group-info">
         <div>
@@ -41,7 +48,10 @@
        </div>
     </div>
     <div class="profile-address">
+    <span class="subtitle-icon">
     <h2>Endereço</h2>
+    <i class="pi pi-pencil"></i> 
+    </span>
     <div class="group-info">
         <div>
            <strong>Cidade</strong>

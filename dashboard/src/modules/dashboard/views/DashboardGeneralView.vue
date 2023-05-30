@@ -35,6 +35,7 @@ const topSocialMedia = [
 ]
 </script>
 <template>
+    <h1 class="title">Dashboard</h1>
     <div class="group-analytics-comments">
         <div class="blocks-analytics">
             <div class="blocks-info">
@@ -67,6 +68,10 @@ const topSocialMedia = [
     <AnalyticsRegion />
 </template>
 <style scoped>
+.title{
+    margin-top: 6rem;
+    color: var(--bkg-white-shaded);
+}
 .blocks-info{
     display: flex;
     gap: 1rem;
@@ -81,7 +86,7 @@ const topSocialMedia = [
     color: var(--color-font-box);
 }
 .group-analytics-comments{
-    margin-top: 7rem;
+    margin-top: 3rem;
 }
 .group-posts-devices{
     color: var(--color-font-box);

@@ -6,16 +6,16 @@
         <div class="site-map">
             <ul>
             <li>
-                <a href="/">Home</a>
+                <a class="link-icon-flex" href="/"><i class="pi pi-home"></i> Home</a>
             </li>
             <li>
-                <a href="">Blog</a>
+                <a class="link-icon-flex" href=""><i class="pi pi-globe"></i> Blog</a>
             </li>
             <li>
-                <a href="">Tutoriais</a>
+                <a class="link-icon-flex" href=""><i class="pi pi-book"></i> Tutoriais</a>
             </li>
             <li>
-                <a href="">Termos e privacidade</a>
+                <a class="link-icon-flex" href=""><i class="pi pi-info-circle"></i> Termos e privacidade</a>
             </li>
             </ul>
         </div>
@@ -47,10 +47,11 @@ li, a{
     padding: 3rem 1rem;
 }
 .site-map ul{
+    max-width: 300px;
+    margin: auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    text-align: center;
 }
 .site-map li{
     line-height: 1rem;

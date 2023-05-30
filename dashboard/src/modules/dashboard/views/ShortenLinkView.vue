@@ -37,7 +37,6 @@ onMounted(() => {
 <template>
     <div class="container-short-link">
     <div class="short-link">
-        <h1 class="title">Encurte um Link</h1>
         <!-- <div class="blocks-infos-general">
           <BlocksInfoGeneral 
           name="Clicks"
@@ -51,10 +50,11 @@ onMounted(() => {
           />
         </div> -->
         <div class="container-generate-link">
+        <h1 class="title">Encurta Link</h1>
         <span 
-         class="extend"><i class="pi pi-angle-down"
+         class="extend"><i class="pi pi-angle-double-down"
          @click="IsExtend = !IsExtend"
-         v-bind:class="{'pi-angle-up': IsExtend}"></i>
+         v-bind:class="{'pi-angle-double-up': IsExtend}"></i>
         </span>
         <div class="toggler">
         <label class="link-title">
@@ -75,7 +75,7 @@ onMounted(() => {
         </label>
         </div>
         <label class="input-link">
-            <p>URL de origin</p> 
+            <p>URL de origem</p> 
             <input v-model="inputLink" type="url">
         </label>
         <label class="output-link"> 
@@ -125,8 +125,9 @@ onMounted(() => {
     color: var(--bkg-white-shaded); 
 }
 .title{
-    text-align: center;
     color: var(--bkg-white-shaded);
+    margin-bottom: 1rem;
+    padding-left: .5rem;
 }
 .input-link, .output-link,
 .link-title, .input-url-img, .description{
@@ -174,6 +175,7 @@ onMounted(() => {
 .button-generate-link{
     display: block;
     background-color: var(--bkg-button-action);
+    color: #fff;
     border-radius: 7px;
     padding: 1rem 2rem;
     display: inline-flex;

@@ -21,14 +21,24 @@ onMounted(() => {
         datasets: [
           {
             label,
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
-            borderRadius: 5,
+            min: -100,
+            max: 100,
+            count: 8,
+            decimals: 2,
+            continuity: 1,
+            borderColor: '#134E50',
+            backgroundColor: '#134e5069',
             data: data.map((n: any) => n.value),
-          }
-        ]
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          },
+        },
       }
     }
   );

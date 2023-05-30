@@ -25,24 +25,29 @@ function activeFocus(e: string){
 
 </script>
 <template>
+<h1 class="title">Perfil</h1>
 <div class="container-profile">
     <nav class="menu-profile">
         <ul>
 
-            <a 
+            <a
+            class="link-icon-flex"
             @click="menuActive = 'profile', activeFocus('profile')" 
             :class="{ 'focus': focusProfile }"
             ><i class="pi pi-user"></i> Meu Perfil</a>
 
-            <a @click="menuActive = 'security', activeFocus('security')"
+            <a class="link-icon-flex"
+            @click="menuActive = 'security', activeFocus('security')"
             :class="{ 'focus': focusSecurity }"
             ><i class="pi pi-lock"></i> Segurança</a>
 
-            <a @click="menuActive = 'payment', activeFocus('payment')"
+            <a class="link-icon-flex" 
+            @click="menuActive = 'payment', activeFocus('payment')"
             :class="{ 'focus': focusPayment }"
             ><i class="pi pi-wallet"></i> Pagamento</a>
 
-            <a @click="menuActive = 'account', activeFocus('account')"
+            <a class="link-icon-flex" 
+            @click="menuActive = 'account', activeFocus('account')"
             :class="{ 'focus': focusAccount }"
             ><i class="pi pi-trash"></i> Delete Conta</a>
 
@@ -58,6 +63,10 @@ function activeFocus(e: string){
 </div>
 </template>
 <style scoped>
+h1{
+    margin-top: 6rem;
+    color: var(--bkg-white-shaded);
+}
 a{
     cursor: pointer;
     width: fit-content;
@@ -65,7 +74,7 @@ a{
     border-radius: 15px;
 }
 .menu-profile{
-    border-right: 1px solid #5a5a5a;
+    border-right: 1px solid var(--bkg-dark-contrast-transparent);
 }
 .menu-profile ul{
     width: 200px;

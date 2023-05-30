@@ -22,7 +22,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+		"urlImage": '../../../../public/img/register.jpg',
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -30,7 +30,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+		"urlImage": '../../../../public/img/register.jpg',
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -38,7 +38,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": 'https://avatars.githubusercontent.com/u/73316162?s=400&u=e9fb989b32a0b6c554418dfc09fb4c0e4784e773&v=4',
+		"urlImage": '../../../../public/img/home.jpg',
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -75,8 +75,10 @@ onMounted(async () => {
        <p v-html="link.description"></p>
     </div>
       <div class="info-top-links">
-          <a href="#">vuenaveia.com</a>
-          <i class="pi pi-external-link"></i>
+          <a class="link-animation" href="#">
+            vuenaveia.com
+            <i class="pi pi-external-link"></i>
+          </a>
           <span>1000k</span>
       </div>
      
@@ -101,19 +103,29 @@ onMounted(async () => {
 }
 .link{
   height: 100px;
+  background-color: var(--bkg-dark-contrast);
   overflow: hidden;
+  border-radius: 15px;
+  border: 2px solid var(--bkg-dark-contrast);
 }
 .link img{
-  min-width: 100%;
+  width: 100%;
   min-height: 100px;
-  border-radius: 5px;
-  background-color: #cccbcb;
   filter: brightness(110%);
+  opacity: .8;
+  transition: 100ms ease-in;
+  cursor: pointer;
+}
+.link img:hover{
+  opacity: 10;
 }
 .link-content{
   margin: .3rem 0;
-  color: #2c2c2c;
+  color: var(--color-text-black-soft);
   line-height: 1.1rem;
+}
+.title-top-link{
+  color: var(--color-text-black-soft);
 }
 .info-top-links{
   display: inline-flex;

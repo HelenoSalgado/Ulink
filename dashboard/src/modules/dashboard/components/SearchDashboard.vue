@@ -20,7 +20,7 @@ const search = ref('');
     padding: .3rem .5rem .3rem 25px;
     font-size: larger;
     border: .5px solid var(--bkg-box);
-    border-radius: 7px;
+    border-radius: 15px;
     width: 100%;
     background-color: transparent;
     font-family: initial;
@@ -30,6 +30,9 @@ const search = ref('');
 }
 .label-search input:focus{
     outline: 1px solid var(--bkg-box);
+}
+.label-search input:hover{
+    box-shadow: var(--shadow-elevation-low);
 }
 .lupa{
     position: absolute;

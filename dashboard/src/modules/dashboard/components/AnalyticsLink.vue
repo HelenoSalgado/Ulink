@@ -40,7 +40,7 @@ const dataPosts = [
 <div class="posts-analytics">
   <Graphic 
   :data="dataPosts"
-  type="bar"
+  type="line"
   label="Clicks"
   id="01"
   />
@@ -56,6 +56,10 @@ const dataPosts = [
     justify-content: space-around;
     width: 100%;
     gap: 2rem;
+}
+h2{
+    margin-bottom: 1rem;
+    color: var(--color-text-black-soft)
 }
 .container-posts-views, .top-media-shared{
   background-color: var(--bkg-box);

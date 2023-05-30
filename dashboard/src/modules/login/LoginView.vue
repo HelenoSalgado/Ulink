@@ -14,10 +14,10 @@ async function login(){
 
 <template>
     <HeaderComnt/>
+    <div class="container">
+    <h1>Entrar</h1>
     <div class="login">
-
         <div class="login-prints">
-            <h1>Login</h1>
         </div>
 
         <div>
@@ -25,11 +25,17 @@ async function login(){
         <form class="form-login" action="" @submit.prevent="login">
             <label>
                 <p>Email:</p> 
+                <span>
+                <i class="pi pi-envelope"></i>
                 <input type="email" v-model="email" />
+                </span>
             </label>
             <label>
                 <p>Senha:</p> 
+                <span>
+                <i class="pi pi-key"></i>
                 <input type="text" v-model="password" />
+                </span>
             </label>
          <button type="submit">
             Entrar
@@ -37,6 +43,7 @@ async function login(){
         </form>
         </div>
                     
+    </div>
     </div>
     </div>
 </template>

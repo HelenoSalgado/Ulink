@@ -9,11 +9,11 @@
       <p>De brinde, ganhe uma página de links para suas redes.</p>
         <div class="started-buttons">
 
-            <RouterLink to="/register">
-               <button class="register-btn">Começar</button> 
+            <RouterLink to="/registrar">
+               <button class="register-btn link-icon-flex"><i class="pi pi-user"></i> Registrar-se</button> 
             </RouterLink>
-            <RouterLink to="/login">
-               <button class="login-btn">Login</button>
+            <RouterLink to="/entrar">
+               <button class="login-btn link-icon-flex"><i class="pi pi-sign-in"></i> Entrar</button>
             </RouterLink>
 
         </div>
@@ -55,11 +55,11 @@
     border: none;
     border-radius: 7px;
     font-size: 1rem;
-    transition: 200ms all;
+    transition: 100ms ease-in;
     cursor: pointer;
 }
 .register-btn:hover, .login-btn:hover{
-    filter: brightness(90%);
+    filter: brightness(120%);
     box-shadow: var(--shadow-elevation-low);
 }
 </style>

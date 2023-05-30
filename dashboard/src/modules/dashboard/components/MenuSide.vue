@@ -23,15 +23,22 @@ onMounted(() => {
         <span></span>
     </span>
     <nav class="nav-menu">
-        <RouterLink to="/dashboard"><i class="pi pi-chart-pie"></i>
+        <RouterLink 
+        class="link-icon-flex" 
+        to="/dashboard"><i class="pi pi-chart-pie"></i>
             Dashboard</RouterLink>
-        <a href="/dashboard/perfil"><i class="pi pi-user-edit"></i>
-            Perfil</a>
-        <RouterLink to="/dashboard/encurta-link"><i class="pi pi-file-edit"></i>
+        <RouterLink 
+        class="link-icon-flex" 
+        to="/dashboard/perfil"><i class="pi pi-user-edit"></i>
+            Perfil</RouterLink>
+        <RouterLink class="link-icon-flex" 
+        to="/dashboard/encurta-link"><i class="pi pi-link"></i>
             Encuta Link</RouterLink>
-        <a href="#"><i class="pi pi-envelope"></i>
+        <a class="link-icon-flex" 
+        href="#"><i class="pi pi-envelope"></i>
             Emails</a>
-        <a href="#"><i class="pi pi-cog"></i>
+        <a class="link-icon-flex" 
+        href="#"><i class="pi pi-cog"></i>
             Configurações</a>
     </nav>
 </div>
@@ -58,10 +65,6 @@ onMounted(() => {
     gap: 1rem;
 }
 .nav-menu a{
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    line-height: 0;
     padding: 1rem;
     font-size: 1rem;
     width: fit-content;
@@ -77,35 +80,45 @@ a:hover{
 .extend-side-menu{
     position: absolute;
     width: 35px;
-    top: 20px;
+    top: 15px;
     right: -70px;
     cursor: pointer;
     /* z-index: 2; */
+    background-color: var(--bkg-box);
+    border-radius: 5px;
+    padding: 0 .2rem;
     transition: 300ms all;
-    border-radius: 3px;
+}
+.extend-side-menu:hover{
+    box-shadow: var(--shadow-elevation-low);
 }
 .extend-side-menu span{
     display: block;
-    height: 2px;
+    height: 3px;
     background-color: var(--bkg-dark-contrast);
-    margin: 7px 0;
+    margin: 5px 0;
     border-radius: 2px;
     transition: 300ms ease-in-out;
-    box-shadow: .3px .3px .7px #fff;
 }
 .menu-animation{
-    right: 0;
+    right: 5px;
+    width: 30px;
+    background-color: var(--bkg-dark-contrast);
+    opacity: .8;
+}
+.menu-animation span{
+    background-color: #fff;
 }
 .menu-animation span:nth-child(1){
     transform: rotateZ(50deg);
-    top: 8.5px;
+    top: 8px;
 }
 .menu-animation span:nth-child(2){
     opacity: 0;
 }
 .menu-animation span:nth-child(3){
     transform: rotateZ(-50deg);
-    bottom: 8.5px;
+    bottom: 8px;
 }
 .menu-animation span{
     box-shadow: none;

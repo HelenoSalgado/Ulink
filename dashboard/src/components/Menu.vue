@@ -5,9 +5,9 @@
 <template>
     <div>
      <nav class="navigator">
-        <RouterLink class="link-animation" to="/">Home</RouterLink>
-        <RouterLink class="link-animation" to="#">About</RouterLink>
-        <RouterLink class="link-animation" to="#">Blog</RouterLink>
+        <RouterLink class="link-animation" to="/"><i class="pi pi-home"></i> Casa</RouterLink>
+        <RouterLink class="link-animation" to="#"><i class="pi pi-book"></i> Sobre</RouterLink>
+        <RouterLink class="link-animation" to="#"><i class="pi pi-globe"></i> Blog</RouterLink>
       </nav>
     </div>
 </template>

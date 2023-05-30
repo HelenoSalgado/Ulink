@@ -1,25 +1,22 @@
+.container{
+    max-width: 1200px;
+    margin: auto;
+}
+h1{
+    margin-bottom: 2rem;
+}
 .register, .login{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
-    max-width: 1200px;
-    background-color: var(--bkg-white-shaded);
-    border: .2px solid var(--bkg-button);
-    border-radius: 7px;
-    box-shadow: var(--shadow-elevation-medium);
+    width: 100%;
 }
 .register-prints, .login-prints{
     width: 100%;
-    max-width: 600px;
-    background-image: url("../../public/img/register.jpg");
-    background-size: cover;
-    min-height: 300px;
-}
-.register-prints h1, .login-prints h1{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 500px;
+    background-image: url("../img/multivariate-5917419_1280.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .container-form{
     display: flex;
@@ -35,30 +32,53 @@
     font-size: 1rem;
     padding: 1rem 1rem 3rem 1rem;
 }
-.form-register label, .form-login label{
+span{
+    position: relative;
+}
+i{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    background-color: var(--bkg-dark-contrast);
+    width: fit-content;
+    padding: 14px;
+    border-radius: 7px 0 0 7px;
+    color: var(--bkg-white-shaded);
+}
+label{
     width: 100%;
     margin: 1rem auto;
 }
-.form-register label > input, .form-login label > input{
+input{
+    height: 45px;
     width: 100%;
-    max-width: 400px;
-    padding: .5rem;
+    border-radius: 7px;
+    margin: .3rem auto;
     font-size: 1rem;
-    border: .5px solid var(--color-text-black-soft);
-    border-radius: 5px;
+    border: .5px solid var(--bkg-dark-contrast);
+    padding: .2rem .5rem .2rem 50px;
+    outline: transparent;
+    transition: 100ms ease-in;
+} 
+input:focus{
+   outline: 1px solid var(--bkg-dark-contrast);
+   box-shadow: var(--shadow-elevation-medium);
 }
-.form-register label > input:focus,
-.form-login label > input:focus{
-   outline: .8px solid var(--bkg-button);
-}
-.form-register button, .form-login button{
-    width: 100%;
-    max-width: 400px;
+button{
+    width: fit-content;
     border: none;
     border-radius: 7px;
-    padding: .8rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
-    background-color: var(--bkg-button);
+    background-color: var(--bkg-dark-contrast);
+    color: var(--bkg-white-shaded);
+    transition: 200ms all;
+    cursor: pointer;
+}
+button:hover{
+    filter: brightness(120%);
 }
 @media (min-width: 700px) {
     .login-prints, .register-prints{

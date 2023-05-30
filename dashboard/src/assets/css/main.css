@@ -57,6 +57,12 @@ a{
   color: var(--color-text-destaque);
   transition: 0.4s;
 }
+.link-icon-flex{
+  display: inline-flex;
+  gap: .5rem;
+  align-items: center;
+  line-height: 0;
+}
 .link-animation::before{
   content: '';
   position: absolute;

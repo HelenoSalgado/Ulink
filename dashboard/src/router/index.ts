@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../modules/home/HomeView.vue';
-import LoginView from '../modules/login/LoginView.vue';
-import RegisterView from '../modules/register/RegisterView.vue';
-import DashboardView from '../modules/dashboard/DashboardView.vue';
+import HomeView from '@/modules/home/HomeView.vue';
+import LoginView from '@/modules/login/LoginView.vue';
+import RegisterView from '@/modules/register/RegisterView.vue';
+import DashboardView from '@/modules/dashboard/DashboardView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
