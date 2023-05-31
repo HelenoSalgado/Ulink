@@ -54,7 +54,7 @@ onMounted(() => {
     background-color: var(--bkg-box);
     min-height: 100vh;
     transition: 500ms ease-in;
-    z-index: 1;
+    z-index: 4;
 }
 .nav-menu{
     position: fixed;
@@ -105,6 +105,7 @@ a:hover{
     width: 30px;
     background-color: var(--bkg-dark-contrast);
     opacity: .8;
+    z-index: 4;
 }
 .menu-animation span{
     background-color: #fff;
@@ -126,5 +127,10 @@ a:hover{
 .menu-active{
     right: -5rem;
     z-index: 3;
+}
+@media (max-width: 750px) {
+    .extend-side-menu{
+        top: 20px;
+    }
 }
 </style>

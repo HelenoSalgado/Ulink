@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import Chart from 'chart.js/auto';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
-const device = [
+const device = ref('devicesAnalytics');
+
+const data = [
     {
         type: 'mobile',
         acess: 10
@@ -18,20 +20,16 @@ const device = [
 ]
 onMounted(() => {
    new Chart(
-    document.getElementById('devicesAnalytics'),
+    device.value,
     {
       type: 'doughnut',
       data: {
-        labels:  device.map(day => { return day.type}),
+        labels:  data.map(day => { return day.type}),
         datasets: [
           {
             label: 'acessos',
-            barPercentage: 0.5,
-            barThickness: 6,
-            maxBarThickness: 8,
-            minBarLength: 2,
             borderRadius: 5,
-            data: device.map(post => post.acess)
+            data: data.map(post => post.acess)
           }
         ]
       }
@@ -46,7 +44,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .container-device{
-    max-width: 400px;
+    width: 100%;
     height: calc(100% - 3rem);
     background-color: var(--bkg-box);
     padding: 1rem;

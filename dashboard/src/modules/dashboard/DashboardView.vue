@@ -29,6 +29,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
     width: 100%;
     background-color: var(--bkg-dark);
     min-height: 100vh;
+    overflow-y: hidden;
 }
 .container-dashboard{
     width: 100%;
@@ -37,6 +38,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
     position: relative;
     display: flex;
     gap: 2rem; 
+    padding: 1rem;
 }
 .router-view{
     width: 100%;

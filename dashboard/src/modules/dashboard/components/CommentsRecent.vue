@@ -2,6 +2,9 @@
 //import type { CommentCreate } from '../interface/Comment';
 //import Comment from '../api/Comment'
 import { ref, reactive, onMounted } from 'vue';
+import preview from '@/assets/img/multivariate-5917419_1280.webp';
+import a from '@/assets/img/register.jpg';
+import b from '@/assets/img/home.jpg';
 
 interface LinkCreate{
   id: string;
@@ -22,7 +25,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": '../../../../public/img/register.jpg',
+		"urlImage": preview,
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -30,7 +33,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": '../../../../public/img/register.jpg',
+		"urlImage": a,
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -38,7 +41,7 @@ onMounted(async () => {
 		"id": "bJLempegX9A",
     "title": "Aprendendo o framework JavaScript VueJs.",
 		"description": "Venha estudar na melhor plataforma de programação online.",
-		"urlImage": '../../../../public/img/home.jpg',
+		"urlImage": b,
     "urlOrigin": "https://vuenaveia.com.br",
     "clicks": 9
 	},
@@ -87,7 +90,7 @@ onMounted(async () => {
 </template>
 <style scoped>
 .container-links{
-    max-width: 300px;
+    width: 100%;
     height: calc(100% - 2rem);
     background-color: var(--bkg-box);
     padding: 1rem 1rem 2rem 1rem;

@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
-function visibleShared(e: string){
-  console.log(e);
+function visibleShared(e: string){ 
+    const link = document.querySelectorAll('.link');
+    link.forEach(l => l.classList.toggle('link-z-index-0'));
+    const boxShare = document.querySelector('.'+e);
+    boxShare?.classList.toggle('shared-visible');
 };
 
 </script>
@@ -20,6 +23,7 @@ function visibleShared(e: string){
     </div>
     </div>
 </div>
+<div class="info-shared">
 <div class="info">
         <span>
             <i class="pi pi-external-link"></i>
@@ -32,7 +36,7 @@ function visibleShared(e: string){
         <span>
             <i class="pi pi-pencil"></i>
             <p>edite</p>
-        </span>
+        </span> 
         <span>
             <i class="pi pi-copy"></i>
             <p>copy</p>
@@ -41,10 +45,32 @@ function visibleShared(e: string){
             <i class="pi pi-qrcode"></i>
             <p>qrcode</p>
         </span>
+        <span @click="visibleShared('hfgfgfdg')">
+            <i class="pi pi-share-alt"></i>
+            <p>share</p>
+        </span>
         <span>
             <i class="pi pi-trash"></i>
             <p>delete</p>
         </span>     
+</div>
+<div class="shared" :class="'hfgfgfdg'">
+  <span>
+    <i class="pi pi-whatsapp"></i>
+  </span>
+  <span>
+    <i class="pi pi-facebook"></i>
+  </span>
+  <span>
+    <i class="pi pi-twitter"></i>
+  </span>
+  <span>
+    <i class="pi pi-telegram"></i>
+  </span>
+  <span>
+    <i class="pi pi-facebook"></i>
+  </span>
+</div>
 </div>
 <div class="link">
     <div class="link-container-flex">
@@ -79,16 +105,16 @@ function visibleShared(e: string){
             <i class="pi pi-qrcode"></i>
             <p>qrcode</p>
         </span>
-        <span @click="visibleShared('sdfsdf')">
-            <i class="pi pi-shared"></i>
-            <p>shared</p>
+        <span @click="visibleShared('sdfsdfrt')">
+            <i class="pi pi-share-alt"></i>
+            <p>share</p>
         </span>
         <span>
             <i class="pi pi-trash"></i>
             <p>delete</p>
         </span>     
 </div>
-<div class="shared">
+<div class="shared" :class="'sdfsdfrt'">
   <span>
     <i class="pi pi-whatsapp"></i>
   </span>
@@ -125,6 +151,10 @@ function visibleShared(e: string){
     border-radius: 15px 15px 0 0;
     max-width: 800px;
     background-color: var(--bkg-box);
+    z-index: 2;
+}
+.link-z-index-0{
+    z-index: 0;
 }
 .link-container-flex{
     display: flex;
@@ -147,7 +177,8 @@ function visibleShared(e: string){
     background-color: var(--bkg-dark);
 }
 .shared{
-    margin-top: 1rem;
+    position: absolute;
+    top: -2rem;
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
@@ -156,10 +187,19 @@ function visibleShared(e: string){
     color: var(--bkg-dark-contrast);
     padding: 1rem;
     border-radius: 15px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 50ms all;
 }
 .shared i{
     font-size: 1.2rem;
     cursor: pointer;
+}
+.shared-visible{
+    top: 3rem;
+    visibility: visible;
+    opacity: 10;
+    z-index: 1;
 }
 .info{
     width: 100%;
@@ -169,6 +209,7 @@ function visibleShared(e: string){
     border-radius: 0 0 15px 15px;
     background-color: var(--bkg-dark-contrast);
     padding: .5rem 1rem;
+    z-index: 2;
 }
 .info span{
     display: inline-flex;
@@ -182,7 +223,17 @@ function visibleShared(e: string){
 .info span:hover{
     color: #000;
 }
-.shared{
-    position: absolute;
+@media (max-width: 750px) {
+
+    .link-container-flex{
+        display: block;
+    }
+    .previa-img img{
+        width: 100%;
+    }
+    .info span > p{
+        display: none;
+    }
+    
 }
 </style>

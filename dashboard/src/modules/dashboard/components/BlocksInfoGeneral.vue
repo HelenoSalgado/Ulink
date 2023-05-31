@@ -17,7 +17,6 @@ const { name, action, icon } = defineProps(['name', 'action', 'icon']);
     display: block;
     padding: 0 16px;
     flex: 1 1 150px;
-    max-width: 200px;
     display: flex;
     justify-content: center;
     gap: 1.5rem;
@@ -35,5 +34,18 @@ const { name, action, icon } = defineProps(['name', 'action', 'icon']);
 }
 .pi{
     font-size: 2rem;
+}
+@media (max-width: 750px){
+    .blocks-info > div{
+        flex: 1 1 60px;
+        gap: .5rem;
+    }
+    .blocks-info span{
+        font-size: .8rem;
+        line-height: 1rem;
+    }
+    .blocks-info i{
+        font-size: 1rem;
+    }
 }
 </style>

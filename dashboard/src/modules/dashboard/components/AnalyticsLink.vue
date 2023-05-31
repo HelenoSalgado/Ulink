@@ -35,7 +35,7 @@ const dataPosts = [
 </script>
 <template>
 <div class="container-analytics">
-<div class="container-posts-views">
+<div class="container-links-clicks">
 <h2 class="title">Clicks</h2>
 <div class="posts-analytics">
   <Graphic 
@@ -52,7 +52,7 @@ const dataPosts = [
 .container-analytics{
     margin: 3rem 0;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
     gap: 2rem;
@@ -61,16 +61,16 @@ h2{
     margin-bottom: 1rem;
     color: var(--color-text-black-soft)
 }
-.container-posts-views, .top-media-shared{
+.container-links-clicks, .top-media-shared{
   background-color: var(--bkg-box);
   padding: 1rem;
   border-radius: 15px;
 }
-.container-posts-views{
-    width: 40vw;
+.container-links-clicks{
+    width: 100%;
 }
 .conatiner-top-social-media{
-    width: 15vw;
+    width: 100%;
 }
 
 </style>

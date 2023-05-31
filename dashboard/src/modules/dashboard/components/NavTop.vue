@@ -52,7 +52,7 @@ const visibleUserCard = ref(false);
 .cristal-effect, .container-nav-top{
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
 }
 
 .cristal-effect{
@@ -119,6 +119,9 @@ const visibleUserCard = ref(false);
     gap: 1rem;
     color: var(--bkg-box);
 }
+.user h3{
+    line-height: 1.2rem;
+}
 .user img{
     width: 40px;
     height: 40px;
@@ -157,5 +160,16 @@ const visibleUserCard = ref(false);
     visibility: visible;
     top: 70px;
     opacity: 10;
+}
+@media (max-width: 750px) {
+    .nav-top{
+        gap: 0;
+    }
+    .search{
+        display: none;
+    }
+    .infos{
+        gap: .5rem;
+    }
 }
 </style>

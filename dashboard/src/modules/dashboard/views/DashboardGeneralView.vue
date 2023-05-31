@@ -57,8 +57,12 @@ const topSocialMedia = [
             </div>
             <AnalyticsLink />
             <div class="group-posts-devices">
-               <UsedDeviceVue />
-               <TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
+               <div>
+                <UsedDeviceVue />
+               </div>
+               <div>
+                <TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
+               </div>
             </div>
         </div>
         <div class="comments-recent">
@@ -74,27 +78,64 @@ const topSocialMedia = [
 }
 .blocks-info{
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     flex-wrap: wrap;
 }
-.group-analytics-comments, .group-posts-devices{
-    margin-top: 0rem;
+.group-analytics-comments{
+    margin-top: 3rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
-    justify-content: space-between;
+    justify-content: center;
     border-radius: 15px;
     color: var(--color-font-box);
 }
-.group-analytics-comments{
-    margin-top: 3rem;
+.group-analytics-comments > div{
+  max-width: 750px;
+  min-width: 400px;
+  flex: 1 2 200px;
+}
+.group-analytics-comments > div:nth-child(2){
+  max-width: 250px;
+  min-width: 150px;
+  flex: 1 2 200px;
 }
 .group-posts-devices{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
     color: var(--color-font-box);
-    padding-bottom: 2rem; 
+    padding-bottom: 2rem;
+}
+.group-posts-devices div{
+    min-width: 200px;
+    flex: 1 2 200px;
+    min-height: 100%;
+}
+.group-posts-devices div:nth-child(2){
+  max-width: 200px;
 }
 .top-media-shared{
   background-color: var(--bkg-box);
   padding: 1rem;
   border-radius: 15px;
+}
+@media (max-width: 750px) {
+  .blocks-info div{
+    width: 60px;
+  }
+  .group-analytics-comments > div:nth-child(2),
+  .group-posts-devices div:nth-child(2){
+    min-width: 200px;
+    width: 100%;
+    max-width: 750px;
+  }
+  .group-analytics-comments{
+    flex-direction: column;
+  }
+  .group-analytics-comments > div{
+    min-width: 200px;
+  }
 }
 </style>

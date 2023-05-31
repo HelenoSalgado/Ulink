@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ShortLink from '../api/ShortLink';
+//import ShortLink from '../api/ShortLink';
 import Graphic from './Graphic.vue';
 
 // interface Analytic {
