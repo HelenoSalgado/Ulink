@@ -25,7 +25,7 @@ function activeFocus(e: string){
 
 </script>
 <template>
-<h1 class="title">Perfil</h1>
+<h1 class="title-dashboard">Perfil</h1>
 <div class="container-profile">
     <nav class="menu-profile">
         <ul>
@@ -63,10 +63,6 @@ function activeFocus(e: string){
 </div>
 </template>
 <style scoped>
-h1{
-    margin-top: 6rem;
-    color: var(--bkg-white-shaded);
-}
 a{
     cursor: pointer;
     width: fit-content;

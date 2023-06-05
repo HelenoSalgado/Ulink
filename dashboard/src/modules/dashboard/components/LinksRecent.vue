@@ -205,7 +205,7 @@ function visibleShared(e: string){
     width: 100%;
     display: inline-flex;
     align-items: center;
-    gap: 1rem;
+    gap: .5rem;
     border-radius: 0 0 15px 15px;
     background-color: var(--bkg-dark-contrast);
     padding: .5rem 1rem;
@@ -217,10 +217,12 @@ function visibleShared(e: string){
     align-items: center;
     cursor: pointer;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 15px;
+    padding: .2rem .5rem;
     transition: 200ms all;
 }
 .info span:hover{
+    background-color: #fff;
     color: #000;
 }
 @media (max-width: 750px) {

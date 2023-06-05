@@ -34,12 +34,16 @@ onMounted(() => {
         <RouterLink class="link-icon-flex" 
         to="/dashboard/encurta-link"><i class="pi pi-link"></i>
             Encuta Link</RouterLink>
-        <a class="link-icon-flex" 
-        href="#"><i class="pi pi-envelope"></i>
-            Emails</a>
+        <RouterLink class="link-icon-flex" 
+        to="/dashboard/emails"><i class="pi pi-envelope"></i>
+            Contatos</RouterLink>
         <a class="link-icon-flex" 
         href="#"><i class="pi pi-cog"></i>
             Configurações</a>
+
+        <a class="link-icon-flex add-contact" 
+        href=""><i class="pi pi-user-plus"></i>
+            Add Contato</a>
     </nav>
 </div>
 </template>
@@ -69,6 +73,14 @@ onMounted(() => {
     font-size: 1rem;
     width: fit-content;
     border-radius: 15px;
+}
+.add-contact{
+    position: absolute;
+    bottom: 1rem;
+    border: 2px solid var(--bkg-dark-contrast);
+}
+.add-contact i{
+    font-size: 1.3rem;
 }
 a:hover{
     background-color: var(--bkg-dark-contrast);

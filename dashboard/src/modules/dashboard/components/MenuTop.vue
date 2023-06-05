@@ -132,27 +132,14 @@ const visibleUserCard = ref(false);
     filter: brightness(120%);
     cursor: pointer;
 }
-.card{
-    position: absolute;
-    top: 100px;
-    min-height: 200px;
-    background-color: var(--bkg-box);
-    border-radius: 15px;
-    transition: 100ms all;
-    opacity: 0;
-    visibility: hidden;
-}
 .notification-card,
 .message-card,
 .user-card{
-   width: 150px;
+   min-width: 100px;
    display: flex;
    flex-direction: column;
    right: 0;
    font-size: 1rem;
-}
-.user-card a{
-    margin: 1rem;
 }
 .visible-notification-card,
 .visible-message-card,

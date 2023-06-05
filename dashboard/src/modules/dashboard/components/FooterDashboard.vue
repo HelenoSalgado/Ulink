@@ -6,16 +6,16 @@
         <div class="site-map">
             <ul>
             <li>
-                <a class="link-icon-flex" href="/"><i class="pi pi-home"></i> Home</a>
+                <a class="link-icon-flex link-animation" href="/"><i class="pi pi-home"></i> Home</a>
             </li>
             <li>
-                <a class="link-icon-flex" href=""><i class="pi pi-globe"></i> Blog</a>
+                <a class="link-icon-flex link-animation" href=""><i class="pi pi-globe"></i> Blog</a>
             </li>
             <li>
-                <a class="link-icon-flex" href=""><i class="pi pi-book"></i> Tutoriais</a>
+                <a class="link-icon-flex link-animation" href=""><i class="pi pi-book"></i> Tutoriais</a>
             </li>
             <li>
-                <a class="link-icon-flex" href=""><i class="pi pi-info-circle"></i> Termos e privacidade</a>
+                <a class="link-icon-flex link-animation" href=""><i class="pi pi-info-circle"></i> Termos e privacidade</a>
             </li>
             </ul>
         </div>
@@ -42,6 +42,10 @@ footer::before{
 }
 li, a{
     color: var(--color-font-bkg);
+}
+.link-animation::before{
+    top: 1.3rem;
+    background-color: #fff;
 }
 .container-footer{
     padding: 3rem 1rem;

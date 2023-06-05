@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import AnalyticsLink from '../components/AnalyticsLink.vue';
-import BlocksInfoGeneral from '../components/BlocksInfoGeneral.vue';
-import CommentsRecent from '../components/CommentsRecent.vue';
-import PostsRecent from '../components/PostsRecent.vue';
-import UsedDeviceVue from '../components/UsedDevice.vue';
-import TopSocialMedia from '../components/TopSocialMedia.vue';
-import AnalyticsRegion from '../components/AnalyticsRegion.vue';
+import AnalyticsLink from '../components/dashboard/AnalyticsLink.vue';
+import BlocksInfoGeneral from '../components/dashboard/BlocksInfoGeneral.vue';
+import CommentsRecent from '../components/dashboard/CommentsRecent.vue';
+//import PostsRecent from '../components/dashboard/PostsRecent.vue';
+import UsedDeviceVue from '../components/dashboard/UsedDevice.vue';
+import TopSocialMedia from '../components/dashboard/TopSocialMedia.vue';
+import AnalyticsRegion from '../components/dashboard/AnalyticsRegion.vue';
 
 const topSocialMedia = [
   {
@@ -35,7 +35,7 @@ const topSocialMedia = [
 ]
 </script>
 <template>
-    <h1 class="title">Dashboard</h1>
+    <h1 class="title-dashboard">Dashboard</h1>
     <div class="group-analytics-comments">
         <div class="blocks-analytics">
             <div class="blocks-info">
@@ -72,70 +72,5 @@ const topSocialMedia = [
     <AnalyticsRegion />
 </template>
 <style scoped>
-.title{
-    margin-top: 6rem;
-    color: var(--bkg-white-shaded);
-}
-.blocks-info{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-.group-analytics-comments{
-    margin-top: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    border-radius: 15px;
-    color: var(--color-font-box);
-}
-.group-analytics-comments > div{
-  max-width: 750px;
-  min-width: 400px;
-  flex: 1 2 200px;
-}
-.group-analytics-comments > div:nth-child(2){
-  max-width: 250px;
-  min-width: 150px;
-  flex: 1 2 200px;
-}
-.group-posts-devices{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    color: var(--color-font-box);
-    padding-bottom: 2rem;
-}
-.group-posts-devices div{
-    min-width: 200px;
-    flex: 1 2 200px;
-    min-height: 100%;
-}
-.group-posts-devices div:nth-child(2){
-  max-width: 200px;
-}
-.top-media-shared{
-  background-color: var(--bkg-box);
-  padding: 1rem;
-  border-radius: 15px;
-}
-@media (max-width: 750px) {
-  .blocks-info div{
-    width: 60px;
-  }
-  .group-analytics-comments > div:nth-child(2),
-  .group-posts-devices div:nth-child(2){
-    min-width: 200px;
-    width: 100%;
-    max-width: 750px;
-  }
-  .group-analytics-comments{
-    flex-direction: column;
-  }
-  .group-analytics-comments > div{
-    min-width: 200px;
-  }
-}
+@import url('../assets/css/dashboard.css');
 </style>

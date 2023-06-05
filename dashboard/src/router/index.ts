@@ -41,6 +41,11 @@ const router = createRouter({
           name: 'perfil',
           component: () => import('@/modules/dashboard/views/ProfileView.vue'),
         },
+        {
+          path: 'emails',
+          name: 'emails',
+          component: () => import('@/modules/dashboard/views/ContactsView.vue'),
+        },
       ]
     },
   ]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MenuSide from './components/MenuSide.vue';
-import NavTop from './components/NavTop.vue';
+import MenuTop from './components/MenuTop.vue';
 import './assets/css/global.css';
 import { RouterView } from 'vue-router';
 import { Transition } from 'vue';
@@ -11,7 +11,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
 <template>
     <div class="background">
         <div>
-            <NavTop />
+            <MenuTop />
             <MenuSide />
         </div>
         <div class="container-dashboard">
