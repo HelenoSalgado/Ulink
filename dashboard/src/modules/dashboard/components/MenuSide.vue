@@ -35,7 +35,7 @@ onMounted(() => {
         to="/dashboard/encurta-link"><i class="pi pi-link"></i>
             Encuta Link</RouterLink>
         <RouterLink class="link-icon-flex" 
-        to="/dashboard/emails"><i class="pi pi-envelope"></i>
+        to="/dashboard/contacts"><i class="pi pi-envelope"></i>
             Contatos</RouterLink>
         <a class="link-icon-flex" 
         href="#"><i class="pi pi-cog"></i>

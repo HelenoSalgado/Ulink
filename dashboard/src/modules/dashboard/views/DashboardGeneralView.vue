@@ -5,7 +5,7 @@ import CommentsRecent from '../components/dashboard/CommentsRecent.vue';
 //import PostsRecent from '../components/dashboard/PostsRecent.vue';
 import UsedDeviceVue from '../components/dashboard/UsedDevice.vue';
 import TopSocialMedia from '../components/dashboard/TopSocialMedia.vue';
-import AnalyticsRegion from '../components/dashboard/AnalyticsRegion.vue';
+import MapBrazil from '../components/dashboard/MapBrazil.vue';
 
 const topSocialMedia = [
   {
@@ -33,6 +33,91 @@ const topSocialMedia = [
     style: 'color: var(--bkg-dark-contrast)'
   }
 ]
+
+const states = [{
+    df: {
+      value: 43, 
+    },
+    mg: {
+      value: 33, 
+    },
+    ba: {
+      value: 25, 
+    },
+    sp: {
+      value: 23, 
+    },
+    go: {
+      value: 23, 
+    },
+    to: {
+      value: 21, 
+    },
+    rr: {
+      value: 71, 
+    },
+    ma: {
+      value: 19, 
+    },
+    am: {
+      value: 16, 
+    },
+    sc: {
+      value: 12, 
+    },
+    rs: {
+      value: 11, 
+    },
+    ce: {
+      value: 18, 
+    },
+    se: {
+      value: 35, 
+    },
+    pb: {
+      value: 13, 
+    },
+    rj: {
+      value: 21, 
+    },
+    ms: {
+      value: 13, 
+    },
+    rn: {
+      value: 13, 
+    },
+    pe: {
+      value: 273, 
+    },
+    pi: {
+      value: 203, 
+    },
+    es: {
+      value: 293, 
+    },
+    al: {
+      value: 283, 
+    },
+    pa: {
+      value: 233, 
+    },
+    mt: {
+      value: 2543, 
+    },
+    ro: {
+      value: 2453, 
+    },
+    ac: {
+      value: 2573, 
+    },
+    ap: {
+      value: 25673, 
+    },
+    pr: {
+      value: 263, 
+    },
+}]
+
 </script>
 <template>
     <h1 class="title-dashboard">Dashboard</h1>
@@ -69,7 +154,11 @@ const topSocialMedia = [
             <CommentsRecent />
         </div>
     </div>
-    <AnalyticsRegion />
+    <MapBrazil 
+    :states="states"
+    />
+    <!-- <Echart /> -->
+    <!-- <MapStates /> -->
 </template>
 <style scoped>
 @import url('../assets/css/dashboard.css');

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const contactId = 'sdfdfgfd';
-import { RouterLink } from 'vue-router';
 </script>
 <template>
     <div class="info-emails">
@@ -12,7 +11,7 @@ import { RouterLink } from 'vue-router';
         <span class="pi pi-user"></span>
         <p>Heleno Salgado</p>
         <p>heleno@gmail.com</p>
-        <RouterLink :to="'contacts/'+contactId">Ver mais</RouterLink>
+        <a :href="'contacts/'+contactId">Ver mais</a>
     </div>
     <div class="box-user-email">
         <span class="pi pi-user"></span>
@@ -32,6 +31,7 @@ import { RouterLink } from 'vue-router';
         <p>heleno@gmail.com</p>
         <a href="#">Ver mais</a>
     </div>
+    
 </template>
 <style scoped>
 .info-emails{
@@ -64,3 +64,4 @@ import { RouterLink } from 'vue-router';
    color: var(--bkg-white-shaded);
 }
 </style>
+    

@@ -14,17 +14,21 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.7",
+    "@types/highcharts": "^7.0.0",
     "bootstrap": "^5.2.3",
     "chart": "^0.1.2",
     "chart.js": "^4.3.0",
     "chartjs": "^0.3.24",
     "chartjs-chart-geo": "^4.2.0",
+    "echarts": "^5.4.2",
+    "highcharts": "^11.1.0",
     "marked": "^5.0.1",
     "markedjs": "^0.0.1-security",
     "pinia": "^2.0.35",
     "primeicons": "^6.0.1",
     "primevue": "^3.29.0",
     "vue": "^3.2.47",
+    "vue-chart-3": "^3.1.8",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
