@@ -18,7 +18,6 @@ const title = ref(p.title);
 const description = ref(p.description);
 const message = ref('');
 const isUpdate = ref(false);
-const isDelete = ref(false);
 
 async function updateLink(){
 
@@ -37,11 +36,9 @@ async function updateLink(){
 }
 
 async function deleteLink(){
-    isDelete.value = true;
     message.value = '';
     const deleteLink = await Link.delete(id.value);
     message.value = deleteLink.message;
-    isDelete.value = false;
 }
 
 async function onUpload(params:any) {
@@ -110,8 +107,8 @@ console.log(description.value)
                     <i class="pi pi-sync" :class="{ loading: isUpdate }"></i>
                 </ButtonVue>
                 <ButtonVue v-on:click="deleteLink">
-                    <span>Deletar</span>
-                    <i class="pi pi-times" :class="{ 'pi-spinner': isDelete }"></i>
+                    <span>Cancelar</span>
+                    <i class="pi pi-times"></i>
                 </ButtonVue>
             </div>
         </div>
@@ -168,6 +165,16 @@ label{
     width: 100%;
     max-width: 450px;
     gap: 50px;
+}
+.action-buttons button{
+    color: var(--bkg-box);
+    font-weight: bold;
+}
+.action-buttons button:nth-child(1){
+    background-color: var(--bkg-button-action);
+}
+.action-buttons button:nth-child(2){
+    background-color: var(--bkg-button-delete);
 }
 .pi{
     line-height: 0;

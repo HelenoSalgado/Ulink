@@ -1,6 +1,7 @@
 import {
     Body,
-    Controller,
+    Controller, 
+    Get,
     HttpCode,
     HttpStatus,
     Post,
@@ -22,5 +23,10 @@ export class AuthController {
   @Post('/login')
   async signIn(@Req() req: Request, @Body() signInDto: SignInDto) {
     return await this.authService.signIn(signInDto.email, signInDto.password, req);
+  }
+
+  @Get('/verify')
+  async signInVerify(@Req() req: Request) {
+    return await this.authService.signInVerify(req.headers.authorization);
   }
 }

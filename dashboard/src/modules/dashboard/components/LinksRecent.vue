@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
+import Link from '../api/Link';
+import type { UpdateLink } from '../interface/Link';
+
+interface Link extends UpdateLink{
+    shortUrl?: string;
+}
 
 function visibleShared(e: string){ 
     const link = document.querySelectorAll('.link');
@@ -8,10 +14,40 @@ function visibleShared(e: string){
     boxShare?.classList.toggle('shared-visible');
 };
 
+function openLink() {
+    window.location.href = 'https://cdn.pixabay.com/photo/2016/11/08/05/20/sunset-1807524_1280.jpg';
+    console.log('clicado');
+}
+function copyLink(e: any) {
+
+    var url = document.querySelector('[data-link]');
+    console.log(url);
+}
+function generateQrCode(e: any) {
+    console.log('QR code');
+}
+
+
+const links = reactive<Link[]>([]);
+
+const linksAll = await Link.getAll('64639a8de62e0b27e6753d18');
+
+for (let i = 0; i < linksAll.length; i++) {
+    const link: Link = {
+        idUrl: linksAll[i].idUrl,
+        title: linksAll[i].title,
+        description:  linksAll[i].description,
+        originUrl: linksAll[i].originUrl,
+        urlImg: linksAll[i].urlImg,
+        shortUrl: linksAll[i].shortUrl,
+    }
+    links.push(link);
+};
+console.log(links);
 </script>
 <template>
 <div class="container-links-recent">
-<div class="link">
+<div class="link" v-for="l in links" :key="l.idUrl" >
     <div class="link-container-flex">
     <div class="previa-img">
         <img src="https://cdn.pixabay.com/photo/2016/11/08/05/20/sunset-1807524_1280.jpg" alt="">
@@ -22,7 +58,7 @@ function visibleShared(e: string){
     </div>
     </div>
     <div class="info">
-        <span>
+        <span @click="openLink">
             <i class="material-icons">open_in_new</i>
             <p>100</p>
         </span>
@@ -31,18 +67,17 @@ function visibleShared(e: string){
             <p>statistics</p>
         </span>
         <span>
-            <RouterLink 
-            class="link-icon-flex" 
-            to="/dashboard/edit-link">
             <i class="material-icons">edit</i>
+            <RouterLink 
+            to="/dashboard/edit-link">
                 Edite
             </RouterLink>
         </span> 
-        <span>
+        <span @click="copyLink" data-link="https://heleno.dev">
             <i class="material-icons">content_copy</i>
             <p>copy</p>
         </span>
-        <span>
+        <span @click="generateQrCode">
             <i class="material-icons">qr_code</i>
             <p>qrcode</p>
         </span>
@@ -153,14 +188,14 @@ function visibleShared(e: string){
     padding: .5rem 1rem;
     z-index: 2;
 }
-.link-icon-flex{
-    color: #fff;
-    border-radius: 15px;
-    padding: .2rem .5rem;
+.info span:hover{
+    background-color: #fff;
+    color: #000;
+}
+.info span > a{
     transition: 200ms all;
 }
-.link-icon-flex:hover, .info span:hover{
-    background-color: #fff;
+.info span > a:hover{
     color: #000;
 }
 .info span{
@@ -173,6 +208,9 @@ function visibleShared(e: string){
     padding: .2rem .5rem;
     transition: 200ms all;
 }
+.info span > a{
+    color: #fff;
+}
 @media (max-width: 750px) {
 
     .link-container-flex{
@@ -181,7 +219,7 @@ function visibleShared(e: string){
     .previa-img img{
         width: 100%;
     }
-    .info span > p{
+    .info span > p, .info span > a{
         display: none;
     }
     

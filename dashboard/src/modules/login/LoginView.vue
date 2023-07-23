@@ -1,13 +1,22 @@
 <script setup lang="ts">
 import router from '@/router';
 import HeaderComnt from '@/components/Header.vue';
-import { ref } from 'vue';
+import http from '@/services/http';
+import { reactive } from 'vue';
+import { useAuth } from '@/stores/auth'
 
-const email = ref('');
-const password = ref('');
+const auth = useAuth();
+
+const user = reactive({
+    email: '',
+    password: '',
+})
 
 async function login(){
-   router.push('/sucess')
+    const { data } = await http.post('auth/login', user);
+    auth.setToken(data);
+    console.log(data);
+   //router.push('/sucess')
 }
 
 </script>
@@ -27,14 +36,14 @@ async function login(){
                 <p>Email:</p> 
                 <span>
                 <i class="pi pi-envelope"></i>
-                <input type="email" v-model="email" />
+                <input type="email" v-model="user.email" />
                 </span>
             </label>
             <label>
                 <p>Senha:</p> 
                 <span>
                 <i class="pi pi-key"></i>
-                <input type="text" v-model="password" />
+                <input type="password" v-model="user.password" />
                 </span>
             </label>
          <button type="submit">

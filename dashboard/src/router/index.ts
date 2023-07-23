@@ -3,6 +3,7 @@ import HomeView from '@/modules/home/HomeView.vue';
 import LoginView from '@/modules/login/LoginView.vue';
 import RegisterView from '@/modules/register/RegisterView.vue';
 import DashboardView from '@/modules/dashboard/DashboardView.vue';
+import { useAuth } from '@/stores/auth';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,9 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardView,
+      meta: {
+        auth: true,
+      },
       children: [
         {
           path: '',
@@ -33,7 +37,7 @@ const router = createRouter({
         },
         {
           path: 'encurta-link',
-          name: 'encurta-link',
+          name: 'encurta link',
           component: () => import('@/modules/dashboard/views/ShortenLinkView.vue'),
         },
         {
@@ -43,17 +47,36 @@ const router = createRouter({
         },
         {
           path: 'all-links',
-          name: 'all-links',
+          name: 'all links',
           component: () => import('@/modules/dashboard/views/AllLinksView.vue'),
         },
         {
           path: 'edit-link',
-          name: 'edit-link',
+          name: 'edit',
           component: () => import('@/modules/dashboard/views/EditLinkView.vue'),
         },
-      ]
+      ],
     },
-  ]
+  ],
+});
+
+router.beforeEach(async(to, from, next) => {
+
+  if(to.meta?.auth){
+    const auth = useAuth();
+    if(auth.token){
+       const isAuthenticated = await auth.checkToken();
+       console.log(isAuthenticated);
+       if(isAuthenticated){
+        next();
+       }else{
+        next({ name: 'login' });
+       }
+    }
+  }else{
+    next();
+  }
+   
 })
 
 export default router

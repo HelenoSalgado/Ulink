@@ -84,12 +84,12 @@ onMounted(() => {
 }
 .nav-menu a{
     padding: 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     width: fit-content;
     border-radius: 15px;
 }
 .material-icons{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 .add-contact{
     position: absolute;

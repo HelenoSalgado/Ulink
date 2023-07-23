@@ -29,7 +29,7 @@
     color: var(--color-text-black-soft);
     background-color: var(--background-gradient-blue-soft);
 }
-.started h1{
+h1{
     font-weight: 700;
     margin-bottom: 1rem;
 }

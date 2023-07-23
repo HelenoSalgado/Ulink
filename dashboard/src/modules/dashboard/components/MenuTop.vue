@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import SearchDashboard from './SearchDashboard.vue';
+import { useAuth } from '@/stores/auth';
 
 const visibleNotifCard = ref(false);
 const visibleMsgCard = ref(false);
 const visibleUserCard = ref(false);
+
+function logout() {
+    useAuth().clear();
+}
 
 </script>
 <template>
@@ -30,7 +35,7 @@ const visibleUserCard = ref(false);
     </div>
 </div>
 <div class="user">
-    <h3>Olá, Heleno</h3>
+    <h3>Olá, {{ useAuth().user }}</h3>
     <img 
     @click="visibleUserCard = !visibleUserCard" 
     src="@/assets/img/73316162.png" alt="avatar" title="perfil">
@@ -41,7 +46,7 @@ const visibleUserCard = ref(false);
      <a class="link-icon-flex" 
      href=""><i class="pi pi-cog"></i> Config</a>
      <a class="link-icon-flex" 
-     href=""><i class="pi pi-sign-out"></i> Sair</a>
+     href="/" @click="logout"><i class="pi pi-sign-out"></i> Sair</a>
     </div>
 </div>
 </div>

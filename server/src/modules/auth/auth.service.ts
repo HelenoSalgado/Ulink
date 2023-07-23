@@ -28,8 +28,15 @@ export class AuthService {
 
     //req['sub'] = payload
    
-    return {
+    return { 
+      firstName: user.firstName,
       access_token: await this.jwtService.signAsync(payload),
+    };
+  };
+
+  async signInVerify(token: string) {
+    return {
+      access_token: await this.jwtService.verify(token),
     };
   }
 }

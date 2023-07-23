@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import '../assets/css/profile.css';
 import LinksRecent from '../components/LinksRecent.vue';
-import AllContacts from '../components/contacts/AllContacts.vue';
-import Contact from '../components/contacts/Contact.vue';
+import Paginator from 'primevue/paginator';
 import { ref } from 'vue';
 
 const menuActive = ref('profile');
@@ -35,8 +34,14 @@ function activeFocus(e: string){
         <LinksRecent/>
         <LinksRecent/>
     </div>
+    <div class="paginator">
+         <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>   
+    </div>
 </div>
 </template>
 <style scoped>
-
+.paginator{
+    margin-top: 4rem;
+    max-width: 800px;
+}
 </style>

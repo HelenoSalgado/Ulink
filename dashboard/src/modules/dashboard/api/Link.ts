@@ -1,10 +1,10 @@
 import { apiUrl } from "@/shared/apiBaseUrl";
-import type { LinkCreate, UpdateLink } from "../interface/Link";
+import type { CreateLink, UpdateLink } from "../interface/Link";
 
 class Link{
 
-    async getAll(idUser: string): Promise<LinkCreate[]>{
-        const links = await fetch(apiUrl.links+idUser);
+    async getAll(idUser: string): Promise<UpdateLink[]>{
+        const links = await fetch(apiUrl.links+'get-all/'+idUser);
         return await links.json();
     }
  
@@ -13,7 +13,7 @@ class Link{
         return await link.json();
     }
 
-    async create(data: LinkCreate) {
+    async create(data: CreateLink) {
         const link = await fetch(apiUrl.links+'create', {
             method: 'POST',
             mode: "cors",

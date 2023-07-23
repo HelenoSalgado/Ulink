@@ -1,3 +1,7 @@
+<script setup lang="ts">
+//import { defineProps } from 'vue';
+//const {bkg, color} = defineProps(['bkg', 'color']);
+</script>
 <template>
     <button>
        <slot/>
@@ -12,12 +16,12 @@ button{
     z-index: 2;
     border: solid 1px var(--bkg-button);
     border-radius: 5px;
-    padding: .5rem 1rem;
-    font-size: .9rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 300ms;
 }
 button:hover{
-    filter: brightness(80%);
+    filter: brightness(120%);
 }
 </style>

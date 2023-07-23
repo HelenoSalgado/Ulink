@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
-const autentication = ref(true);
+import { useAuth } from '@/stores/auth';
+const auth = useAuth();
 </script>
 <template>
   <div class="button-dashboard">
@@ -9,7 +9,7 @@ const autentication = ref(true);
         <i class="pi pi-chart-line"></i>
         <RouterLink to="/dashboard">Dashboard</RouterLink>
     </div>
-    <img v-if="autentication" src="@/assets/img/73316162.png" alt="avatar" title="perfil">
+    <img v-if="auth.isAuthenticated" src="@/assets/img/73316162.png" alt="avatar" title="perfil">
   </div>
 </template>
 <style scoped>

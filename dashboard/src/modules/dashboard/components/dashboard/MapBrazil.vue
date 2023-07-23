@@ -385,6 +385,7 @@ onMounted(() => {
     }
     .states > h2{
       margin-bottom: 3rem;
+      color: var(--color-text-black-soft);
     }
     .card-info{
         display: none;
