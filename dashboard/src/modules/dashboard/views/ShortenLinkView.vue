@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import ShortLink from '../api/Link';
 import LinksRecent from '../components/LinksRecent.vue';
 import FileUpload from 'primevue/fileupload';
-import type { LinkCreate } from '../interface/Link';
+import type { CreateLink } from '../interface/Link';
 
 const titleLink = ref('')
 const inputLink = ref('');
@@ -24,7 +24,7 @@ function infoCheckdPersonal(){
 }
 
 async function generateShortLink() {
-    const createLink: LinkCreate = {
+    const createLink: CreateLink = {
         title: '',
         description: '',
         originUrl: '',
@@ -114,6 +114,7 @@ onMounted(() => {
            </button>
         </div>
         <div class="links-recents">
+        <h2>Links Recentes</h2>
         <LinksRecent/>
         </div>
         </div>
@@ -122,4 +123,8 @@ onMounted(() => {
 </template>
 <style scoped>
 @import url('../assets/css/short-link.css');
+.links-recents{
+   margin-top: 3rem;
+   color: var(--bkg-box);
+}
 </style>

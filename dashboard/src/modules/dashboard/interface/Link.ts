@@ -1,10 +1,10 @@
-export interface LinkCreate {
+export interface CreateLink {
     idUser: string;
     originUrl: string;
     title: string;
     description: string;
 }
   
-export interface UpdateLink extends Omit<Partial<LinkCreate>, 'idUser'>{
-    id: string;
+export interface UpdateLink extends Omit<Partial<CreateLink>, 'idUser'>{
+
 }

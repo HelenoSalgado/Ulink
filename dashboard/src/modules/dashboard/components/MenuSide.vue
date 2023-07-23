@@ -23,28 +23,42 @@ onMounted(() => {
         <span></span>
     </span>
     <nav class="nav-menu">
-        <RouterLink 
-        class="link-icon-flex" 
-        to="/dashboard"><i class="pi pi-chart-pie"></i>
-            Dashboard</RouterLink>
-        <RouterLink 
-        class="link-icon-flex" 
-        to="/dashboard/perfil"><i class="pi pi-user-edit"></i>
-            Perfil</RouterLink>
-        <RouterLink class="link-icon-flex" 
-        to="/dashboard/encurta-link"><i class="pi pi-link"></i>
-            Encuta Link</RouterLink>
-        <RouterLink class="link-icon-flex" 
-        to="/dashboard/contacts"><i class="pi pi-envelope"></i>
-            Contatos</RouterLink>
-        <a class="link-icon-flex" 
-        href="#"><i class="pi pi-cog"></i>
-            Configurações</a>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard">
+            <i class="material-icons">bar_chart</i>
+                Dashboard
+            </RouterLink>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard/encurta-link">
+            <i class="material-icons">query_stats</i>
+                Analytic Link
+           </RouterLink>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard/encurta-link">
+            <i class="material-icons">content_cut</i>
+                Short Link
+            </RouterLink>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard/all-links">
+            <i class="material-icons">link</i>
+                All Links
+            </RouterLink>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard/perfil">
+            <i class="material-icons">manage_accounts</i>
+                Profile
+            </RouterLink>
 
-        <a class="link-icon-flex add-contact" 
-        href=""><i class="pi pi-user-plus"></i>
-            Add Contato</a>
-    </nav>
+            <!-- <a class="link-icon-flex add-contact" 
+            href="">
+            <i class="pi pi-user-plus"></i>
+                Add Contato</a> -->
+        </nav>
 </div>
 </template>
 <style scoped>
@@ -73,6 +87,9 @@ onMounted(() => {
     font-size: 1rem;
     width: fit-content;
     border-radius: 15px;
+}
+.material-icons{
+    font-size: 1.2rem;
 }
 .add-contact{
     position: absolute;

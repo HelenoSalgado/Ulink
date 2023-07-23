@@ -25,6 +25,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
     </div>
 </template>
 <style scoped>
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 .background{
     width: 100%;
     background-color: var(--bkg-dark);

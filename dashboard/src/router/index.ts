@@ -42,9 +42,14 @@ const router = createRouter({
           component: () => import('@/modules/dashboard/views/ProfileView.vue'),
         },
         {
-          path: 'contacts',
-          name: 'contacts',
-          component: () => import('@/modules/dashboard/views/ContactsView.vue'),
+          path: 'all-links',
+          name: 'all-links',
+          component: () => import('@/modules/dashboard/views/AllLinksView.vue'),
+        },
+        {
+          path: 'edit-link',
+          name: 'edit-link',
+          component: () => import('@/modules/dashboard/views/EditLinkView.vue'),
         },
       ]
     },

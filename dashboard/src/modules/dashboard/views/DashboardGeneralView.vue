@@ -34,89 +34,202 @@ const topSocialMedia = [
   }
 ]
 
-const states = [{
-    df: {
+// const states = [{
+//     df: {
+//       value: 43, 
+//     },
+//     mg: {
+//       value: 33, 
+//     },
+//     ba: {
+//       value: 25, 
+//     },
+//     sp: {
+//       value: 23, 
+//     },
+//     go: {
+//       value: 23, 
+//     },
+//     to: {
+//       value: 21, 
+//     },
+//     rr: {
+//       value: 71, 
+//     },
+//     ma: {
+//       value: 19, 
+//     },
+//     am: {
+//       value: 16, 
+//     },
+//     sc: {
+//       value: 12, 
+//     },
+//     rs: {
+//       value: 11, 
+//     },
+//     ce: {
+//       value: 18, 
+//     },
+//     se: {
+//       value: 35, 
+//     },
+//     pb: {
+//       value: 13, 
+//     },
+//     rj: {
+//       value: 21, 
+//     },
+//     ms: {
+//       value: 13, 
+//     },
+//     rn: {
+//       value: 13, 
+//     },
+//     pe: {
+//       value: 273, 
+//     },
+//     pi: {
+//       value: 203, 
+//     },
+//     es: {
+//       value: 293, 
+//     },
+//     al: {
+//       value: 283, 
+//     },
+//     pa: {
+//       value: 233, 
+//     },
+//     mt: {
+//       value: 2543, 
+//     },
+//     ro: {
+//       value: 2453, 
+//     },
+//     ac: {
+//       value: 2573, 
+//     },
+//     ap: {
+//       value: 25673, 
+//     },
+//     pr: {
+//       value: 263, 
+//     },
+// }]
+
+const states = [
+    {
+      uf: 'DF',
       value: 43, 
     },
-    mg: {
+    {
+      uf: 'MG',
       value: 33, 
     },
-    ba: {
+    {
+      uf: 'RS',
+      value: 33, 
+    },
+    {
+      uf: 'SC',
+      value: 33, 
+    },
+    {
+      uf: 'MA',
+      value: 3, 
+    },
+    {
+      uf: 'AM',
+      value: 60, 
+    },
+    {
+      uf: 'RR',
+      value: 21, 
+    },
+    {
+      uf: 'TO',
+      value: 33, 
+    },
+    {
+      uf: 'GO',
+      value: 45, 
+    },
+    {
+      uf: 'BA',
       value: 25, 
     },
-    sp: {
-      value: 23, 
+    {
+      uf: 'SP',
+      value: 23,
     },
-    go: {
-      value: 23, 
+    {
+      uf: 'RN',
+      value: 77,
     },
-    to: {
-      value: 21, 
+    {
+      uf: 'MS',
+      value: 12,
     },
-    rr: {
-      value: 71, 
+    {
+      uf: 'RJ',
+      value: 100,
     },
-    ma: {
-      value: 19, 
+    {
+      uf: 'PR',
+      value: 23,
     },
-    am: {
-      value: 16, 
+    {
+      uf: 'CE',
+      value: 6,
     },
-    sc: {
-      value: 12, 
+    {
+      uf: 'SE',
+      value: 5,
     },
-    rs: {
-      value: 11, 
+    {
+      uf: 'PA',
+      value: 21,
     },
-    ce: {
-      value: 18, 
+    {
+      uf: 'ES',
+      value: 55,
     },
-    se: {
-      value: 35, 
+    {
+      uf: 'AL',
+      value: 45,
     },
-    pb: {
-      value: 13, 
+    {
+      uf: 'PI',
+      value: 25,
     },
-    rj: {
-      value: 21, 
+    {
+      uf: 'PE',
+      value: 55,
     },
-    ms: {
-      value: 13, 
+    {
+      uf: 'MT',
+      value: 88,
     },
-    rn: {
-      value: 13, 
+    {
+      uf: 'AP',
+      value: 5,
     },
-    pe: {
-      value: 273, 
+    {
+      uf: 'AC',
+      value: 18,
     },
-    pi: {
-      value: 203, 
+    {
+      uf: 'RO',
+      value: 2000,
     },
-    es: {
-      value: 293, 
+    {
+      uf: 'PR',
+      value: 5,
     },
-    al: {
-      value: 283, 
-    },
-    pa: {
-      value: 233, 
-    },
-    mt: {
-      value: 2543, 
-    },
-    ro: {
-      value: 2453, 
-    },
-    ac: {
-      value: 2573, 
-    },
-    ap: {
-      value: 25673, 
-    },
-    pr: {
-      value: 263, 
-    },
-}]
+]
+
+console.log(states);
 
 </script>
 <template>

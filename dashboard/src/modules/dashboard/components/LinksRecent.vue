@@ -11,7 +11,6 @@ function visibleShared(e: string){
 </script>
 <template>
 <div class="container-links-recent">
-    <h2 class="title-link-recent title">Links Recentes</h2>
 <div class="link">
     <div class="link-container-flex">
     <div class="previa-img">
@@ -22,99 +21,43 @@ function visibleShared(e: string){
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit sed rem sequi suscipit laudantium culpa molestias placeat, tempora quos quae yttth.</p>
     </div>
     </div>
-</div>
-<div class="info-shared">
-<div class="info">
+    <div class="info">
         <span>
-            <i class="pi pi-external-link"></i>
+            <i class="material-icons">open_in_new</i>
             <p>100</p>
         </span>
         <span>
-            <i class="pi pi-chart-line"></i>
+            <i class="material-icons">show_chart</i>
             <p>statistics</p>
         </span>
         <span>
-            <i class="pi pi-pencil"></i>
-            <p>edite</p>
+            <RouterLink 
+            class="link-icon-flex" 
+            to="/dashboard/edit-link">
+            <i class="material-icons">edit</i>
+                Edite
+            </RouterLink>
         </span> 
         <span>
-            <i class="pi pi-copy"></i>
+            <i class="material-icons">content_copy</i>
             <p>copy</p>
         </span>
         <span>
-            <i class="pi pi-qrcode"></i>
+            <i class="material-icons">qr_code</i>
             <p>qrcode</p>
         </span>
         <span @click="visibleShared('hfgfgfdg')">
-            <i class="pi pi-share-alt"></i>
+            <i class="material-icons">share</i>
             <p>share</p>
         </span>
         <span>
-            <i class="pi pi-trash"></i>
+            <i class="material-icons">delete</i>
             <p>delete</p>
         </span>     
 </div>
-<div class="shared" :class="'hfgfgfdg'">
-  <span>
-    <i class="pi pi-whatsapp"></i>
-  </span>
-  <span>
-    <i class="pi pi-facebook"></i>
-  </span>
-  <span>
-    <i class="pi pi-twitter"></i>
-  </span>
-  <span>
-    <i class="pi pi-telegram"></i>
-  </span>
-  <span>
-    <i class="pi pi-facebook"></i>
-  </span>
-</div>
-</div>
-<div class="link">
-    <div class="link-container-flex">
-    <div class="previa-img">
-        <img src="https://cdn.pixabay.com/photo/2016/11/08/05/20/sunset-1807524_1280.jpg" alt="">
-    </div>
-    <div class="title-description">
-        <h2 class="title">Interligações de Classe e Estilo</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit sed rem sequi suscipit laudantium culpa molestias placeat, tempora quos quae yttth.</p>
-    </div>
-    </div>
 </div>
 <div class="info-shared">
-<div class="info">
-        <span>
-            <i class="pi pi-external-link"></i>
-            <p>100</p>
-        </span>
-        <span>
-            <i class="pi pi-chart-line"></i>
-            <p>statistics</p>
-        </span>
-        <span>
-            <i class="pi pi-pencil"></i>
-            <p>edite</p>
-        </span> 
-        <span>
-            <i class="pi pi-copy"></i>
-            <p>copy</p>
-        </span>
-        <span>
-            <i class="pi pi-qrcode"></i>
-            <p>qrcode</p>
-        </span>
-        <span @click="visibleShared('sdfsdfrt')">
-            <i class="pi pi-share-alt"></i>
-            <p>share</p>
-        </span>
-        <span>
-            <i class="pi pi-trash"></i>
-            <p>delete</p>
-        </span>     
-</div>
-<div class="shared" :class="'sdfsdfrt'">
+<div class="shared" :class="'hfgfgfdg'">
   <span>
     <i class="pi pi-whatsapp"></i>
   </span>
@@ -136,21 +79,13 @@ function visibleShared(e: string){
 </template>
 <style scoped>
 .container-links-recent{
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 }
-.title-link-recent{
-    margin-bottom: 1rem;
-    color: #fff;
-}
 .link{
     margin-top: 2rem;
-    padding: .5rem 1rem;
-    border: 1px solid var(--bkg-dark-contrast);;
-    border-radius: 15px 15px 0 0;
     max-width: 800px;
-    background-color: var(--bkg-box);
     z-index: 2;
 }
 .link-z-index-0{
@@ -159,6 +94,10 @@ function visibleShared(e: string){
 .link-container-flex{
     display: flex;
     gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--bkg-box);
+    border: 1px solid var(--bkg-dark-contrast);
+    border-radius: 15px 15px 0 0;
 }
 .title-description{
     width: 80%;
@@ -175,6 +114,9 @@ function visibleShared(e: string){
     contain: content;
     border-radius: 7px;
     background-color: var(--bkg-dark);
+}
+.material-icons{
+    font-size: 1.2rem;
 }
 .shared{
     position: absolute;
@@ -211,6 +153,16 @@ function visibleShared(e: string){
     padding: .5rem 1rem;
     z-index: 2;
 }
+.link-icon-flex{
+    color: #fff;
+    border-radius: 15px;
+    padding: .2rem .5rem;
+    transition: 200ms all;
+}
+.link-icon-flex:hover, .info span:hover{
+    background-color: #fff;
+    color: #000;
+}
 .info span{
     display: inline-flex;
     gap: 5px;
@@ -220,10 +172,6 @@ function visibleShared(e: string){
     border-radius: 15px;
     padding: .2rem .5rem;
     transition: 200ms all;
-}
-.info span:hover{
-    background-color: #fff;
-    color: #000;
 }
 @media (max-width: 750px) {
 
