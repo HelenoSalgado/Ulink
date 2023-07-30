@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const { states } = defineProps(['states']);
 
@@ -134,6 +134,8 @@ const colors = [
 
 const BrMap = (() => {
 
+const cardInfo = ref<any>(document.getElementById('info'));
+
 const _options = {
     wrapper: '',
     selectStates: [],
@@ -157,7 +159,7 @@ const _options = {
 
                 let textUf = document.getElementById(`label_icon_state_${uf.toLowerCase()}`);
 
-                let cardInfo: HTMLElement | null = document.getElementById('info');
+                //let cardInfo: HTMLDivElement = document.getElementById('info');
                 
                 let description = document.getElementById(`description_${uf.toLowerCase()}`);
 
@@ -186,10 +188,10 @@ const _buildState = (
     textX: number
     ) => {
     let isCapital = (id == 'df') ? true : false;
-    let link = document.createElement("a");
-    let desc = document.createElement("desc");
-    let path = document.createElement(isCapital ? "circle" : "path");
-    let text = document.createElement("text");
+    let link: HTMLAnchorElement = document.createElement("a");
+    let desc: HTMLElement = document.createElement("desc");
+    let path: HTMLElement = document.createElement(isCapital ? "circle" : "path");
+    let text: HTMLElement = document.createElement("text");
     let textClicks = document.createElement("text");
     link.setAttribute('class', 'state');
     link.setAttribute('id', 'state_' + id);
@@ -318,11 +320,11 @@ const _init = () => {
 
     _stylesheet();
 
-    let content = document.querySelector(_options?.wrapper);
-    let svg = document.createElement("svg");
-    let desc = document.createElement("desc");
+    let content: any = document.querySelector(_options?.wrapper);
+    let svg: any = document.createElement("svg");
+    let desc: any = document.createElement("desc");
     desc.innerHTML = 'Brasil';
-    let g = _buildFullMap();
+    let g: any = _buildFullMap();
 
     if (_options.responsive) {
         content?.setAttribute('style', 'display: inline-block; position: relative; width: 100%; height:0; padding-bottom: 98%; vertical-align: middle;');

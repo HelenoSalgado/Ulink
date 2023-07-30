@@ -59,6 +59,5 @@ async function register(){
     </div>
 </template>
 
-<style scoped>
-@import '../../assets/css/register-login.css';
+<style src="../../assets/css/register-login.css" scoped>
 </style>

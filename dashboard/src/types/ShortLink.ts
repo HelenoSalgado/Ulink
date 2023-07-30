@@ -1,4 +1,4 @@
-export interface CreateLink {
+export interface ShortLink {
     idUser: string;
     originUrl: string;
     title: string;
@@ -6,7 +6,7 @@ export interface CreateLink {
     urlImg: string;
 }
   
-export interface UpdateLink extends Omit<Partial<CreateLink>, 'idUser'>{
-    idUrl: string;
+export interface ShortLinkUpdate extends Omit<Partial<ShortLink>, 'idUser'>{
+    id?: string;
     shortUrl?: string;
 }

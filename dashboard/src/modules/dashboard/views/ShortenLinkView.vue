@@ -1,56 +1,40 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import ShortLink from '../api/Link';
-import LinksRecent from '../components/LinksRecent.vue';
-import FileUpload from 'primevue/fileupload';
-import type { CreateLink } from '../interface/Link';
+import { reactive, ref } from 'vue';
+import ShortenLink from '../components/ShortenLink.vue';
+import type { ShortLink, ShortLinkUpdate } from '@/types/ShortLink';
+import http from '@/services/http';
+import { useAuth } from '@/stores/auth';
+import ShortLinks from '../components/ShortLinks.vue';
 
-const titleLink = ref('')
-const inputLink = ref('');
-const outputLink = ref('');
-const checkdActive = ref(false);
-const inputUrlPersonal = ref(false);
-const infoCheckdCard = ref(false);
 const IsExtend = ref(true);
+const shortUrl = ref('');
+const message = ref('');
 
-function activePersonalUrl(){
-    checkdActive.value = !checkdActive.value;
-    inputUrlPersonal.value = !inputUrlPersonal.value;
-}
+const link = reactive<ShortLink>({
+  idUser: useAuth().user.id,
+  title: '',
+  description: '',
+  originUrl: '',
+  urlImg: '',
+});
 
-function infoCheckdPersonal(){
-    infoCheckdCard.value = !infoCheckdCard.value;
-    console.log('olá');
-}
+const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`));
 
-async function generateShortLink() {
-    const createLink: CreateLink = {
-        title: '',
-        description: '',
-        originUrl: '',
-        idUser: '',
-    }
-    const { shortUrl } = await ShortLink.create(createLink);
-    outputLink.value = shortUrl;
-}
-
-function onUpload(){
-    console.log(event);
+async function generateShortLink(shortLink: ShortLink) {
+    await http.post('links/create', shortLink)
+    .then(res => { 
+        shortUrl.value = res.data?.shortUrl;
+        data.splice(0, 0, res.data);
+        data.splice(3, 1);
+        message.value = 'Link encurtado com sucesso'
+    }, (err => { 
+        message.value = err.response.data?.message[0];
+    }));
 };
-
-onMounted(() => {
-    const extend = document.querySelector('.extend');
-    extend?.addEventListener('click', (e) => {
-        let boxGenerateLink = document.querySelector('.toggler');
-        boxGenerateLink?.classList.toggle('toggler-extend');
-    });
-})
 
 </script>
 <template>
     <div class="container-short-link">
-    <div class="short-link">
-        <div class="container-generate-link">
         <h1 class="title-dashboard">Encurta Link</h1>
         <span 
          class="extend"><i class="pi pi-angle-double-down"
@@ -58,73 +42,63 @@ onMounted(() => {
          v-bind:class="{'pi-angle-double-up': IsExtend}"></i>
         </span>
         <div class="toggler">
-        <label class="link-title">
-            <p>Título</p>
-            <input type="text" :value="titleLink" placeholder="">
-        </label>
-        <div>
-        <label class="description">
-            <p>Descrição</p>
-            <textarea placeholder=""></textarea>
-        </label>
-        <label class="input-url-img"> 
-            <p>URL de imagem</p>
-            <div>
-            <input type="url" placeholder="">
-            <FileUpload mode="basic" name="demo[]" accept="image/*" :maxFileSize="1000000" @upload="onUpload"/>  
-            </div>
-        </label>
+        <ShortenLink 
+        :link="link"
+        @actions="generateShortLink"
+        output-url="true"
+        :short-url="shortUrl"
+        msg-button="Gerar"
+        :message="message"
+        />
         </div>
-        <label class="input-link">
-            <p>URL de origem</p> 
-            <input v-model="inputLink" type="url">
-        </label>
-        <label 
-        class="input-checkd" 
-        @click="activePersonalUrl"
-        for="checkd" 
-        :class="{'checkd-active': checkdActive}">
-            <p>Path personalizado? 
-                <i 
-                class="pi pi-info-circle"
-                @mouseenter="infoCheckdPersonal"
-                @mouseout="infoCheckdPersonal"
-                ></i> 
-            </p>
-            <div 
-            class="card info-card" 
-            :class="{'info-card-visible': infoCheckdCard}">
-                <em>Você pode personalizar o caminho final de sua URL. <strong>Exemplo</strong> de como ficará: https://exemplo.com/eGHgJ/<strong>melhor-produto</strong></em>
-            </div>
-            <span id="checkd"></span>
-        </label>
-        <label for=""
-        class="persoanal-path-disnable" 
-        :class="{'input-url-personal': inputUrlPersonal}">
-            <input type="text">
-        </label>
-        <label class="output-link"> 
-            <p>URL encurtada</p>           
-            <input :disabled="true" :value="outputLink" type="url">
-        </label>
-           <button class="button-generate-link"
-            @click="generateShortLink">
-              <i class="pi pi-sync"></i>
-              <span>Gerar</span>
-           </button>
         </div>
         <div class="links-recents">
         <h2>Links Recentes</h2>
-        <LinksRecent/>
-        </div>
-        </div>
-    </div>
+        <ShortLinks
+        :data="data"
+        /> 
+        <RouterLink class="all-links" to="/dashboard/all-links">Todos os Links 
+            <i class="pi pi-angle-double-right"></i>
+        </RouterLink>
     </div>
 </template>
 <style scoped>
-@import url('../assets/css/short-link.css');
+.container-short-link, .links-recents{
+    max-width: 800px;
+    margin: auto; 
+}
+.title-dashboard{
+    padding-left: .5rem;
+}
+.toggler{
+    min-height: 100%;
+    color: var(--bkg-white-shaded); 
+}
+.toggler-extend{
+    overflow-y: hidden;
+    height: 0;
+    transition: 200ms all;
+}
+.extend{
+    position: absolute;
+    top: 5px;
+    right: .5rem;
+    cursor: pointer;
+    z-index: 1;
+    color: var(--bkg-white-shaded); 
+}
 .links-recents{
    margin-top: 3rem;
+   padding: .5rem;
    color: var(--bkg-box);
+}
+.all-links{
+    display: block;
+    margin-top: 2rem;
+    color: var(--bkg-box);
+    font-size: 1.3rem;
+}
+.all-links i{
+    margin-left: .5rem;
 }
 </style>

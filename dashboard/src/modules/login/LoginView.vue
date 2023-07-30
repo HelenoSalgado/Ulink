@@ -2,10 +2,11 @@
 import router from '@/router';
 import HeaderComnt from '@/components/Header.vue';
 import http from '@/services/http';
-import { reactive } from 'vue';
-import { useAuth } from '@/stores/auth'
+import { reactive, ref } from 'vue';
+import { useAuth } from '@/stores/auth';
 
 const auth = useAuth();
+const message = ref('');
 
 const user = reactive({
     email: '',
@@ -13,10 +14,14 @@ const user = reactive({
 })
 
 async function login(){
-    const { data } = await http.post('auth/login', user);
-    auth.setToken(data);
-    console.log(data);
-   //router.push('/sucess')
+    try {
+        const { data } = await http.post('auth/login', user);
+        auth.setToken(data);
+        router.push('/dashboard');
+    } catch (error: any) {
+        message.value = error?.response?.data.message;
+    }
+   
 }
 
 </script>
@@ -46,6 +51,7 @@ async function login(){
                 <input type="password" v-model="user.password" />
                 </span>
             </label>
+         <p class="msg-error">{{ message }}</p>
          <button type="submit">
             Entrar
          </button>
@@ -57,6 +63,5 @@ async function login(){
     </div>
 </template>
 
-<style scoped>
-@import '../../assets/css/register-login.css';
+<style src="../../assets/css/register-login.css" scoped>
 </style>

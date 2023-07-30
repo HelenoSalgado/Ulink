@@ -51,7 +51,7 @@ const router = createRouter({
           component: () => import('@/modules/dashboard/views/AllLinksView.vue'),
         },
         {
-          path: 'edit-link',
+          path: 'edit-link/:id',
           name: 'edit',
           component: () => import('@/modules/dashboard/views/EditLinkView.vue'),
         },
@@ -66,12 +66,9 @@ router.beforeEach(async(to, from, next) => {
     const auth = useAuth();
     if(auth.token){
        const isAuthenticated = await auth.checkToken();
-       console.log(isAuthenticated);
-       if(isAuthenticated){
-        next();
-       }else{
-        next({ name: 'login' });
-       }
+       if(isAuthenticated) next();
+       else
+       next({ name: 'login' });
     }
   }else{
     next();

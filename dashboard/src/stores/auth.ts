@@ -1,22 +1,27 @@
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { defineStore } from 'pinia';
 import http from '@/services/http';
 
 interface Token {
-  firstName: string;
+  user: {
+    id: string;
+    firstName: string;
+  };
   access_token: string;
 }
+
+//localStorage.getItem()
 
 export const useAuth = defineStore('auth', () => {
   
   const token = ref(localStorage.getItem('token'));
-  const user = ref(localStorage.getItem('user'));
+  const dataUser = ref<string[] | any>(localStorage.getItem('user'));
 
-  function setToken({firstName, access_token}: Token) {
+  function setToken({user, access_token}: Token) {
     localStorage.setItem('token', access_token);
-    localStorage.setItem('user', firstName);
+    localStorage.setItem('user', JSON.stringify(user));
     token.value = access_token;
-    user.value = firstName;
+    dataUser.value = user;
   };
 
   async function checkToken() {
@@ -27,7 +32,7 @@ export const useAuth = defineStore('auth', () => {
         }
       });
       if(data) return true;
-    } catch (error) {
+    } catch (error: any) {
       let status = error?.response?.status;
       if(status === '401') return false;
     }
@@ -46,7 +51,7 @@ export const useAuth = defineStore('auth', () => {
 
   return { 
     token,
-    user,
+    user: dataUser,
     setToken,
     checkToken,
     isAuthenticated,

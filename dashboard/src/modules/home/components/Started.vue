@@ -10,10 +10,10 @@
         <div class="started-buttons">
 
             <RouterLink to="/registrar">
-               <button class="register-btn link-icon-flex"><i class="pi pi-user"></i> Registrar-se</button> 
+               <button class="action-btn register-btn link-icon-flex"><i class="pi pi-user"></i>Registrar-se</button> 
             </RouterLink>
             <RouterLink to="/entrar">
-               <button class="login-btn link-icon-flex"><i class="pi pi-sign-in"></i> Entrar</button>
+               <button class="action-btn login-btn link-icon-flex"><i class="pi pi-sign-in"></i>Entrar</button>
             </RouterLink>
 
         </div>
@@ -39,7 +39,7 @@ h1{
 .started-buttons{
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
 }
 .register-btn{
     background-color: var(--bkg-button-action);
@@ -48,15 +48,6 @@ h1{
 .login-btn{
     background-color: #133978;
     color: #fff;
-}
-.register-btn, .login-btn{
-    width: 150px;
-    padding: 1rem;
-    border: none;
-    border-radius: 7px;
-    font-size: 1rem;
-    transition: 100ms ease-in;
-    cursor: pointer;
 }
 .register-btn:hover, .login-btn:hover{
     filter: brightness(120%);

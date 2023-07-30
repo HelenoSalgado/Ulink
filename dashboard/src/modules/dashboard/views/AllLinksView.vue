@@ -1,38 +1,21 @@
 <script setup lang="ts">
-import '../assets/css/profile.css';
-import LinksRecent from '../components/LinksRecent.vue';
+import type { ShortLinkUpdate } from '@/types/ShortLink';
+import ShortLinks from '../components/ShortLinks.vue';
 import Paginator from 'primevue/paginator';
-import { ref } from 'vue';
+import http from '@/services/http';
+import { apiUrl } from '@/shared/apiBaseUrl';
+import { useAuth } from '@/stores/auth';
 
-const menuActive = ref('profile');
-const focusProfile = ref(false);
-const focusSecurity = ref(false);
-const focusPayment = ref(false);
-const focusAccount = ref(false);
-
-function activeFocus(e: string){
-
-    focusProfile.value = false;
-    focusSecurity.value = false;
-    focusPayment.value = false;
-    focusAccount.value = false;
-  
-  if(e === 'profile') return focusProfile.value = !focusProfile.value;
-  if(e === 'security') return focusSecurity.value = !focusSecurity.value;
-  if(e === 'payment') return focusPayment.value = !focusPayment.value;
-  if(e === 'account') return focusAccount.value = !focusAccount.value;
-}
+const { data } = await http.get<ShortLinkUpdate[]>(`${apiUrl.links}all/${useAuth().user.id}`);
 
 </script>
 <template>
 <h1 class="title-dashboard">Todos os Links</h1>
 <div class="container-all-links">
     <div>
-        <LinksRecent/>
-        <LinksRecent/>
-        <LinksRecent/>
-        <LinksRecent/>
-        <LinksRecent/>
+        <ShortLinks
+        :data="data"
+        />
     </div>
     <div class="paginator">
          <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>   

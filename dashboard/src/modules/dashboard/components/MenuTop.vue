@@ -35,7 +35,7 @@ function logout() {
     </div>
 </div>
 <div class="user">
-    <h3>Olá, {{ useAuth().user }}</h3>
+    <h3>Olá, {{ useAuth().user?.firstName }}</h3>
     <img 
     @click="visibleUserCard = !visibleUserCard" 
     src="@/assets/img/73316162.png" alt="avatar" title="perfil">

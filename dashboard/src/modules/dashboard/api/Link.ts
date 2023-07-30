@@ -1,9 +1,9 @@
 import { apiUrl } from "@/shared/apiBaseUrl";
-import type { CreateLink, UpdateLink } from "../interface/Link";
+import type { ShortLink, ShortLinkUpdate } from "@/types/ShortLink";
 
 class Link{
 
-    async getAll(idUser: string): Promise<UpdateLink[]>{
+    async getAll(idUser: string): Promise<ShortLinkUpdate[]>{
         const links = await fetch(apiUrl.links+'get-all/'+idUser);
         return await links.json();
     }
@@ -13,7 +13,7 @@ class Link{
         return await link.json();
     }
 
-    async create(data: CreateLink) {
+    async create(data: ShortLink) {
         const link = await fetch(apiUrl.links+'create', {
             method: 'POST',
             mode: "cors",
@@ -27,7 +27,7 @@ class Link{
         return await link.json();
     }
 
-    async update(data: UpdateLink, id: string) {
+    async update(data: ShortLinkUpdate, id: string) {
 
         const post = await fetch(apiUrl.links+'update/'+id, {
             method: 'PUT',

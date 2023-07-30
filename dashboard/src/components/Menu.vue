@@ -21,13 +21,14 @@ import ButtonDashboard from './ButtonDashboard.vue';
 <style scoped>
 .cristal-effect, .container-nav-top{
   position: fixed;
+  top: 0;
   width: 100%;
   height: 70px;
   z-index: 3;
 }
 
 .cristal-effect{
-    background: hsla(218, 65%, 12%, 0.541);
+    background: transparent;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     /* box-shadow: var(--shadow-elevation-low); */
@@ -47,6 +48,10 @@ import ButtonDashboard from './ButtonDashboard.vue';
   width: 500px;
   align-items: center;
   gap: 2rem;
+  font-size: 1.1rem;
+}
+.navigator a{
+  padding-bottom: .5rem;
 }
 @media (max-width: 750px) {
     .nav-top{

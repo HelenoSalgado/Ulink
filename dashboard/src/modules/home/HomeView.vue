@@ -14,7 +14,6 @@ import StartedVue from './components/Started.vue';
 
 <style scoped>
 .apresentation{
-  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;

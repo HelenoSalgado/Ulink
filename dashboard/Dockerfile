@@ -1,22 +1,17 @@
 FROM node:alpine
 
-WORKDIR /usr/app
+ENV HOME=/home/app
 
-COPY package*.json /usr/app
-COPY tsconfig.json /usr/app
-COPY vite.config.ts /usr/app
-COPY yarn.lock /usr/app
+COPY package.json package-lock.json $HOME/dashboard/
 
-# RUN npm install -g npm@9.6.6
-# NODE_ENV=development 
-RUN yarn install
+WORKDIR $HOME/dashboard/
 
-COPY . /usr/app
+RUN npm install && npm i -g http-server
 
-RUN yarn build
+COPY . $HOME/dashboard/
 
-#RUN npm run prisma:migrate
+RUN npm run build
 
-EXPOSE 3000
+EXPOSE 8080
 
-CMD ["yarn", "preview"]
+CMD [ "http-server", "dist" ]

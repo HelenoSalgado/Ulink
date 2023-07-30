@@ -5,7 +5,7 @@ const auth = useAuth();
 </script>
 <template>
   <div class="button-dashboard">
-    <div class="link-animation">
+    <div class="action-btn login-btn">
         <i class="pi pi-chart-line"></i>
         <RouterLink to="/dashboard">Dashboard</RouterLink>
     </div>
@@ -13,15 +13,15 @@ const auth = useAuth();
   </div>
 </template>
 <style scoped>
+
+.action-btn{
+  padding: .7rem;
+}
 .button-dashboard{
     display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
-.button-dashboard > div{
-    transition: 200ms all;
-    cursor: pointer;
 }
 .button-dashboard > div i{
   margin-right: .4rem;
@@ -31,6 +31,9 @@ const auth = useAuth();
   border-radius: 50%;
   cursor: pointer;
   margin-left: 1rem;
+}
+.button-dashboard a{
+  color: #fff;
 }
 .button-dashboard > div:hover{
   filter: brightness(110%);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 //import type { CommentCreate } from '../interface/Comment';
 //import Comment from '../api/Comment'
-import { ref, reactive, onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import preview from '@/assets/img/multivariate-5917419_1280.webp';
 import a from '@/assets/img/register.jpg';
 import b from '@/assets/img/home.jpg';

@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from 'vue';
-import Link from '../api/Link';
-import type { UpdateLink } from '../interface/Link';
+import router from '@/router';
+import http from '@/services/http';
 
-interface Link extends UpdateLink{
-    shortUrl?: string;
-}
+const { data } = defineProps(['data']);
 
 function visibleShared(e: string){ 
     const link = document.querySelectorAll('.link');
@@ -15,46 +12,48 @@ function visibleShared(e: string){
 };
 
 function openLink() {
-    window.location.href = 'https://cdn.pixabay.com/photo/2016/11/08/05/20/sunset-1807524_1280.jpg';
     console.log('clicado');
 }
-function copyLink(e: any) {
 
+function copyLink(e: any) {
     var url = document.querySelector('[data-link]');
     console.log(url);
 }
+
+function edit(id: string){
+    router.push('/dashboard/edit-link/'+id);
+}
+
 function generateQrCode(e: any) {
     console.log('QR code');
 }
 
+async function deleteLink(id: string) {
+    await http.delete('links/delete/'+id).then(res => {
+      console.log(res); 
+    }, (err => { 
+        console.log(err);
+    }));
+}
 
-const links = reactive<Link[]>([]);
-
-const linksAll = await Link.getAll('64639a8de62e0b27e6753d18');
-
-for (let i = 0; i < linksAll.length; i++) {
-    const link: Link = {
-        idUrl: linksAll[i].idUrl,
-        title: linksAll[i].title,
-        description:  linksAll[i].description,
-        originUrl: linksAll[i].originUrl,
-        urlImg: linksAll[i].urlImg,
-        shortUrl: linksAll[i].shortUrl,
-    }
-    links.push(link);
-};
-console.log(links);
 </script>
 <template>
 <div class="container-links-recent">
-<div class="link" v-for="l in links" :key="l.idUrl" >
+<div class="link" v-for="link in data" :key="link.id" >
     <div class="link-container-flex">
+    <div v-if="link.title">
     <div class="previa-img">
-        <img src="https://cdn.pixabay.com/photo/2016/11/08/05/20/sunset-1807524_1280.jpg" alt="">
+        <img :src="link.urlImg" alt="">
     </div>
     <div class="title-description">
-        <h2 class="title">Interligações de Classe e Estilo</h2>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reprehenderit sed rem sequi suscipit laudantium culpa molestias placeat, tempora quos quae yttth.</p>
+        <h2 class="title">{{ link.title }}</h2>
+        <p>{{ link.description }}</p>
+    </div>
+    </div>
+    <div v-else class="short-url">
+        <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer">
+            {{ link.shortUrl }}
+        </a>
     </div>
     </div>
     <div class="info">
@@ -66,12 +65,9 @@ console.log(links);
             <i class="material-icons">show_chart</i>
             <p>statistics</p>
         </span>
-        <span>
+        <span @click="edit(link.id)">
             <i class="material-icons">edit</i>
-            <RouterLink 
-            to="/dashboard/edit-link">
-                Edite
-            </RouterLink>
+            <p>edit</p>
         </span> 
         <span @click="copyLink" data-link="https://heleno.dev">
             <i class="material-icons">content_copy</i>
@@ -85,7 +81,7 @@ console.log(links);
             <i class="material-icons">share</i>
             <p>share</p>
         </span>
-        <span>
+        <span @click="deleteLink(link.id)">
             <i class="material-icons">delete</i>
             <p>delete</p>
         </span>     
@@ -127,12 +123,14 @@ console.log(links);
     z-index: 0;
 }
 .link-container-flex{
-    display: flex;
-    gap: 1.5rem;
     padding: 1rem;
     background-color: var(--bkg-box);
     border: 1px solid var(--bkg-dark-contrast);
     border-radius: 15px 15px 0 0;
+}
+.link-container-flex > div{
+    display: flex;
+    gap: 1.5rem;
 }
 .title-description{
     width: 80%;
@@ -142,13 +140,31 @@ console.log(links);
     margin-bottom: .5rem;
     color: var(--bkg-dark);
 }
-.previa-img img{
+.previa-img{
     width: 150px;
-    height: 100%;
-    max-height: 150px;
-    contain: content;
-    border-radius: 7px;
+    height: 80px;
     background-color: var(--bkg-dark);
+    border-radius: 7px;
+    overflow: hidden;
+}
+.previa-img img{
+    width: 100%;
+    min-height: 100%; 
+    transition: 200ms ease-in;
+}
+.previa-img img:hover{
+    filter: brightness(120%);
+}
+.short-url{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: .5rem 0;
+}
+.short-url a{
+    text-decoration: underline;
+    color: var(--bkg-dark-contrast);
 }
 .material-icons{
     font-size: 1.2rem;
@@ -215,6 +231,10 @@ console.log(links);
 
     .link-container-flex{
         display: block;
+    }
+    .title{
+        font-size: 1.1rem;
+        line-height: 16px;
     }
     .previa-img img{
         width: 100%;
