@@ -24,9 +24,9 @@ export class ShortenLinkRepository {
     });
   }
 
-  async findLink(idUrl: string){
+  async findLink(id: string){
     return await this.prisma.link.findFirst({
-      where: { idUrl },
+      where: { id },
       select: {
         id: true,
         idUrl: true,
@@ -43,6 +43,7 @@ export class ShortenLinkRepository {
     return await this.prisma.link.findMany({
       where: { idUser },
       select: {
+        id: true,
         idUrl: true,
         idUser: true,
         originUrl: true,
@@ -52,6 +53,30 @@ export class ShortenLinkRepository {
         urlImg: true,
         pixel: true,
       },
+      orderBy: {
+        updatedAt: 'desc',
+      }
+    });
+  };
+
+  async findLinksRecents(idUser: string){
+    return await this.prisma.link.findMany({
+      where: { idUser },
+      select: {
+        id: true,
+        idUrl: true,
+        idUser: true,
+        originUrl: true,
+        shortUrl: true,
+        title: true,
+        description: true,
+        urlImg: true,
+        pixel: true,
+      },
+      orderBy: {
+        updatedAt: 'desc',
+      },
+      take: 3
     });
   };
 
@@ -86,6 +111,12 @@ export class ShortenLinkRepository {
         urlImg: true,
         pixel: true,
       }
+    });
+  };
+
+  async deleteLink(id: string){
+    await this.prisma.link.delete({
+      where: { id },
     });
   };
 

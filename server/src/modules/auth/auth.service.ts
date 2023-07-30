@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserRepository } from '../user/repository';
 import { compareSync } from 'bcryptjs';
@@ -15,11 +15,11 @@ export class AuthService {
 
     const user = await this.usersService.findOneAuthentication(email);
 
+    if(!user) throw new NotFoundException('Usuário não existe');
+
     const comparePass = compareSync(pass, user.password);
 
-    if (!comparePass) {
-      throw new UnauthorizedException();
-    }
+    if (!comparePass) throw new UnauthorizedException('Email ou senha incorreta');
 
     const  payload = { 
       id: user.id, 
@@ -29,7 +29,10 @@ export class AuthService {
     //req['sub'] = payload
    
     return { 
-      firstName: user.firstName,
+      user: {
+        id: user.id,
+        firstName: user.firstName
+      },
       access_token: await this.jwtService.signAsync(payload),
     };
   };

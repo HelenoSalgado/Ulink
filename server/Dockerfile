@@ -1,21 +1,17 @@
 FROM node:alpine
 
-WORKDIR /usr/app
+ENV HOME=/home/app
 
-COPY package*.json /usr/app
-COPY tsconfig.json /usr/app
-COPY yarn.lock /usr/app
+COPY package.json yarn.lock $HOME/server/
 
-# RUN npm install -g npm@9.6.6
-# NODE_ENV=development 
+WORKDIR $HOME/server/
+
 RUN yarn install
 
-COPY . /usr/app
+COPY . $HOME/server/
 
 RUN npx prisma generate
 RUN yarn build
-
-#RUN npm run prisma:migrate
 
 EXPOSE 3000
 

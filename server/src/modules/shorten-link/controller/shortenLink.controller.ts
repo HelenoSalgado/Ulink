@@ -17,20 +17,26 @@ export class ShortenLinkController {
     @Body() createLinkDto: CreateLinkDto,
     ){
     return await this.service.createLink(createLinkDto);
+  }
+
+  @Get(':id')
+  async findLink(@Param('id') id: string){
+
+    return await this.service.findLink(id);
 
   }
 
-  @Get('get-unique/:id')
-  async findLink(@Param('idUrl') idUrl: string){
-
-    return await this.service.findLink(idUrl);
-
-  }
-
-  @Get('get-all/:idUser')
+  @Get('all/:idUser')
   async findLinks(@Param('idUser') idUser: string){
 
     return await this.service.findLinksUser(idUser);
+
+  }
+
+  @Get('recents/:idUser')
+  async findLinksRecents(@Param('idUser') idUser: string){
+
+    return await this.service.findLinksRecents(idUser);
 
   }
 
@@ -40,6 +46,14 @@ export class ShortenLinkController {
     @Body() updateLinkDto: UpdateLinkDto,
     ){
     return await this.service.updateLink(id, updateLinkDto);
+
+  }
+
+  @Delete('delete/:id')
+  async deleteLink(
+    @Param('id') id: string,
+    ){
+    return await this.service.deleteLink(id);
 
   }
 

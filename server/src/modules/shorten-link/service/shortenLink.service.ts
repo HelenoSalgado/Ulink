@@ -67,12 +67,23 @@ export class ShortenLinkService {
 
   }
 
-  async findLink(idUrl: string){
-    return await this.repo.findLink(idUrl);
+  async deleteLink(id: string){
+
+    await this.repo.deleteLink(id);
+    return { message: 'Link deletado com sucesso.' }
+
+  }
+
+  async findLink(id: string){
+    return await this.repo.findLink(id);
   }
 
   async findLinksUser(idUser: string){
     return await this.repo.findLinksUser(idUser);
+  }
+
+  async findLinksRecents(idUser: string){
+    return await this.repo.findLinksRecents(idUser);
   }
 
   async findLinks(){
