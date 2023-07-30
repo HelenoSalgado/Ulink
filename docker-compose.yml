@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+
+  api:
+    build: ./server
+    #command: sh -c "npx prisma db push && yarn start:dev"
+    container_name: api-link
+    env_file:
+      - ./server/.env
+    networks:
+      - server_nlink-api
+    ports:
+      - '3000:3000'
+  app:
+    build: ./dashboard
+    container_name: frontend
+    networks:
+      - server_nlink-api
+    ports:
+      - '8080:8080'
+volumes:
+  app:
+    driver: local
+  api:
+    driver: local
+networks:
+  server_nlink-api: 
+    driver: bridge
