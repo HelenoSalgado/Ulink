@@ -92,9 +92,11 @@ async function generateShortLink(shortLink: ShortLink) {
    padding: .5rem;
    color: var(--bkg-box);
 }
+.links-recents h2{
+    margin-bottom: 2.5rem;  
+}
 .all-links{
     display: block;
-    margin-top: 2rem;
     color: var(--bkg-box);
     font-size: 1.3rem;
 }

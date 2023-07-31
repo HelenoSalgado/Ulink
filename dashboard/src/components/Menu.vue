@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import ButtonDashboard from './ButtonDashboard.vue';
+import AvatarInfo from './AvatarInfo.vue';
 </script>
 
 <template>
@@ -8,12 +8,21 @@ import ButtonDashboard from './ButtonDashboard.vue';
 <div class="container-nav-top">
 <div class="nav-top">
   <nav class="navigator">
-        <RouterLink class="link-animation link-icon-flex" to="/"><i class="material-icons">home</i> Casa</RouterLink>
-        <RouterLink class="link-animation link-icon-flex" to="#"><i class="material-icons">groups</i> Sobre</RouterLink>
-        <RouterLink class="link-animation link-icon-flex" to="#"><i class="material-icons">book</i>Tutoriais</RouterLink>
+      <RouterLink class="link-animation link-icon-flex" to="/">
+        <i class="material-icons">home</i>
+        <span>Casa</span>
+      </RouterLink>
+      <RouterLink class="link-animation link-icon-flex" to="#">
+        <i class="material-icons">groups</i> 
+        <span>Sobre</span>
+      </RouterLink>
+      <RouterLink class="link-animation link-icon-flex" to="#">
+        <i class="material-icons">book</i>
+        <span>Tutoriais</span>
+      </RouterLink>
   </nav>
   <div>
-    <ButtonDashboard />
+    <AvatarInfo />
   </div>
 </div>
 </div>
@@ -34,28 +43,26 @@ import ButtonDashboard from './ButtonDashboard.vue';
     /* box-shadow: var(--shadow-elevation-low); */
 }
 .nav-top{
-  width: 100%;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
   padding: 0 1rem;
   z-index: 2;
 }
 .navigator{
   display: flex;
-  width: 500px;
   align-items: center;
   gap: 2rem;
   font-size: 1.1rem;
 }
-.navigator a{
-  padding-bottom: .5rem;
-}
 @media (max-width: 750px) {
     .nav-top{
         gap: 0;
+    }
+    .link-icon-flex > span{
+      display: none;
     }
 }
 </style>

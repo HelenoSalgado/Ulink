@@ -380,7 +380,6 @@ onMounted(() => {
         background-color: var(--bkg-box);
         border-radius: 15px;
         padding: 1rem 1rem 3rem 1rem;
-        margin: 1rem 0;
     }
     .states{
         width: 100%;

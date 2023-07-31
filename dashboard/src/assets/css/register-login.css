@@ -1,9 +1,7 @@
 .container{
     max-width: 1200px;
     margin: auto;
-}
-h1{
-    margin-bottom: 2rem;
+    padding: 1rem 1rem 3rem 1rem;
 }
 .register, .login{
     display: flex;
@@ -30,7 +28,6 @@ h1{
     max-width: 500px;
     margin: auto;
     font-size: 1rem;
-    padding: 1rem 1rem 3rem 1rem;
 }
 span{
     position: relative;

@@ -34,7 +34,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
 }
 .container-dashboard{
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     position: relative;
     display: flex;

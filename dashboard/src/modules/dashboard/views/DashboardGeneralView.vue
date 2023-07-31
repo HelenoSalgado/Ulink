@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import AnalyticsLink from '../components/dashboard/AnalyticsLink.vue';
 import BlocksInfoGeneral from '../components/dashboard/BlocksInfoGeneral.vue';
-import CommentsRecent from '../components/dashboard/CommentsRecent.vue';
 //import PostsRecent from '../components/dashboard/PostsRecent.vue';
 import UsedDeviceVue from '../components/dashboard/UsedDevice.vue';
 import TopSocialMedia from '../components/dashboard/TopSocialMedia.vue';
 import MapBrazil from '../components/dashboard/MapBrazil.vue';
+import ShortLinks from '../components/ShortLinks.vue';
+import { reactive } from 'vue';
+import type { ShortLinkUpdate } from '@/types/ShortLink';
+import http from '@/services/http';
+import { useAuth } from '@/stores/auth';
 
 const topSocialMedia = [
   {
@@ -227,9 +231,9 @@ const states = [
       uf: 'PR',
       value: 5,
     },
-]
+];
 
-console.log(states);
+const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`));
 
 </script>
 <template>
@@ -254,25 +258,23 @@ console.log(states);
             />
             </div>
             <AnalyticsLink />
-            <div class="group-posts-devices">
-               <div>
-                <UsedDeviceVue />
-               </div>
-               <div>
-                <TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
-               </div>
-            </div>
         </div>
         <div class="comments-recent">
-            <CommentsRecent />
+            <ShortLinks
+            :data="data"
+            full-tools="false"
+            />
         </div>
-    </div>
-    <MapBrazil 
-    :states="states"
-    />
-    <!-- <Echart /> -->
-    <!-- <MapStates /> -->
+      </div>
+      <div class="group-posts-devices">
+        <div>
+            <TopSocialMedia :media="topSocialMedia" title="Top fonte tráfico"/>
+            <UsedDeviceVue />
+        </div>
+        <MapBrazil 
+          :states="states"
+        />
+      </div>
 </template>
-<style scoped>
-@import url('../assets/css/dashboard.css');
+<style src="../assets/css/dashboard.css" scoped>
 </style>

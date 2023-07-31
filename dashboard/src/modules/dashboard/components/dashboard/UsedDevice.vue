@@ -45,7 +45,6 @@ onMounted(() => {
 <style scoped>
 .container-device{
     width: 100%;
-    height: calc(100% - 3rem);
     background-color: var(--bkg-box);
     padding: 1rem;
     border-radius: 15px;

@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import SearchDashboard from './SearchDashboard.vue';
-import { useAuth } from '@/stores/auth';
+import AvatarInfo from '@/components/AvatarInfo.vue';
 
 const visibleNotifCard = ref(false);
 const visibleMsgCard = ref(false);
-const visibleUserCard = ref(false);
-
-function logout() {
-    useAuth().clear();
-}
 
 </script>
 <template>
@@ -34,21 +29,7 @@ function logout() {
         :class="{'visible-massage-card': visibleMsgCard}"></div>
     </div>
 </div>
-<div class="user">
-    <h3>Olá, {{ useAuth().user?.firstName }}</h3>
-    <img 
-    @click="visibleUserCard = !visibleUserCard" 
-    src="@/assets/img/73316162.png" alt="avatar" title="perfil">
-    <div class="user-card card" 
-    :class="{'visible-user-card': visibleUserCard}">
-     <a class="link-icon-flex" 
-     href=""><i class="pi pi-user"></i> Perfil</a>
-     <a class="link-icon-flex" 
-     href=""><i class="pi pi-cog"></i> Config</a>
-     <a class="link-icon-flex" 
-     href="/" @click="logout"><i class="pi pi-sign-out"></i> Sair</a>
-    </div>
-</div>
+<AvatarInfo />
 </div>
 </div>
 </div>
@@ -59,7 +40,6 @@ function logout() {
   width: 100%;
   z-index: 3;
 }
-
 .cristal-effect{
     background: hsla(218, 65%, 12%, 0.541);
     backdrop-filter: blur(4px);
@@ -117,41 +97,6 @@ function logout() {
     border-radius: 5px;
     padding: 0 .2rem;
     line-height: 1rem;
-}
-.user{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: var(--bkg-box);
-}
-.user h3{
-    line-height: 1.2rem;
-}
-.user img{
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--bkg-dark-contrast);
-    border-radius: 50%;
-    background-color: var(--bkg-box);
-    box-sizing: border-box;
-    filter: brightness(120%);
-    cursor: pointer;
-}
-.notification-card,
-.message-card,
-.user-card{
-   min-width: 100px;
-   display: flex;
-   flex-direction: column;
-   right: 0;
-   font-size: 1rem;
-}
-.visible-notification-card,
-.visible-message-card,
-.visible-user-card{
-    visibility: visible;
-    top: 70px;
-    opacity: 10;
 }
 @media (max-width: 750px) {
     .nav-top{

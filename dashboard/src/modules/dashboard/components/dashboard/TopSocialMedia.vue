@@ -14,7 +14,6 @@ const props = defineProps(['title', 'media']);
 <style scoped>
 .top-media-shared{
     width: 100%;
-    min-height: 100%;
 }
 .interations-media div{
   margin: 1rem 0;

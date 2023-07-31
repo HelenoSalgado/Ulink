@@ -33,7 +33,6 @@ async function login(){
     <div class="login">
         <div class="login-prints">
         </div>
-
         <div>
         <div class="container-form">
         <form class="form-login" action="" @submit.prevent="login">
@@ -62,6 +61,5 @@ async function login(){
     </div>
     </div>
 </template>
-
 <style src="../../assets/css/register-login.css" scoped>
 </style>

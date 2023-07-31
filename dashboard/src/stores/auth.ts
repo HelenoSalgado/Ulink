@@ -51,7 +51,7 @@ export const useAuth = defineStore('auth', () => {
 
   return { 
     token,
-    user: dataUser,
+    user: JSON.parse(dataUser.value),
     setToken,
     checkToken,
     isAuthenticated,

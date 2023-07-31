@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import router from '@/router';
 import http from '@/services/http';
 
-const { data } = defineProps(['data']);
+const { data, fullTools } = defineProps(['data', 'fullTools']);
 
 function visibleShared(e: string){ 
     const link = document.querySelectorAll('.link');
@@ -18,10 +17,6 @@ function openLink() {
 function copyLink(e: any) {
     var url = document.querySelector('[data-link]');
     console.log(url);
-}
-
-function edit(id: string){
-    router.push('/dashboard/edit-link/'+id);
 }
 
 function generateQrCode(e: any) {
@@ -57,6 +52,7 @@ async function deleteLink(id: string) {
     </div>
     </div>
     <div class="info">
+        <div v-if="!fullTools">
         <span @click="openLink">
             <i class="material-icons">open_in_new</i>
             <p>100</p>
@@ -65,9 +61,11 @@ async function deleteLink(id: string) {
             <i class="material-icons">show_chart</i>
             <p>statistics</p>
         </span>
-        <span @click="edit(link.id)">
-            <i class="material-icons">edit</i>
-            <p>edit</p>
+        <span>
+            <RouterLink :to="'/dashboard/edit-link/'+link.id"> 
+                <i class="material-icons">edit</i>
+                <span>edit</span>
+            </RouterLink>
         </span> 
         <span @click="copyLink" data-link="https://heleno.dev">
             <i class="material-icons">content_copy</i>
@@ -84,7 +82,22 @@ async function deleteLink(id: string) {
         <span @click="deleteLink(link.id)">
             <i class="material-icons">delete</i>
             <p>delete</p>
-        </span>     
+        </span> 
+    </div> 
+    <div v-else>
+        <span @click="openLink">
+            <i class="material-icons">open_in_new</i>
+            <p>100</p>
+        </span>
+        <span @click="copyLink" data-link="https://heleno.dev">
+            <i class="material-icons">content_copy</i>
+            <p>copy</p>
+        </span>
+        <span @click="generateQrCode">
+            <i class="material-icons">qr_code</i>
+            <p>qrcode</p>
+        </span>
+    </div>   
 </div>
 </div>
 <div class="info-shared">
@@ -110,14 +123,13 @@ async function deleteLink(id: string) {
 </template>
 <style scoped>
 .container-links-recent{
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
 }
 .link{
-    margin-top: 2rem;
     max-width: 800px;
     z-index: 2;
+    margin-bottom: 2rem;
 }
 .link-z-index-0{
     z-index: 0;
@@ -194,7 +206,7 @@ async function deleteLink(id: string) {
     opacity: 10;
     z-index: 1;
 }
-.info{
+.info > div{
     width: 100%;
     display: inline-flex;
     align-items: center;
@@ -204,7 +216,7 @@ async function deleteLink(id: string) {
     padding: .5rem 1rem;
     z-index: 2;
 }
-.info span:hover{
+.info > div > span:hover{
     background-color: #fff;
     color: #000;
 }
@@ -214,7 +226,7 @@ async function deleteLink(id: string) {
 .info span > a:hover{
     color: #000;
 }
-.info span{
+.info > div > span, .info span > a{
     display: inline-flex;
     gap: 5px;
     align-items: center;
@@ -223,6 +235,9 @@ async function deleteLink(id: string) {
     border-radius: 15px;
     padding: .2rem .5rem;
     transition: 200ms all;
+}
+.info span > a{
+    padding: 0; 
 }
 .info span > a{
     color: #fff;
@@ -239,7 +254,7 @@ async function deleteLink(id: string) {
     .previa-img img{
         width: 100%;
     }
-    .info span > p, .info span > a{
+    .info span > p, .info a > span{
         display: none;
     }
     

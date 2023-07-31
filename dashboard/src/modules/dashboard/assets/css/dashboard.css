@@ -32,10 +32,12 @@
 .group-posts-devices div{
     min-width: 200px;
     flex: 1 2 200px;
-    min-height: 100%;
 }
-.group-posts-devices div:nth-child(2){
-  max-width: 200px;
+.group-posts-devices div:nth-child(1){
+  max-width: 400px;
+}
+.group-posts-devices div:nth-child(1) div:nth-child(2){
+  margin-top: 2rem;
 }
 .top-media-shared{
   background-color: var(--bkg-box);

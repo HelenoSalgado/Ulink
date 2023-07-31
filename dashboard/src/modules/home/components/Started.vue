@@ -9,11 +9,13 @@
       <p>De brinde, ganhe uma página de links para suas redes.</p>
         <div class="started-buttons">
 
-            <RouterLink to="/registrar">
-               <button class="action-btn register-btn link-icon-flex"><i class="pi pi-user"></i>Registrar-se</button> 
+            <RouterLink to="/registrar" 
+            class="action-btn register-btn link-icon-flex">
+               <i class="pi pi-user"></i>Registrar-se
             </RouterLink>
-            <RouterLink to="/entrar">
-               <button class="action-btn login-btn link-icon-flex"><i class="pi pi-sign-in"></i>Entrar</button>
+            <RouterLink to="/entrar" 
+            class="action-btn login-btn link-icon-flex">
+               <i class="pi pi-sign-in"></i>Entrar
             </RouterLink>
 
         </div>

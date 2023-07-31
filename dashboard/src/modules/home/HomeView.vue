@@ -18,6 +18,7 @@ import StartedVue from './components/Started.vue';
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 3rem;
 }
 .apresentation > img{
   width: 100%;
