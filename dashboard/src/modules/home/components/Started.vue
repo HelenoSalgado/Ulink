@@ -5,7 +5,7 @@
 <template>
     <div class="started">
       <h1>Encurte seu link agora mesmo.</h1>
-      <h2>Você terá acesso a todas as estatísticas. <br>Crie uma conta por apenas R$ 19,00.</h2>
+      <h2>Você terá acesso a todas as estatísticas. <br>Crie uma conta por apenas R$ 4,99.</h2>
       <p>De brinde, ganhe uma página de links para suas redes.</p>
         <div class="started-buttons">
 

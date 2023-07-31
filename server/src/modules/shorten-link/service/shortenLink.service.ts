@@ -39,7 +39,8 @@ export class ShortenLinkService {
     dataUrl.id = new ObjectId().toString();
     dataUrl.idUrl = uniqueId;
 
-    const baseHost = config.localhost+':'+config.port.toString()+'/';
+    const baseHost = 'https://dashboard-cyco.onrender.com/' 
+    //config.localhost+':'+config.port.toString()+'/';
     dataUrl.shortUrl = baseHost+uniqueId;
 
     const initAnalytics = {
