@@ -4,8 +4,8 @@ import BlocksInfoGeneral from '../components/dashboard/BlocksInfoGeneral.vue';
 //import PostsRecent from '../components/dashboard/PostsRecent.vue';
 import UsedDeviceVue from '../components/dashboard/UsedDevice.vue';
 import TopSocialMedia from '../components/dashboard/TopSocialMedia.vue';
+import TopLinks from '../components/dashboard/TopLinks.vue';
 import MapBrazil from '../components/dashboard/MapBrazil.vue';
-import ShortLinks from '../components/ShortLinks.vue';
 import { reactive } from 'vue';
 import type { ShortLinkUpdate } from '@/types/ShortLink';
 import http from '@/api/http';
@@ -259,10 +259,8 @@ const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${use
             </div>
             <AnalyticsLink />
         </div>
-        <div class="comments-recent">
-            <ShortLinks
-            :data="data"
-            full-tools="false"
+        <div class="top-links">
+            <TopLinks 
             />
         </div>
       </div>

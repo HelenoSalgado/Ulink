@@ -1,30 +1,42 @@
 <script setup lang="ts">
 import type { ShortLinkUpdate } from '@/types/ShortLink';
 import ShortLinks from '../components/ShortLinks.vue';
+import Search from '@/components/Search.vue';
 import Paginator from 'primevue/paginator';
-import http from '@/services/http';
-import { apiUrl } from '@/shared/apiBaseUrl';
+import http from '@/api/http';
+import { url } from '@/config';
 import { useAuth } from '@/stores/auth';
 
-const { data } = await http.get<ShortLinkUpdate[]>(`${apiUrl.links}all/${useAuth().user.id}`);
+const { data } = await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${useAuth().user.id}`);
 
 </script>
 <template>
-<h1 class="title-dashboard">Todos os Links</h1>
+<div class="search">
+<strong class="title-dashboard">Pesquisar por ID</strong>
+<Search />
+</div>
 <div class="container-all-links">
     <div>
         <ShortLinks
-        :data="data"
-        />
+          :data="data"
+         />
     </div>
     <div class="paginator">
-         <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>   
+        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]" />  
     </div>
 </div>
 </template>
 <style scoped>
+.search{
+    margin: 0 auto 2rem auto;
+    max-width: 800px;
+}
+strong{
+    display: block;
+    margin-bottom: 1rem;
+}
 .paginator{
-    margin-top: 4rem;
+    margin: 4rem auto 2rem auto;
     max-width: 800px;
 }
 </style>

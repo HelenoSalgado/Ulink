@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import IconBarChart from '@/components/icons/IconBarChart.vue';
+import IconSearch from '@/components/icons/IconSearch.vue';
+import IconScissors from '@/components/icons/IconScissors.vue';
+import IconLink2 from '@/components/icons/IconLink2.vue';
+import IconUser from '@/components/icons/IconUser.vue';
 import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
@@ -26,31 +31,31 @@ onMounted(() => {
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard">
-            <i class="material-icons">bar_chart</i>
+            <IconBarChart />
                 Dashboard
             </RouterLink>
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard/encurta-link">
-            <i class="material-icons">query_stats</i>
+            <IconSearch />
                 Analytic Link
            </RouterLink>
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard/encurta-link">
-            <i class="material-icons">content_cut</i>
+            <IconScissors />
                 Short Link
             </RouterLink>
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard/all-links">
-            <i class="material-icons">link</i>
+            <IconLink2 />
                 All Links
             </RouterLink>
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard/perfil">
-            <i class="material-icons">manage_accounts</i>
+            <IconUser />
                 Profile
             </RouterLink>
 

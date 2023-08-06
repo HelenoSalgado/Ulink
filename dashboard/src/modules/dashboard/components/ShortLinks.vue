@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import http from '@/api/http';
+import IconBarChart2 from '@/components/icons/IconBarChart2.vue';
+import IconExternalLink from '@/components/icons/IconExternalLink.vue';
+import IconEdit from '@/components/icons/IconEdit.vue';
+import IconCopy from '@/components/icons/IconCopy.vue';
+import IconShare from '@/components/icons/IconShare.vue';
+import IconTrash from '@/components/icons/IconTrash.vue';
 
-const { data, fullTools } = defineProps(['data', 'fullTools']);
+const { data } = defineProps(['data']);
 
 function visibleShared(e: string){ 
     const link = document.querySelectorAll('.link');
@@ -52,52 +58,31 @@ async function deleteLink(id: string) {
     </div>
     </div>
     <div class="info">
-        <div v-if="!fullTools">
         <span @click="openLink">
-            <i class="material-icons">open_in_new</i>
+            <IconExternalLink />
             <p>100</p>
         </span>
         <span>
-            <i class="material-icons">show_chart</i>
-            <p>statistics</p>
+          <IconBarChart2 />
         </span>
         <span>
             <RouterLink :to="'/dashboard/edit-link/'+link.id"> 
-                <i class="material-icons">edit</i>
-                <span>edit</span>
+                <IconEdit />
             </RouterLink>
         </span> 
         <span @click="copyLink" data-link="https://heleno.dev">
-            <i class="material-icons">content_copy</i>
-            <p>copy</p>
+            <IconCopy />
         </span>
         <span @click="generateQrCode">
-            <i class="material-icons">qr_code</i>
-            <p>qrcode</p>
+            <i class="pi pi-qrcode"></i>
         </span>
         <span @click="visibleShared('hfgfgfdg')">
-            <i class="material-icons">share</i>
-            <p>share</p>
+            <IconShare />
         </span>
         <span @click="deleteLink(link.id)">
-            <i class="material-icons">delete</i>
-            <p>delete</p>
+            <IconTrash />
         </span> 
     </div> 
-    <div v-else>
-        <span @click="openLink">
-            <i class="material-icons">open_in_new</i>
-            <p>100</p>
-        </span>
-        <span @click="copyLink" data-link="https://heleno.dev">
-            <i class="material-icons">content_copy</i>
-            <p>copy</p>
-        </span>
-        <span @click="generateQrCode">
-            <i class="material-icons">qr_code</i>
-            <p>qrcode</p>
-        </span>
-    </div>   
 </div>
 </div>
 <div class="info-shared">
@@ -119,17 +104,12 @@ async function deleteLink(id: string) {
   </span>
 </div>
 </div>
-</div>
 </template>
 <style scoped>
-.container-links-recent{
-  display: flex;
-  flex-direction: column;
-}
 .link{
     max-width: 800px;
     z-index: 2;
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem auto;
 }
 .link-z-index-0{
     z-index: 0;
@@ -206,17 +186,20 @@ async function deleteLink(id: string) {
     opacity: 10;
     z-index: 1;
 }
-.info > div{
+.info{
     width: 100%;
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
+    gap: 1rem;
     border-radius: 0 0 15px 15px;
     background-color: var(--bkg-dark-contrast);
     padding: .5rem 1rem;
     z-index: 2;
 }
-.info > div > span:hover{
+.info svg{
+    width: 20px;
+}
+.info span:hover{
     background-color: #fff;
     color: #000;
 }
@@ -226,14 +209,14 @@ async function deleteLink(id: string) {
 .info span > a:hover{
     color: #000;
 }
-.info > div > span, .info span > a{
+.info span, .info span > a{
     display: inline-flex;
     gap: 5px;
     align-items: center;
     cursor: pointer;
     color: #fff;
     border-radius: 15px;
-    padding: .2rem .5rem;
+    padding: .2rem 1rem;
     transition: 200ms all;
 }
 .info span > a{
@@ -242,7 +225,7 @@ async function deleteLink(id: string) {
 .info span > a{
     color: #fff;
 }
-@media (max-width: 750px) {
+@media (max-width: 560px) {
 
     .link-container-flex{
         display: block;
@@ -254,8 +237,17 @@ async function deleteLink(id: string) {
     .previa-img img{
         width: 100%;
     }
-    .info span > p, .info a > span{
+    .info p{
         display: none;
+    }
+    .info{
+        gap: 0;
+    }
+    .info span{
+        padding: .3rem .7rem;
+    }
+    .info svg{
+        width: 1rem;
     }
     
 }

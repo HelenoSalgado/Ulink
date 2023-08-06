@@ -1,5 +1,7 @@
 <script setup lang="ts">
-  import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router';
+import IconUser from './icons/IconUser.vue';
+import IconLogin from './icons/IconLogin.vue';
 </script>
 
 <template>
@@ -11,11 +13,11 @@
 
             <RouterLink to="/registrar" 
             class="action-btn register-btn link-icon-flex">
-               <i class="pi pi-user"></i>Registrar-se
+               <IconUser /> Registrar-se
             </RouterLink>
             <RouterLink to="/entrar" 
             class="action-btn login-btn link-icon-flex">
-               <i class="pi pi-sign-in"></i>Entrar
+               <IconLogin /> Entrar
             </RouterLink>
 
         </div>

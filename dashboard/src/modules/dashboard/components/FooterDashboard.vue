@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import IconBook from '@/components/icons/IconBook.vue';
+import IconHome from '@/components/icons/IconHome.vue';
+import IconInfo from '@/components/icons/IconInfo.vue';
+
 </script>
 <template>
 <footer>
@@ -6,16 +10,22 @@
         <div class="site-map">
             <ul>
             <li>
-                <a class="link-icon-flex link-animation" href="/"><i class="pi pi-home"></i> Home</a>
+                <RouterLink class="link-icon-flex link-animation" to="/">
+                   <IconHome />
+                    Home
+                </RouterLink>
             </li>
             <li>
-                <a class="link-icon-flex link-animation" href=""><i class="pi pi-globe"></i> Blog</a>
+                <RouterLink class="link-icon-flex link-animation" to="/">
+                   <IconBook />
+                    Tutoriais
+                </RouterLink>
             </li>
             <li>
-                <a class="link-icon-flex link-animation" href=""><i class="pi pi-book"></i> Tutoriais</a>
-            </li>
-            <li>
-                <a class="link-icon-flex link-animation" href=""><i class="pi pi-info-circle"></i> Termos e privacidade</a>
+                <RouterLink class="link-icon-flex link-animation" to="/">
+                   <IconInfo />
+                    Termos e Privacidade
+                </RouterLink>
             </li>
             </ul>
         </div>
@@ -44,7 +54,7 @@ li, a{
     color: var(--color-font-bkg);
 }
 .link-animation::before{
-    top: 1.3rem;
+    top: 1.7rem;
     background-color: #fff;
 }
 .container-footer{

@@ -12,6 +12,7 @@ interface LinkCreate{
   description: string;
   urlImage: string;
   urlOrigin: string;
+  shortUrl: string;
   clicks: number;
 }
 
@@ -27,6 +28,7 @@ onMounted(async () => {
 		"description": "Venha estudar na melhor plataforma de programação online.",
 		"urlImage": preview,
     "urlOrigin": "https://vuenaveia.com.br",
+    "shortUrl": "https://click/HIUh",
     "clicks": 9
 	},
   {
@@ -35,6 +37,7 @@ onMounted(async () => {
 		"description": "Venha estudar na melhor plataforma de programação online.",
 		"urlImage": a,
     "urlOrigin": "https://vuenaveia.com.br",
+    "shortUrl": "https://click/HIUh",
     "clicks": 9
 	},
   {
@@ -43,7 +46,8 @@ onMounted(async () => {
 		"description": "Venha estudar na melhor plataforma de programação online.",
 		"urlImage": b,
     "urlOrigin": "https://vuenaveia.com.br",
-    "clicks": 9
+    "shortUrl": "https://click/HIUh",
+    "clicks": 19
 	},
   ]
 
@@ -55,6 +59,7 @@ onMounted(async () => {
       description: links[i].description,
       urlImage: links[i].urlImage,
       urlOrigin: links[i].urlOrigin,
+      shortUrl: links[i].shortUrl,
       clicks: links[i].clicks
     }
     refLinks.push(link);
@@ -68,23 +73,16 @@ onMounted(async () => {
 <h3 class="title-main title">Top Links</h3>
 <div v-for="link in refLinks" :key="link.id" class="links">
     <div class="link">
+      <span class="etiqueta">{{ link.clicks }}</span>
       <img v-if="link?.urlImage != null" :src="link.urlImage" />
       <span v-else class="pi pi-user" style="font-size: 1.5rem;"></span>
     </div>
     <div>
       <h3 class="title-top-link title">{{ link?.title }}</h3>
     </div>
-    <div class="link-content">
-       <p v-html="link.description"></p>
-    </div>
-      <div class="info-top-links">
-          <a class="link-animation" href="#">
-            vuenaveia.com
-            <i class="pi pi-external-link"></i>
-          </a>
-          <span>1000k</span>
-      </div>
-     
+    <a :href="link.shortUrl">
+      {{link.shortUrl}}
+    </a>
     </div>
   </div>
 </template>
@@ -93,7 +91,7 @@ onMounted(async () => {
     width: 100%;
     height: calc(100% - 2rem);
     background-color: var(--bkg-box);
-    padding: 1rem 1rem 2rem 1rem;
+    padding: 1rem;
     border-radius: 15px;
 }
 .title-main{
@@ -102,10 +100,10 @@ onMounted(async () => {
 .links{
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 .link{
-  height: 100px;
+  height: 80px;
   background-color: var(--bkg-dark-contrast);
   overflow: hidden;
   border-radius: 15px;
@@ -122,24 +120,20 @@ onMounted(async () => {
 .link img:hover{
   opacity: 10;
 }
-.link-content{
-  margin: .3rem 0;
-  color: var(--color-text-black-soft);
-  line-height: 1.1rem;
+.etiqueta{
+  display: block;
+  width: auto;
+  height: 30px;
+  background-color: var(--bkg-dark-contrast);
+  position: absolute;
+  border-bottom: .5px solid var(--bkg-box);
+  border-right: .5px solid var(--bkg-box);
+  border-radius: 15px 0 5px 0;
+  padding: 7px;
+  color: var(--bkg-box);
+  z-index: 2;
 }
 .title-top-link{
   color: var(--color-text-black-soft);
-}
-.info-top-links{
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--bkg-dark-contrast);
-}
-.info-top-links a{
-  color: var(--bkg-dark-contrast);
-}
-.info-top-links i{
-  font-size: .8rem;
 }
 </style>

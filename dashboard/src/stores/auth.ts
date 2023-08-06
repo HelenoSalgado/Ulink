@@ -36,7 +36,6 @@ export const useAuth = defineStore('auth', () => {
       let status = error?.response?.status;
       if(status === '401') return false;
     }
-
   };
 
   const isAuthenticated = computed(() => {

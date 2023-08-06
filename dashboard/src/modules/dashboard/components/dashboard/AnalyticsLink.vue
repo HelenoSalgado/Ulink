@@ -50,7 +50,7 @@ const dataPosts = [
 </template>
 <style scoped>
 .container-analytics{
-    margin: 3rem 0;
+    margin: 2rem 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

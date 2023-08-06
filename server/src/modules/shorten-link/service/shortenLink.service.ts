@@ -4,11 +4,9 @@ import ShortUniqueId from 'short-unique-id';
 import { isURL } from 'class-validator';
 import { CreateLinkDto } from '../dto/create-link-dto';
 import { ObjectId } from 'bson'
-import { Request } from 'express';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
-import config from 'src/config';
 import createPreview from '../utils/createPreview';
 import clearPreviews from '../utils/clearPreviews';
 import { UpdateLinkDto } from '../dto/update-link.dto';
@@ -80,6 +78,11 @@ export class ShortenLinkService {
   }
 
   async findLinksUser(idUser: string){
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve('resolved');
+    //   }, 222000);
+    // });
     return await this.repo.findLinksUser(idUser);
   }
 

@@ -11,9 +11,6 @@ const visibleMsgCard = ref(false);
 <div class="cristal-effect"></div>
 <div class="container-nav-top">
 <div class="nav-top">
-<div class="search">
-<SearchDashboard />
-</div>
 <div class="infos">
 <div class="notifications">
     <div @click="visibleNotifCard = !visibleNotifCard" >
@@ -56,10 +53,6 @@ const visibleMsgCard = ref(false);
   gap: 2rem;
   z-index: 2;
 }
-.search{
-  width: 100%;
-  max-width: 300px;  
-}
 .infos{
   display: flex;
   gap: 2rem;
@@ -101,9 +94,6 @@ const visibleMsgCard = ref(false);
 @media (max-width: 750px) {
     .nav-top{
         gap: 0;
-    }
-    .search{
-        display: none;
     }
     .infos{
         gap: .5rem;

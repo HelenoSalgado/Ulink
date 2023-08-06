@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import AvatarInfo from './AvatarInfo.vue';
+import IconHome from './icons/IconHome.vue';
+import IconGlobe from './icons/IconGlobe.vue';
+import IconBook from './icons/IconBook.vue';
 </script>
 
 <template>
@@ -9,15 +12,15 @@ import AvatarInfo from './AvatarInfo.vue';
 <div class="nav-top">
   <nav class="navigator">
       <RouterLink class="link-animation link-icon-flex" to="/">
-        <i class="material-icons">home</i>
+        <IconHome />
         <span>Casa</span>
       </RouterLink>
       <RouterLink class="link-animation link-icon-flex" to="#">
-        <i class="material-icons">groups</i> 
+        <IconGlobe />
         <span>Sobre</span>
       </RouterLink>
       <RouterLink class="link-animation link-icon-flex" to="#">
-        <i class="material-icons">book</i>
+        <IconBook />
         <span>Tutoriais</span>
       </RouterLink>
   </nav>
@@ -32,7 +35,7 @@ import AvatarInfo from './AvatarInfo.vue';
   position: fixed;
   top: 0;
   width: 100%;
-  height: 70px;
+  height: 60px;
   z-index: 3;
 }
 
@@ -43,7 +46,7 @@ import AvatarInfo from './AvatarInfo.vue';
     /* box-shadow: var(--shadow-elevation-low); */
 }
 .nav-top{
-  height: 70px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;

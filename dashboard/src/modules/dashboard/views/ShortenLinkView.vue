@@ -2,7 +2,7 @@
 import { reactive, ref } from 'vue';
 import ShortenLink from '../components/ShortenLink.vue';
 import type { ShortLink, ShortLinkUpdate } from '@/types/ShortLink';
-import http from '@/services/http';
+import http from '@/api/http';
 import { useAuth } from '@/stores/auth';
 import ShortLinks from '../components/ShortLinks.vue';
 

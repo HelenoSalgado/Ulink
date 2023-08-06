@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useAuth } from '@/stores/auth';
 import { ref } from 'vue';
+import IconUser from './icons/IconUser.vue';
+import IconBarChart from './icons/IconBarChart.vue';
+import IconSettings from './icons/IconSettings.vue';
+import IconLogout from './icons/IconLogout.vue';
 
 const visibleUserCard = ref(false);
 const auth = useAuth();
@@ -17,20 +21,20 @@ function logout() {
     src="@/assets/img/73316162.png" alt="avatar" title="perfil">
     <div class="user-card card" 
     :class="{'visible-user-card': visibleUserCard}">
-     <RouterLink to="" class="link-icon-flex">
-        <i class="pi pi-user"></i>
-        Perfil
-    </RouterLink>
-     <RouterLink to="/dashboard" class="link-icon-flex">
-        <i class="pi pi-user"></i>
+    <RouterLink to="/dashboard" class="link-icon-flex">
+        <IconBarChart />
         Dashboard
     </RouterLink>
      <RouterLink to="" class="link-icon-flex">
-        <i class="pi pi-cog"></i>
+        <IconUser />
+        Perfil
+    </RouterLink>
+     <RouterLink to="" class="link-icon-flex">
+        <IconSettings />
         Config
     </RouterLink>
      <RouterLink to="/" class="link-icon-flex" @click="logout">
-        <i class="pi pi-sign-out"></i>
+        <IconLogout />
         Sair
     </RouterLink>
     </div>
@@ -44,7 +48,7 @@ function logout() {
     color: var(--bkg-box);
 }
 .user h3{
-    line-height: 1.2rem;
+    font-weight: 400;
 }
 .user img{
     width: 40px;
@@ -60,5 +64,8 @@ function logout() {
     visibility: visible;
     top: 70px;
     opacity: 10;
+}
+.visible-user-card svg{
+    width: 20px;
 }
 </style>

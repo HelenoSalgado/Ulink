@@ -2,15 +2,15 @@
 import { reactive, ref } from "vue";
 import { useRoute } from 'vue-router';
 import type { ShortLink } from "@/types/ShortLink";
-import http from "@/services/http";
-import { apiUrl } from "@/shared/apiBaseUrl";
+import http from "@/api/http";
 import ShortenLink from "../components/ShortenLink.vue";
+import { url } from "@/config";
 
 const route = useRoute();
 const id = route.params.id;
 const message = ref('');
 
-const { data } = await http.get<ShortLink>(`${apiUrl.links}${id}`);
+const { data } = await http.get<ShortLink>(`${url.api}links/${id}`);
 
 const link = reactive<ShortLink>({
   idUser: data.idUser,

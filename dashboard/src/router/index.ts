@@ -3,6 +3,12 @@ import HomeView from '@/modules/home/HomeView.vue';
 import LoginView from '@/modules/login/LoginView.vue';
 import RegisterView from '@/modules/register/RegisterView.vue';
 import DashboardView from '@/modules/dashboard/DashboardView.vue';
+import DashboardGeneralView from '@/modules/dashboard/views/DashboardGeneralView.vue';
+import ShortLinkView from '@/modules/dashboard/views/ShortenLinkView.vue';
+import ProfileView from '@/modules/dashboard/views/ProfileView.vue';
+import AllLinksView from '@/modules/dashboard/views/AllLinksView.vue';
+import EditLinkView from '@/modules/dashboard/views/EditLinkView.vue';
+
 import { useAuth } from '@/stores/auth';
 
 const router = createRouter({
@@ -33,27 +39,28 @@ const router = createRouter({
       children: [
         {
           path: '',
-          component: () => import('@/modules/dashboard/views/DashboardGeneralView.vue'),
+          name: 'general',
+          component: DashboardGeneralView,
         },
         {
           path: 'encurta-link',
           name: 'encurta link',
-          component: () => import('@/modules/dashboard/views/ShortenLinkView.vue'),
+          component: ShortLinkView,
         },
         {
           path: 'perfil',
           name: 'perfil',
-          component: () => import('@/modules/dashboard/views/ProfileView.vue'),
+          component: ProfileView,
         },
         {
           path: 'all-links',
           name: 'all links',
-          component: () => import('@/modules/dashboard/views/AllLinksView.vue'),
+          component: AllLinksView,
         },
         {
           path: 'edit-link/:id',
           name: 'edit',
-          component: () => import('@/modules/dashboard/views/EditLinkView.vue'),
+          component: EditLinkView,
         },
       ],
     },

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import MenuSide from './components/MenuSide.vue';
 import MenuTop from './components/MenuTop.vue';
-import './assets/css/global.css';
 import { RouterView } from 'vue-router';
-import { Transition } from 'vue';
 import './assets/css/global.css';
 import FooterDashboard from './components/FooterDashboard.vue';
 
@@ -16,16 +14,13 @@ import FooterDashboard from './components/FooterDashboard.vue';
         </div>
         <div class="container-dashboard">
             <div class="router-view">
-                <Transition>
-                <RouterView />
-                </Transition>
+               <RouterView /> 
             </div> 
         </div>
         <FooterDashboard />
     </div>
 </template>
 <style scoped>
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 .background{
     width: 100%;
     background-color: var(--bkg-dark);
@@ -43,18 +38,5 @@ import FooterDashboard from './components/FooterDashboard.vue';
 }
 .router-view{
     width: 100%;
-}
-.v-enter-active {
-  transition: all 200ms;
-}
-
-.v-leave-active {
-  transition: all 200ms;
-}
-
-.v-enter-from,
-.v-leave-to {
-  transform: translateX(10px);
-  opacity: 0;
 }
 </style>
