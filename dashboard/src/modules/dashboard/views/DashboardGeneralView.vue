@@ -8,7 +8,7 @@ import MapBrazil from '../components/dashboard/MapBrazil.vue';
 import ShortLinks from '../components/ShortLinks.vue';
 import { reactive } from 'vue';
 import type { ShortLinkUpdate } from '@/types/ShortLink';
-import http from '@/services/http';
+import http from '@/api/http';
 import { useAuth } from '@/stores/auth';
 
 const topSocialMedia = [

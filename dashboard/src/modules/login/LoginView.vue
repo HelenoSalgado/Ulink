@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import router from '@/router';
 import HeaderComnt from '@/components/Header.vue';
-import http from '@/services/http';
+import http from '@/api/http';
 import { reactive, ref } from 'vue';
 import { useAuth } from '@/stores/auth';
 

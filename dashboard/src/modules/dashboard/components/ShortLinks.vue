@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import http from '@/services/http';
+import http from '@/api/http';
 
 const { data, fullTools } = defineProps(['data', 'fullTools']);
 

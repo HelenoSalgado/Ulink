@@ -1,6 +1,6 @@
-import { computed, reactive, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
-import http from '@/services/http';
+import http from '@/api/http';
 
 interface Token {
   user: {

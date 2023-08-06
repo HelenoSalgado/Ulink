@@ -17,12 +17,22 @@ function logout() {
     src="@/assets/img/73316162.png" alt="avatar" title="perfil">
     <div class="user-card card" 
     :class="{'visible-user-card': visibleUserCard}">
-     <a class="link-icon-flex" 
-     href=""><i class="pi pi-user"></i> Perfil</a>
-     <a class="link-icon-flex" 
-     href=""><i class="pi pi-cog"></i> Config</a>
-     <a class="link-icon-flex" 
-     href="/" @click="logout"><i class="pi pi-sign-out"></i> Sair</a>
+     <RouterLink to="" class="link-icon-flex">
+        <i class="pi pi-user"></i>
+        Perfil
+    </RouterLink>
+     <RouterLink to="/dashboard" class="link-icon-flex">
+        <i class="pi pi-user"></i>
+        Dashboard
+    </RouterLink>
+     <RouterLink to="" class="link-icon-flex">
+        <i class="pi pi-cog"></i>
+        Config
+    </RouterLink>
+     <RouterLink to="/" class="link-icon-flex" @click="logout">
+        <i class="pi pi-sign-out"></i>
+        Sair
+    </RouterLink>
     </div>
 </div>
 </template>
