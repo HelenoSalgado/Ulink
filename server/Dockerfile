@@ -1,18 +1,16 @@
 FROM node:alpine
 
-ENV HOME=/home/app
+WORKDIR /home/app/server
 
-COPY package.json yarn.lock $HOME/server/
-
-WORKDIR $HOME/server/
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY . $HOME/server/
+COPY . .
 
 RUN npx prisma generate
 RUN yarn build
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:prod"]

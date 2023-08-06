@@ -1,14 +1,12 @@
 FROM node:alpine
 
-ENV HOME=/home/app
+WORKDIR /home/app/dashboard
 
-COPY package.json package-lock.json $HOME/dashboard/
+COPY package.json package-lock.json ./
 
-WORKDIR $HOME/dashboard/
+RUN npm install ci --omit=dev && npm i -g http-server
 
-RUN npm install && npm i -g http-server
-
-COPY . $HOME/dashboard/
+COPY . .
 
 RUN npm run build
 
