@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import SearchDashboard from './SearchDashboard.vue';
 import AvatarInfo from '@/components/AvatarInfo.vue';
 
 const visibleNotifCard = ref(false);

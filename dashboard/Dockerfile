@@ -4,7 +4,7 @@ WORKDIR /home/app/dashboard
 
 COPY package.json package-lock.json ./
 
-RUN npm install ci --omit=dev && npm i -g http-server
+RUN npm install && npm i -g http-server
 
 COPY . .
 

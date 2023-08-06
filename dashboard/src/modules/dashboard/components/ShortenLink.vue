@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, defineEmits } from 'vue';
-import FileUpload from 'primevue/fileupload';
 import type { ShortLink } from '@/types/ShortLink';
 import ButtonVue from './Button.vue';
 
@@ -78,8 +77,7 @@ onMounted(() => {
         <label class="input-url-img"> 
             <p>URL de imagem</p>
             <div>
-            <input v-model="data.urlImg" type="url" placeholder="">
-            <FileUpload mode="basic" name="demo[]" accept="image/*" :maxFileSize="1000000" @upload="onUpload"/>  
+            <input v-model="data.urlImg" type="url" placeholder="">  
             </div>
         </label>
         </div>
