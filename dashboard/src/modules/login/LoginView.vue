@@ -4,7 +4,9 @@ import HeaderComnt from '@/components/Header.vue';
 import http from '@/api/http';
 import { reactive, ref } from 'vue';
 import { useAuth } from '@/stores/auth';
-
+import IconEmail from '@/components/icons/IconEmail.vue';
+import IconKey from '@/components/icons/IconKey.vue';
+import IconLogin from '@/components/icons/IconLogin.vue';
 const auth = useAuth();
 const message = ref('');
 
@@ -39,24 +41,24 @@ async function login(){
             <label>
                 <p>Email:</p> 
                 <span>
-                <i class="pi pi-envelope"></i>
+                <IconEmail class="input-icon"/>
                 <input type="email" v-model="user.email" />
                 </span>
             </label>
             <label>
                 <p>Senha:</p> 
                 <span>
-                <i class="pi pi-key"></i>
+                <IconKey class="input-icon"/>
                 <input type="password" v-model="user.password" />
                 </span>
             </label>
          <p class="msg-error">{{ message }}</p>
-         <button type="submit">
+         <button type="submit" class="link-icon-flex">
+            <IconLogin />
             Entrar
          </button>
         </form>
-        </div>
-                    
+        </div>       
     </div>
     </div>
     </div>

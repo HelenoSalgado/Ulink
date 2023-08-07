@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import AvatarInfo from '@/components/AvatarInfo.vue';
+import IconBell from '@/components/icons/IconBell.vue';
+import IconMessageCircle from '@/components/icons/IconMessageCircle.vue';
 
 const visibleNotifCard = ref(false);
 const visibleMsgCard = ref(false);
@@ -13,13 +15,13 @@ const visibleMsgCard = ref(false);
 <div class="infos">
 <div class="notifications">
     <div @click="visibleNotifCard = !visibleNotifCard" >
-        <i class="pi pi-bell" style="color: var(--bkg-black);"></i>
+        <IconBell />
         <span>5</span>
         <div class="notification-card card" 
         :class="{'visible-notification-card': visibleNotifCard}"></div>
     </div>
     <div @click="visibleMsgCard = !visibleMsgCard">
-        <i class="pi pi-comment" style="color: var(--bkg-black);"></i>
+        <IconMessageCircle />
         <span>8</span>
         <div class="message-card card"  
         :class="{'visible-massage-card': visibleMsgCard}"></div>

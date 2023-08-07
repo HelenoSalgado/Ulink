@@ -32,17 +32,18 @@
 span{
     position: relative;
 }
-i{
+.input-icon{
     position: absolute;
-    z-index: 1;
+    width: 45px;
+    height: 45px;
     top: 50%;
-    transform: translateY(-50%);
-    left: 0;
+    left: 23px;
+    padding: 9px;
+    transform: translate(-50%, -50%);
     background-color: var(--bkg-dark-contrast);
-    width: fit-content;
-    padding: 14px;
+    color: #fff;
     border-radius: 7px 0 0 7px;
-    color: var(--bkg-white-shaded);
+    z-index: 2;
 }
 label{
     width: 100%;

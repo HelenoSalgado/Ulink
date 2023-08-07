@@ -48,4 +48,9 @@ const search = ref('');
     color: #fff;
     width: 18px;
 }
+@media (max-width: 560px) {
+   input{
+    height: 47px;
+   }
+}
 </style>

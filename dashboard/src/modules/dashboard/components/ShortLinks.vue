@@ -6,6 +6,7 @@ import IconEdit from '@/components/icons/IconEdit.vue';
 import IconCopy from '@/components/icons/IconCopy.vue';
 import IconShare from '@/components/icons/IconShare.vue';
 import IconTrash from '@/components/icons/IconTrash.vue';
+import IconQrCode from '@/components/icons/IconQrCode.vue';
 
 const { data } = defineProps(['data']);
 
@@ -74,7 +75,7 @@ async function deleteLink(id: string) {
             <IconCopy />
         </span>
         <span @click="generateQrCode">
-            <i class="pi pi-qrcode"></i>
+            <IconQrCode />
         </span>
         <span @click="visibleShared('hfgfgfdg')">
             <IconShare />
@@ -202,6 +203,9 @@ async function deleteLink(id: string) {
 .info span:hover{
     background-color: #fff;
     color: #000;
+}
+.info span:nth-child(5) svg:hover{
+    fill: #000;
 }
 .info span > a{
     transition: 200ms all;

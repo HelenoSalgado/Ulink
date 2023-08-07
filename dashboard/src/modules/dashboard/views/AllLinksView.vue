@@ -2,7 +2,6 @@
 import type { ShortLinkUpdate } from '@/types/ShortLink';
 import ShortLinks from '../components/ShortLinks.vue';
 import Search from '@/components/Search.vue';
-import Paginator from 'primevue/paginator';
 import http from '@/api/http';
 import { url } from '@/config';
 import { useAuth } from '@/stores/auth';
@@ -20,9 +19,6 @@ const { data } = await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${useAut
         <ShortLinks
           :data="data"
          />
-    </div>
-    <div class="paginator">
-        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]" />  
     </div>
 </div>
 </template>
