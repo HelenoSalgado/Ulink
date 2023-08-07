@@ -5,19 +5,36 @@ import Search from '@/components/Search.vue';
 import http from '@/api/http';
 import { url } from '@/config';
 import { useAuth } from '@/stores/auth';
+import { reactive, ref } from 'vue';
 
-const { data } = await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${useAuth().user.id}`);
+const auth = useAuth();
+const searchWord = ref('');
+
+const data = reactive(await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${auth.user.id}`, {
+        headers: {
+            Authorization: auth.token,
+        }
+    })
+    .then(data => { return data.data })
+);
+
+function searchLink(searched: string) {
+   searchWord.value = searched.toLowerCase();
+}
 
 </script>
 <template>
 <div class="search">
-<strong class="title-dashboard">Pesquisar por ID</strong>
-<Search />
+<strong class="title-dashboard">Pesquisar</strong>
+<Search 
+@search-link="searchLink"
+/>
 </div>
 <div class="container-all-links">
     <div>
         <ShortLinks
           :data="data"
+          :search-word="searchWord"
          />
     </div>
 </div>
@@ -30,9 +47,5 @@ const { data } = await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${useAut
 strong{
     display: block;
     margin-bottom: 1rem;
-}
-.paginator{
-    margin: 4rem auto 2rem auto;
-    max-width: 800px;
 }
 </style>

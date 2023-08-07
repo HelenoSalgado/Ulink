@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Graphic from './Graphic.vue';
+import { onMounted, ref } from 'vue';
+import { Chart } from 'chart.js';
 
-const dataPosts = [
+const data = [
     {
         name: 'Seg',
         value: 10
@@ -32,18 +33,42 @@ const dataPosts = [
     },
 ];
 
+const chartBar = ref('analyticsBar');
+
+onMounted(() => {
+   new Chart(
+    chartBar.value,
+    {
+      type: 'bar',
+      data: {
+        labels:  data.map((n: any) => { return n.name}),
+        datasets: [
+          {
+            label: 'clicks',
+            borderColor: '#134E50',
+            backgroundColor: '#134e5069',
+            data: data.map((n: any) => n.value),
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          },
+        },
+      }
+    }
+  );
+});
+
 </script>
 <template>
 <div class="container-analytics">
 <div class="container-links-clicks">
 <h2 class="title">Clicks</h2>
 <div class="posts-analytics">
-  <Graphic 
-  :data="dataPosts"
-  type="line"
-  label="Clicks"
-  id="01"
-  />
+    <canvas id="analyticsBar"></canvas>
 </div>
 </div>
 </div>

@@ -6,6 +6,7 @@ import http from '@/api/http';
 import { useAuth } from '@/stores/auth';
 import ShortLinks from '../components/ShortLinks.vue';
 
+const auth = useAuth();
 const IsExtend = ref(true);
 const shortUrl = ref('');
 const message = ref('');
@@ -18,7 +19,11 @@ const link = reactive<ShortLink>({
   urlImg: '',
 });
 
-const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`));
+const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${auth.user.id}`, {
+    headers: {
+        Authorization: auth.token,
+    }
+}));
 
 async function generateShortLink(shortLink: ShortLink) {
     await http.post('links/create', shortLink)
@@ -56,6 +61,7 @@ async function generateShortLink(shortLink: ShortLink) {
         <h2>Links Recentes</h2>
         <ShortLinks
         :data="data"
+        :search-word="''"
         /> 
         <RouterLink class="all-links" to="/dashboard/all-links">Todos os Links 
             <i class="pi pi-angle-double-right"></i>

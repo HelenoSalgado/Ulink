@@ -5,23 +5,28 @@ import type { ShortLink } from "@/types/ShortLink";
 import http from "@/api/http";
 import ShortenLink from "../components/ShortenLink.vue";
 import { url } from "@/config";
+import { useAuth } from "@/stores/auth";
+
+const auth = useAuth();
 
 const route = useRoute();
 const id = route.params.id;
 const message = ref('');
 
-const { data } = await http.get<ShortLink>(`${url.api}links/${id}`);
-
-const link = reactive<ShortLink>({
-  idUser: data.idUser,
-  title: data.title,
-  description: data.description,
-  originUrl: data.originUrl,
-  urlImg: data.urlImg,
-});
+const { data } = reactive(await http.get<ShortLink>(`${url.api}links/${id}`, {
+        headers: {
+            Authorization: auth.token,
+        }
+    })
+) ;
 
 async function updateShortLink(shortLink: ShortLink) {
-    await http.put('links/update/'+id, shortLink).then(res => {
+    await http.put('links/update/'+id, shortLink, {
+        headers: {
+            Authorization: auth.token,
+        }
+    })
+    .then(res => {
         message.value = res.data?.message;
     }, (err => { 
         let msg = err.response.data?.message;
@@ -37,7 +42,7 @@ async function updateShortLink(shortLink: ShortLink) {
         <h1 class="title-dashboard">Editar Link</h1>
         <Suspense>
             <ShortenLink 
-            :link="link"
+            :link="data"
             @actions="updateShortLink"
             :message="message"
             msg-button="Atualizar"

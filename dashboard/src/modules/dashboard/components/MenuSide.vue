@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import IconBarChart from '@/components/icons/IconBarChart.vue';
 import IconSearch from '@/components/icons/IconSearch.vue';
 import IconScissors from '@/components/icons/IconScissors.vue';
 import IconLink2 from '@/components/icons/IconLink2.vue';
 import IconUser from '@/components/icons/IconUser.vue';
 import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import IconPieChart from '@/components/icons/IconPieChart.vue';
 
 const menuActive = ref(false);
 
@@ -31,7 +31,7 @@ onMounted(() => {
             <RouterLink 
             class="link-icon-flex" 
             to="/dashboard">
-            <IconBarChart />
+            <IconPieChart />
                 Dashboard
             </RouterLink>
             <RouterLink 

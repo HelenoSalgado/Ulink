@@ -8,7 +8,7 @@ import IconShare from '@/components/icons/IconShare.vue';
 import IconTrash from '@/components/icons/IconTrash.vue';
 import IconQrCode from '@/components/icons/IconQrCode.vue';
 
-const { data } = defineProps(['data']);
+const { data, searchWord } = defineProps(['data', 'searchWord']);
 
 function visibleShared(e: string){ 
     const link = document.querySelectorAll('.link');
@@ -41,8 +41,17 @@ async function deleteLink(id: string) {
 </script>
 <template>
 <div class="container-links-recent">
-<div class="link" v-for="link in data" :key="link.id" >
-    <div class="link-container-flex">
+<div 
+class="link"
+v-for="link in data" 
+:key="link.id"
+>
+<div 
+:class="[
+    { 'link-hidden': searchWord.length > 0}, 
+    { 'link-visible': searchWord.length > 0 && link.title.toLowerCase().includes(searchWord)}
+    ]">
+    <div class="link-container-flex ">
     <div v-if="link.title">
     <div class="previa-img">
         <img :src="link.urlImg" alt="">
@@ -105,8 +114,15 @@ async function deleteLink(id: string) {
   </span>
 </div>
 </div>
+</div>
 </template>
 <style scoped>
+.link-hidden{
+    display: none;
+}
+.link-visible{
+    display: block;
+}
 .link{
     max-width: 800px;
     z-index: 2;
@@ -230,10 +246,6 @@ async function deleteLink(id: string) {
     color: #fff;
 }
 @media (max-width: 560px) {
-
-    .link-container-flex{
-        display: block;
-    }
     .title{
         font-size: 1.1rem;
         line-height: 16px;

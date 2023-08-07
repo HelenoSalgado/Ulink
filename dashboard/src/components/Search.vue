@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import IconSearch from "./icons/IconSearch.vue";
-const search = ref('');
+
+const searched = ref('');
+const emit = defineEmits(['search-link']);
+
+function searchLink(){
+    emit("search-link", searched.value);
+}
+
 </script>
 <template>
     <div>
@@ -9,7 +16,10 @@ const search = ref('');
             <div class="lupa">
                 <IconSearch />
             </div>
-            <input v-model="search" type="search">
+            <input 
+            @keyup="searchLink"
+            v-model="searched" 
+            type="text">
         </label>
     </div>
 </template>

@@ -2,9 +2,10 @@
 import { useAuth } from '@/stores/auth';
 import { ref } from 'vue';
 import IconUser from './icons/IconUser.vue';
-import IconBarChart from './icons/IconBarChart.vue';
+import IconPieChart from './icons/IconPieChart.vue';
 import IconSettings from './icons/IconSettings.vue';
 import IconLogout from './icons/IconLogout.vue';
+
 
 const visibleUserCard = ref(false);
 const auth = useAuth();
@@ -22,7 +23,7 @@ function logout() {
     <div class="user-card card" 
     :class="{'visible-user-card': visibleUserCard}">
     <RouterLink to="/dashboard" class="link-icon-flex">
-        <IconBarChart />
+        <IconPieChart />
         Dashboard
     </RouterLink>
      <RouterLink to="" class="link-icon-flex">

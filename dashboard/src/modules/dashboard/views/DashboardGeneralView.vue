@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AnalyticsLink from '../components/dashboard/AnalyticsLink.vue';
 import BlocksInfoGeneral from '../components/dashboard/BlocksInfoGeneral.vue';
-//import PostsRecent from '../components/dashboard/PostsRecent.vue';
 import UsedDeviceVue from '../components/dashboard/UsedDevice.vue';
 import TopSocialMedia from '../components/dashboard/TopSocialMedia.vue';
 import TopLinks from '../components/dashboard/TopLinks.vue';
@@ -10,6 +9,9 @@ import { reactive } from 'vue';
 import type { ShortLinkUpdate } from '@/types/ShortLink';
 import http from '@/api/http';
 import { useAuth } from '@/stores/auth';
+import IconLink from '@/components/icons/IconLink.vue';
+import IconExternalLink from '@/components/icons/IconExternalLink.vue';
+import IconBarChart from '@/components/icons/IconBarChart.vue';
 
 const topSocialMedia = [
   {
@@ -233,7 +235,11 @@ const states = [
     },
 ];
 
-const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`));
+const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`,{
+  headers: {
+    Authorization: useAuth().token,
+  }
+}));
 
 </script>
 <template>
@@ -241,26 +247,21 @@ const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${use
     <div class="group-analytics-comments">
         <div class="blocks-analytics">
             <div class="blocks-info">
-            <BlocksInfoGeneral 
-            name="Links"
-            action="300k"
-            icon="pi pi-chart-line"
-            />
-            <BlocksInfoGeneral 
-            name="Clicks"
-            action="5000k"
-            icon="pi pi-external-link"
-            />
-            <BlocksInfoGeneral 
-            name="Esta semana"
-            action="300k"
-            icon="pi pi-heart-fill"
-            />
+            <BlocksInfoGeneral name="Links" action="300k">
+              <IconLink />
+            </BlocksInfoGeneral>
+            <BlocksInfoGeneral name="Clicks" action="5000k">
+              <IconExternalLink />
+            </BlocksInfoGeneral>
+            <BlocksInfoGeneral name="Esta semana" action="300k">
+              <IconBarChart />
+            </BlocksInfoGeneral>
             </div>
             <AnalyticsLink />
         </div>
         <div class="top-links">
             <TopLinks 
+            :data="data"
             />
         </div>
       </div>
@@ -275,4 +276,7 @@ const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${use
       </div>
 </template>
 <style src="../assets/css/dashboard.css" scoped>
+.top-links{
+  max-width: 350px;
+}
 </style>
