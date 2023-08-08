@@ -41,32 +41,43 @@
 .input-url-personal{
     height: 60px;
 }
-textarea{
+textarea:nth-child(1),
+textarea:nth-child(2){
     margin: .5rem 0;
     min-width: 100%;
     max-width: 800px;
-    height: 100%;
-    min-height: 100px;
-    max-height: 170px;
     border: none;
     border-radius: 7px;
     padding: .5rem;
-    font-size: 1rem;
     outline: transparent;
     transition: 100ms ease-in;
+    color: var(--color-text-black-soft);
 }
+textarea:nth-child(1){
+    height: 100%;
+    min-height: 70px;
+    max-height: 80px;
+}
+textarea:nth-child(2){
+    height: 100%;
+    min-height: 100px;
+    max-height: 170px;
+    font-size: 1rem;
+}
+.count-caracter{
+    position: absolute;
+    bottom: 15px;
+    right: 1rem;
+    color: var(--bkg-dark-contrast);
+}
+.count-caracter-red{
+    color: red;
+ }
 .input-url-img > div{
     display: flex;
     gap: 1rem;
     align-items: center;
 }
-/* .blocks-infos-general{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 3rem 0;
-} */
 input{
     height: 45px;
     width: 100%;
@@ -77,6 +88,7 @@ input{
     padding: .5rem;
     outline: transparent;
     transition: 100ms ease-in;
+    color: var(--color-text-black-soft);
 }
 .input-checkd{
     cursor: pointer;
@@ -129,6 +141,7 @@ input:focus, textarea:focus,
     outline: 2px solid var(--bkg-button-action);
 }
 .action-buttons{
+    margin: .7rem 0;
     display: flex;
     align-items: center;
     width: 100%;
@@ -136,28 +149,36 @@ input:focus, textarea:focus,
     gap: 2rem;
     padding-left: .5rem;
 }
-.action-buttons button{
-    color: var(--bkg-box);
-    font-weight: bold;
+button{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: none;
+    border-radius: 5px;
     padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    transition: all 300ms;
 }
-.action-buttons button:nth-child(1){
+button:nth-child(1){
     background-color: var(--bkg-button-action);
 }
-.action-buttons button:nth-child(2){
+button:nth-child(2){
     background-color: var(--bkg-button-delete);
 }
-.pi{
-    line-height: 0;
+button:hover{
+    filter: brightness(120%);
 }
-.loading, .pi-spinner{
-    animation: loading 500ms infinite;
+.loading-rotate{
+    animation: loading 500ms infinite ease-in;
 }
 @keyframes loading {
-    from{
-        transform: rotate(0);
-    }
     to{
+        transform: rotate(0deg);
+    }
+    from{
         transform: rotate(360deg);
     }
 }

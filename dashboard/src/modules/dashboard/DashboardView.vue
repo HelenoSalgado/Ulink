@@ -35,6 +35,7 @@ import FooterDashboard from './components/FooterDashboard.vue';
     display: flex;
     gap: 2rem; 
     padding: 1rem;
+    overflow: hidden;
 }
 .router-view{
     width: 100%;

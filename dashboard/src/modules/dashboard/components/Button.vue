@@ -4,7 +4,8 @@
 </script>
 <template>
     <button>
-       <slot/>
+        <span class="loading"></span>
+       <slot></slot>
     </button>
 </template>
 <style scoped>

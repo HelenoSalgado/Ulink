@@ -5,11 +5,13 @@ import type { ShortLink, ShortLinkUpdate } from '@/types/ShortLink';
 import http from '@/api/http';
 import { useAuth } from '@/stores/auth';
 import ShortLinks from '../components/ShortLinks.vue';
+import IconArrowRight from '@/components/icons/IconArrowRight.vue';
 
 const auth = useAuth();
 const IsExtend = ref(true);
 const shortUrl = ref('');
 const message = ref('');
+const isLoading = ref(false);
 
 const link = reactive<ShortLink>({
   idUser: useAuth().user.id,
@@ -26,13 +28,20 @@ const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${aut
 }));
 
 async function generateShortLink(shortLink: ShortLink) {
-    await http.post('links/create', shortLink)
+    isLoading.value = true;
+    await http.post('links/create', shortLink, {
+        headers: {
+            Authorization: auth.token
+        }
+    })
     .then(res => { 
         shortUrl.value = res.data?.shortUrl;
         data.splice(0, 0, res.data);
         data.splice(3, 1);
+        isLoading.value = false;
         message.value = 'Link encurtado com sucesso'
     }, (err => { 
+        isLoading.value = false;
         message.value = err.response.data?.message[0];
     }));
 };
@@ -53,6 +62,7 @@ async function generateShortLink(shortLink: ShortLink) {
         output-url="true"
         :short-url="shortUrl"
         msg-button="Gerar"
+        :is-loading="isLoading"
         :message="message"
         />
         </div>
@@ -63,8 +73,9 @@ async function generateShortLink(shortLink: ShortLink) {
         :data="data"
         :search-word="''"
         /> 
-        <RouterLink class="all-links" to="/dashboard/all-links">Todos os Links 
-            <i class="pi pi-angle-double-right"></i>
+        <RouterLink class="all-links link-icon-flex" to="/dashboard/all-links">
+            <span>Todos os Links </span>
+            <IconArrowRight />
         </RouterLink>
     </div>
 </template>
@@ -102,7 +113,6 @@ async function generateShortLink(shortLink: ShortLink) {
     margin-bottom: 2.5rem;  
 }
 .all-links{
-    display: block;
     color: var(--bkg-box);
     font-size: 1.3rem;
 }

@@ -149,6 +149,18 @@ v-for="link in data"
     margin-bottom: .5rem;
     color: var(--bkg-dark);
 }
+.title-description p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 30px;
+}
+.title-description p::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #ffffff, transparent 30%);
+}
 .previa-img{
     width: 150px;
     height: 80px;
@@ -174,9 +186,6 @@ v-for="link in data"
 .short-url a{
     text-decoration: underline;
     color: var(--bkg-dark-contrast);
-}
-.material-icons{
-    font-size: 1.2rem;
 }
 .shared{
     position: absolute;

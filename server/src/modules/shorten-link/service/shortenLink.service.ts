@@ -62,6 +62,11 @@ export class ShortenLinkService {
 
     const updatedLink = await this.repo.updateLink(id, data);
     await createPreview(updatedLink);
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve('resolved');
+    //   }, 5000);
+    // });
     return { message: 'Link atualizado com sucesso.' }
 
   }
@@ -78,11 +83,6 @@ export class ShortenLinkService {
   }
 
   async findLinksUser(idUser: string){
-    // return new Promise((resolve) => {
-    //   setTimeout(() => {
-    //     resolve('resolved');
-    //   }, 222000);
-    // });
     return await this.repo.findLinksUser(idUser);
   }
 

@@ -12,6 +12,7 @@ const auth = useAuth();
 const route = useRoute();
 const id = route.params.id;
 const message = ref('');
+const isLoading = ref(false);
 
 const { data } = reactive(await http.get<ShortLink>(`${url.api}links/${id}`, {
         headers: {
@@ -21,37 +22,36 @@ const { data } = reactive(await http.get<ShortLink>(`${url.api}links/${id}`, {
 ) ;
 
 async function updateShortLink(shortLink: ShortLink) {
+
+    isLoading.value = true;
+
     await http.put('links/update/'+id, shortLink, {
         headers: {
             Authorization: auth.token,
         }
     })
     .then(res => {
+        isLoading.value = false;
         message.value = res.data?.message;
     }, (err => { 
         let msg = err.response.data?.message;
         if(msg.length) return message.value = msg[0];
+        isLoading.value = false;
         message.value = msg;
     }));
 };
-
 </script>
-
 <template>
     <div class="editor-container">
         <h1 class="title-dashboard">Editar Link</h1>
-        <Suspense>
             <ShortenLink 
             :link="data"
             @actions="updateShortLink"
             :message="message"
+            :is-loading="isLoading"
             msg-button="Atualizar"
             button-cancel="true"
             />
-            <template #fallback>
-              <i class="pi pi-spin pi-spinner spinner-global"></i>
-            </template>
-        </Suspense>
         </div>
 </template>
 
