@@ -4,8 +4,8 @@ import { useRoute } from 'vue-router';
 import type { ShortLink } from "@/types/ShortLink";
 import http from "@/api/http";
 import ShortenLink from "../components/ShortenLink.vue";
-import { url } from "@/config";
 import { useAuth } from "@/stores/auth";
+import Link from "@/api/ShortLink";
 
 const auth = useAuth();
 
@@ -14,12 +14,7 @@ const id = route.params.id;
 const message = ref('');
 const isLoading = ref(false);
 
-const { data } = reactive(await http.get<ShortLink>(`${url.api}links/${id}`, {
-        headers: {
-            Authorization: auth.token,
-        }
-    })
-) ;
+const { data } = reactive(await Link.get(id.toString())) ;
 
 async function updateShortLink(shortLink: ShortLink) {
 

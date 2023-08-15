@@ -10,6 +10,7 @@ import AllLinksView from '@/modules/dashboard/views/AllLinksView.vue';
 import EditLinkView from '@/modules/dashboard/views/EditLinkView.vue';
 
 import { useAuth } from '@/stores/auth';
+import pinia from '@/stores/pinia';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

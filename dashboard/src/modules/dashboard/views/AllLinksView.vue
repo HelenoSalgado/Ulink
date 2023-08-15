@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import type { ShortLinkUpdate } from '@/types/ShortLink';
 import ShortLinks from '../components/ShortLinks.vue';
 import Search from '@/components/Search.vue';
-import http from '@/api/http';
-import { url } from '@/config';
-import { useAuth } from '@/stores/auth';
 import { reactive, ref } from 'vue';
+import Link from '@/api/ShortLink';
 
-const auth = useAuth();
 const searchWord = ref('');
 
-const data = reactive(await http.get<ShortLinkUpdate[]>(`${url.api}links/all/${auth.user.id}`, {
-        headers: {
-            Authorization: auth.token,
-        }
-    })
-    .then(data => { return data.data })
-);
+const { data } = reactive(await Link.getAll());
 
 function searchLink(searched: string) {
    searchWord.value = searched.toLowerCase();

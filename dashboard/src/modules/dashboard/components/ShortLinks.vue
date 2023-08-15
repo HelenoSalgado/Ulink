@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import http from '@/api/http';
 import IconBarChart2 from '@/components/icons/IconBarChart2.vue';
 import IconExternalLink from '@/components/icons/IconExternalLink.vue';
 import IconEdit from '@/components/icons/IconEdit.vue';
@@ -7,6 +6,7 @@ import IconCopy from '@/components/icons/IconCopy.vue';
 import IconShare from '@/components/icons/IconShare.vue';
 import IconTrash from '@/components/icons/IconTrash.vue';
 import IconQrCode from '@/components/icons/IconQrCode.vue';
+import Link from '@/api/ShortLink';
 
 const { data, searchWord } = defineProps(['data', 'searchWord']);
 
@@ -31,11 +31,7 @@ function generateQrCode(e: any) {
 }
 
 async function deleteLink(id: string) {
-    await http.delete('links/delete/'+id).then(res => {
-      console.log(res); 
-    }, (err => { 
-        console.log(err);
-    }));
+    await Link.delete(id);
 }
 
 </script>

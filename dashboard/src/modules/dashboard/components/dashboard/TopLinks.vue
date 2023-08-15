@@ -22,7 +22,7 @@ console.log(data);
     width: 100%;
     height: calc(100% - 2rem);
     background-color: var(--bkg-box);
-    padding: 1rem;
+    padding: 1rem 1rem 2.5rem 1rem;
     border-radius: 15px;
 }
 .title-main{

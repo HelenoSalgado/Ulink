@@ -4,13 +4,13 @@ WORKDIR /home/app/server
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN npm install
 
 COPY . .
 
 RUN npx prisma generate
-RUN yarn build
+RUN npm run build
 
 EXPOSE 3000
 
-CMD ["yarn", "start:prod"]
+CMD ["npm", "run", "start:prod"]

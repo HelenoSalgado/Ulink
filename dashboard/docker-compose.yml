@@ -4,13 +4,5 @@ services:
   app:
     build: .
     container_name: dashboard
-    networks:
-      - server_nlink-api
     ports:
       - '8080:8080'
-volumes:
-  app:
-    driver: local
-networks:
-  server_nlink-api: 
-    driver: bridge

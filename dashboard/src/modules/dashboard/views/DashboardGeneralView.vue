@@ -12,6 +12,7 @@ import { useAuth } from '@/stores/auth';
 import IconLink from '@/components/icons/IconLink.vue';
 import IconExternalLink from '@/components/icons/IconExternalLink.vue';
 import IconBarChart from '@/components/icons/IconBarChart.vue';
+import Link from '@/api/ShortLink';
 
 const topSocialMedia = [
   {
@@ -151,11 +152,7 @@ const states = [
     },
 ];
 
-const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${useAuth().user.id}`,{
-  headers: {
-    Authorization: useAuth().token,
-  }
-}));
+const { data } = reactive(await Link.getLinksRecents());
 
 </script>
 <template>

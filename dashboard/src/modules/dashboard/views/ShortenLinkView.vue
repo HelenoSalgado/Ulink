@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import ShortenLink from '../components/ShortenLink.vue';
-import type { ShortLink, ShortLinkUpdate } from '@/types/ShortLink';
-import http from '@/api/http';
+import type { ShortLink } from '@/types/ShortLink';
 import { useAuth } from '@/stores/auth';
 import ShortLinks from '../components/ShortLinks.vue';
 import IconArrowRight from '@/components/icons/IconArrowRight.vue';
+import Link from '@/api/ShortLink';
 
-const auth = useAuth();
 const IsExtend = ref(true);
 const shortUrl = ref('');
 const message = ref('');
@@ -21,29 +20,25 @@ const link = reactive<ShortLink>({
   urlImg: '',
 });
 
-const { data } = reactive(await http.get<ShortLinkUpdate[]>(`links/recents/${auth.user.id}`, {
-    headers: {
-        Authorization: auth.token,
-    }
-}));
+const { data } = reactive(await Link.getLinksRecents());
 
 async function generateShortLink(shortLink: ShortLink) {
-    isLoading.value = true;
-    await http.post('links/create', shortLink, {
-        headers: {
-            Authorization: auth.token
-        }
-    })
-    .then(res => { 
-        shortUrl.value = res.data?.shortUrl;
-        data.splice(0, 0, res.data);
+
+    try {
+        isLoading.value = true;
+        const { data } = await Link.create(shortLink);
+
+        shortUrl.value = data?.shortUrl;
+        data.splice(0, 0, data);
         data.splice(3, 1);
+
         isLoading.value = false;
         message.value = 'Link encurtado com sucesso'
-    }, (err => { 
+    } catch (err: any) {
         isLoading.value = false;
         message.value = err.response.data?.message[0];
-    }));
+    }
+   
 };
 
 </script>

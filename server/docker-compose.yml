@@ -2,39 +2,10 @@
 version: '3.1'
 
 services:
-  # mongo:
-  #   image: mongo:4.2
-  #   container_name: mongoserver
-  #   restart: always
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: leno
-  #     MONGO_INITDB_ROOT_PASSWORD: test123
-  #     networks:
-  #       server_nlink-api
-  #     expose:
-  #      - 27017
-
-  # mongo-express:
-  #   image: mongo-express
-  #   restart: always
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: leno
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: test123
-  #     ME_CONFIG_MONGODB_URL: mongodb://leno:test123@mongoserver:27017/
-  #   expose:
-  #     - 8081
-
   app:
     build: .
-    #command: sh -c "npx prisma db push && yarn start:dev"
     container_name: api-link
     env_file:
       - .env
-    networks:
-      - server_nlink-api
-volumes:
-  app:
-    driver: local
-networks:
-  server_nlink-api: 
-    driver: bridge
+    ports:
+      - '3000:3000'
