@@ -44,6 +44,7 @@ span{
     color: #fff;
     border-radius: 7px 0 0 7px;
     z-index: 2;
+    -moz-transform: translate(-50%, -55%);;
 }
 label{
     width: 100%;

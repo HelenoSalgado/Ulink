@@ -3,10 +3,10 @@
   --color-text-black-soft: #383838;
   --color-text-destaque: #353535;
   --color-link-hover: #242424;
-  --bkg-dark: rgb(11, 26, 51);
+  --bkg-dark: #0b1a33;
   --bkg-dark-contrast: #134E50;
   --bkg-dark-contrast-transparent: #134e5069;
-  --color-font-box: rgb(7, 20, 43);
+  --color-font-box: rgba(7, 20, 43, 0);
   --bkg-white-shaded: #fafafa;
   --bkg-border-soft: #4d4d4d;
   --bkg-button-update: #3a50d1;

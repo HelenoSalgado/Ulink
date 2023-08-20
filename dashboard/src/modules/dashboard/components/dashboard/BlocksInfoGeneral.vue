@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { name, action, icon } = defineProps(['name', 'action', 'icon']);
+const { name, action } = defineProps(['name', 'action']);
 </script>
 <template>
 <div class="blocks-info">
     <div>
-       <slot/>
+       <slot></slot>
        <div>
         <span>{{ action }}</span>
         <span>{{ name }}</span>

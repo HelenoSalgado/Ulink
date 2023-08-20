@@ -1,2 +1,0 @@
-@vue/eslint-config-prettier @vue/eslint-config-typescript es
-lint eslint-plugin-vue prettier @rushstack/eslint-patch

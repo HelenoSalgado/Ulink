@@ -1,6 +1,4 @@
 <script setup lang="ts">
-//import { defineProps } from 'vue';
-//const {bkg, color} = defineProps(['bkg', 'color']);
 </script>
 <template>
     <button>

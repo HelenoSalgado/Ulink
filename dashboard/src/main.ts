@@ -8,8 +8,8 @@ import pinia from './stores/pinia';
 
 const app = createApp(App);
 
-app.use(pinia).use(router).mount('#app');
+app
+.use(pinia)
+.use(router)
+.mount('#app');
 
-// router.isReady().then(() => { 
-//     app.mount( "#app" ) ; 
-// });

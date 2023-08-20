@@ -9,8 +9,6 @@ for (let i = 0; i < states.length; i++) {
     clicksAll += states[i].value;   
 }
 
-console.log(clicksAll.toLocaleString());
-
 const st = [{
     df: {
       value: 0, 
@@ -123,14 +121,7 @@ states.map((s:any) => {
     if(s.uf == 'RO') return st[0].ro.value = s.value;
     if(s.uf == 'DF') return st[0].df.value = s.value;
     if(s.uf == 'DF') return st[0].df.value = s.value;
-})
-
-
-const colors = [
-     '#fff',
-     '#ddd',
-     '#000',
-]
+});
 
 const BrMap = (() => {
 

@@ -10,20 +10,31 @@ import Link from '@/api/ShortLink';
 
 const { data, searchWord } = defineProps(['data', 'searchWord']);
 
-function visibleShared(e: string){ 
+function setIndexZero(){
     const link = document.querySelectorAll('.link');
     link.forEach(l => l.classList.toggle('link-z-index-0'));
-    const boxShare = document.querySelector('.'+e);
-    boxShare?.classList.toggle('shared-visible');
-};
-
-function openLink() {
-    console.log('clicado');
 }
 
-function copyLink(e: any) {
-    var url = document.querySelector('[data-link]');
-    console.log(url);
+async function visibleShared(id: string, url: string){ 
+
+    await navigator.share({url});
+
+    //setIndexZero();
+    const boxShared  = document.getElementById(id);
+    console.log(boxShared );
+    boxShared ?.classList.toggle('shared-visible');
+};
+
+function copyLink(id: string, url: string) {
+    navigator.clipboard.writeText(url);
+    //setIndexZero();
+    const box = document.getElementById(id);
+    console.log(box); 
+    box?.classList.toggle('link-copied-visible');
+    setTimeout(() => {
+        box?.classList.remove('link-copied-visible');
+    }, 1500);
+    
 }
 
 function generateQrCode(e: any) {
@@ -64,9 +75,11 @@ v-for="link in data"
     </div>
     </div>
     <div class="info">
-        <span @click="openLink">
+        <span>
+            <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer">
             <IconExternalLink />
             <p>100</p>
+            </a>
         </span>
         <span>
           <IconBarChart2 />
@@ -76,38 +89,41 @@ v-for="link in data"
                 <IconEdit />
             </RouterLink>
         </span> 
-        <span @click="copyLink" data-link="https://heleno.dev">
+        <span @click="copyLink(link.id, link.shortUrl)">
             <IconCopy />
+            <div class="link-copied" :id="link.id">
+                Link Copiado.
+            </div>
         </span>
         <span @click="generateQrCode">
             <IconQrCode />
         </span>
-        <span @click="visibleShared('hfgfgfdg')">
+        <span @click="visibleShared(link.id+'shared', link.shortUrl)">
             <IconShare />
+            <div class="info-shared">
+    <div class="shared" :id="link.id+'shared'">
+      <span>
+        <i class="pi pi-whatsapp"></i>
+      </span>
+      <span>
+        <i class="pi pi-facebook"></i>
+      </span>
+      <span>
+        <i class="pi pi-twitter"></i>
+      </span>
+      <span>
+        <i class="pi pi-telegram"></i>
+      </span>
+      <span>
+        <i class="pi pi-facebook"></i>
+      </span>
+    </div>
+    </div>
         </span>
         <span @click="deleteLink(link.id)">
             <IconTrash />
         </span> 
     </div> 
-</div>
-</div>
-<div class="info-shared">
-<div class="shared" :class="'hfgfgfdg'">
-  <span>
-    <i class="pi pi-whatsapp"></i>
-  </span>
-  <span>
-    <i class="pi pi-facebook"></i>
-  </span>
-  <span>
-    <i class="pi pi-twitter"></i>
-  </span>
-  <span>
-    <i class="pi pi-telegram"></i>
-  </span>
-  <span>
-    <i class="pi pi-facebook"></i>
-  </span>
 </div>
 </div>
 </div>
@@ -121,7 +137,7 @@ v-for="link in data"
 }
 .link{
     max-width: 800px;
-    z-index: 2;
+    z-index: 1;
     margin: 0 auto 2rem auto;
 }
 .link-z-index-0{
@@ -183,9 +199,9 @@ v-for="link in data"
     text-decoration: underline;
     color: var(--bkg-dark-contrast);
 }
-.shared{
+.shared, .link-copied{
     position: absolute;
-    top: -2rem;
+    top: -1rem;
     width: fit-content;
     display: flex;
     flex-wrap: wrap;
@@ -198,15 +214,24 @@ v-for="link in data"
     opacity: 0;
     transition: 50ms all;
 }
+.link-copied{
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.shared{
+    left: 50%;
+    transform: translateX(-50%);
+}
 .shared i{
     font-size: 1.2rem;
     cursor: pointer;
 }
-.shared-visible{
-    top: 3rem;
+.shared-visible, .link-copied-visible{
+    top: 2rem;
     visibility: visible;
     opacity: 10;
-    z-index: 1;
+    z-index: 2;
 }
 .info{
     width: 100%;
@@ -269,6 +294,9 @@ v-for="link in data"
     }
     .info svg{
         width: 1rem;
+    }
+    .shared-visible{
+        display: none;
     }
     
 }

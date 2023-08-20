@@ -14,51 +14,27 @@ class Link {
 
 
   public async create(shortLink: ShortLink){
-    return this.http.post('links/create', shortLink, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.post('links/create', shortLink);
   }
 
   public async update(id: string, shortLink: ShortLink){
-    return this.http.put('links/update/'+id, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.put('links/update/'+id);
   }
 
   public async delete(id: string){
-    return this.http.delete('links/delete/'+id, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.delete('links/delete/'+id);
   }
 
   public async get(id: string){
-    return this.http.get('links/'+id, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.get('links/'+id);
   }
 
   public async getAll(){
-    return this.http.get('links/all/'+this.auth().user?.id, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.get('links/all/'+this.auth().user?.id);
   }
 
   public async getLinksRecents(){
-    return this.http.get('links/recents/'+this.auth().user?.id, {
-        headers: {
-            Authorization: this.auth().token
-        }
-    });
+    return this.http.get('links/recents/'+this.auth().user?.id);
   }
 }
 

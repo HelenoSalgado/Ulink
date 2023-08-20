@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 const { data } = defineProps(['data']);
-console.log(data);
 </script>
 <template>
 <div class="container-links">
