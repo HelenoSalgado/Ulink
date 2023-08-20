@@ -1,3 +1,3 @@
 export const url = {
-    api: 'http://localhost:3000/'
+    api: 'https://link-wtnj.onrender.com/'
 }
