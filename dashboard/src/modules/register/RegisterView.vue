@@ -59,5 +59,5 @@ async function register(){
     </div>
 </template>
 
-<style src="../../assets/css/register-login.css" scoped>
+<style src="@/assets/css/register-login.css" scoped>
 </style>

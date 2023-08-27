@@ -7,7 +7,7 @@ import StartedVue from '@/components/Started.vue';
 <template>
   <HeaderComnt/>
   <main class="apresentation">
-    <img src="@/assets/img/multivariate-5917419_1280.webp" alt="">
+    <img src="/img/multivariate-5917419_1280.webp" alt="">
     <StartedVue/>
   </main>
 </template>

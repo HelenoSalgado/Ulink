@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, defineEmits, computed } from 'vue';
+import { onMounted, reactive, ref, computed } from 'vue';
 import type { ShortLink } from '@/types/ShortLink';
 import IconRotate from '@/components/icons/IconRotate.vue';
 import IconArrowLeft from '@/components/icons/IconArrowLeft.vue';

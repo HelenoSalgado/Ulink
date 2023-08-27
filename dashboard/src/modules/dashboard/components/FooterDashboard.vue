@@ -36,7 +36,7 @@ import IconInfo from '@/components/icons/IconInfo.vue';
 footer{
     margin-top: 5rem;
     background: var(--bkg-dark);
-    background-image: url('@/assets/img/multivariate-5917419_1280.webp');
+    background-image: url('/img/multivariate-5917419_1280.webp');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

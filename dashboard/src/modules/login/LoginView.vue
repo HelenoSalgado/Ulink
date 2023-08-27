@@ -63,5 +63,5 @@ async function login(){
     </div>
     </div>
 </template>
-<style src="../../assets/css/register-login.css" scoped>
+<style src="@/assets/css/register-login.css" scoped>
 </style>
