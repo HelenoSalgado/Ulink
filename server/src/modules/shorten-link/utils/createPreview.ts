@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import config from "src/config";
 import { CreateLinkDto } from "../dto/create-link-dto";
+import baseURL from '../../../config/index';
 
 /**
  * 
@@ -25,7 +26,7 @@ export default async function createPreview(head: CreateLinkDto){
       (async () => {
         const ipUser = await fetch('https://jsonip.com/');
         const { ip } = await ipUser.json();
-        await fetch('https://api-analytics.onrender.com/analytics', {
+        await fetch('${baseURL.localhost}/analytics', {
           headers: {
             "Content-Type": "application/json",
             "ip": ip,
