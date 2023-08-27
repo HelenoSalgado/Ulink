@@ -1,2 +1,2 @@
 # Analytics
-Projeto de estudos API, Dashboard e Analytics. Está sendo desenvolvido em VUE e NESTJS.
+Projeto de estudos API, Dashboard e Analytics de um Encurtador de links feito em VUE e NEST e MONGODB.

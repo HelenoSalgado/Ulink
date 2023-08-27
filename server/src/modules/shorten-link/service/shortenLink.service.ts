@@ -1,4 +1,4 @@
-import { BadRequestException, ConsoleLogger, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { ShortenLinkRepository } from '../repository';
 import ShortUniqueId from 'short-unique-id';
 import { isURL } from 'class-validator';
@@ -10,7 +10,8 @@ import { ReqHeaderAnalytics } from 'src/constants/modelAnalytics';
 import createPreview from '../utils/createPreview';
 import clearPreviews from '../utils/clearPreviews';
 import { UpdateLinkDto } from '../dto/update-link.dto';
-const geoip = require('fast-geoip');
+import baseUrl from '../../../config/index'
+import geoip from 'fast-geoip';
 
 interface AnalyticUrl{
   clicks: number;
@@ -37,9 +38,7 @@ export class ShortenLinkService {
     dataUrl.id = new ObjectId().toString();
     dataUrl.idUrl = uniqueId;
 
-    const baseHost = 'https://dashboard-cyco.onrender.com/' 
-    //config.localhost+':'+config.port.toString()+'/';
-    dataUrl.shortUrl = baseHost+uniqueId;
+    dataUrl.shortUrl = baseUrl.localhost+uniqueId;
 
     const initAnalytics = {
       id: dataUrl.id,
