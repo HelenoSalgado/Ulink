@@ -16,7 +16,7 @@ async function register(){
 
    try {
     
-        await http.post('users/create', user);
+        await http.post('users', user);
 
     } catch (error: any) {
 

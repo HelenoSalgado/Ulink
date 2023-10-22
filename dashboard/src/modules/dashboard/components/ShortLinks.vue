@@ -6,7 +6,8 @@ import IconCopy from '@/components/icons/IconCopy.vue';
 import IconShare from '@/components/icons/IconShare.vue';
 import IconTrash from '@/components/icons/IconTrash.vue';
 import IconQrCode from '@/components/icons/IconQrCode.vue';
-import Link from '@/api/ShortLink';
+import http from '@/api/http';
+import router from '@/router';
 
 const { data, searchWord } = defineProps(['data', 'searchWord']);
 
@@ -25,6 +26,14 @@ async function visibleShared(id: string, url: string){
     boxShared ?.classList.toggle('shared-visible');
 };
 
+function viewLink(url: string){
+    window.location.href = url;
+}
+
+function edit(id: string) {
+    router.push('/dashboard/edit-link/'+id);
+}
+
 function copyLink(id: string, url: string) {
     navigator.clipboard.writeText(url);
     //setIndexZero();
@@ -42,7 +51,7 @@ function generateQrCode(e: any) {
 }
 
 async function deleteLink(id: string) {
-    await Link.delete(id);
+    await http.delete('/links/'+id);
 }
 
 </script>
@@ -75,19 +84,15 @@ v-for="link in data"
     </div>
     </div>
     <div class="info">
-        <span>
-            <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer">
+        <span @click="viewLink(link.shortUrl)">
             <IconExternalLink />
             <p>100</p>
-            </a>
         </span>
         <span>
           <IconBarChart2 />
         </span>
-        <span>
-            <RouterLink :to="'/dashboard/edit-link/'+link.id"> 
-                <IconEdit />
-            </RouterLink>
+        <span @click="edit(link.id)">
+            <IconEdit />
         </span> 
         <span @click="copyLink(link.id, link.shortUrl)">
             <IconCopy />
@@ -253,13 +258,7 @@ v-for="link in data"
 .info span:nth-child(5) svg:hover{
     fill: #000;
 }
-.info span > a{
-    transition: 200ms all;
-}
-.info span > a:hover{
-    color: #000;
-}
-.info span, .info span > a{
+.info span{
     display: inline-flex;
     gap: 5px;
     align-items: center;
@@ -268,12 +267,6 @@ v-for="link in data"
     border-radius: 15px;
     padding: .2rem 1rem;
     transition: 200ms all;
-}
-.info span > a{
-    padding: 0; 
-}
-.info span > a{
-    color: #fff;
 }
 @media (max-width: 560px) {
     .title{

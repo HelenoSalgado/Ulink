@@ -5,7 +5,7 @@ import type { ShortLink } from '@/types/ShortLink';
 import { useAuth } from '@/stores/auth';
 import ShortLinks from '../components/ShortLinks.vue';
 import IconArrowRight from '@/components/icons/IconArrowRight.vue';
-import Link from '@/api/ShortLink';
+import http from '@/api/http';
 
 const IsExtend = ref(true);
 const shortUrl = ref('');
@@ -20,13 +20,13 @@ const link = reactive<ShortLink>({
   urlImg: '',
 });
 
-const { data } = reactive(await Link.getLinksRecents());
+const { data } = reactive(await http.get('links/recents/'+link.idUser));
 
 async function generateShortLink(shortLink: ShortLink) {
 
     try {
         isLoading.value = true;
-        const { data } = await Link.create(shortLink);
+        const { data } = await http.post('/links', shortLink);
 
         shortUrl.value = data?.shortUrl;
         data.splice(0, 0, data);

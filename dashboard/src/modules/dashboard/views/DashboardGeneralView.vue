@@ -9,7 +9,8 @@ import { reactive } from 'vue';
 import IconLink from '@/components/icons/IconLink.vue';
 import IconExternalLink from '@/components/icons/IconExternalLink.vue';
 import IconBarChart from '@/components/icons/IconBarChart.vue';
-import Link from '@/api/ShortLink';
+import http from '@/api/http';
+import { useAuth } from '@/stores/auth';
 
 const topSocialMedia = [
   {
@@ -149,7 +150,7 @@ const states = [
     },
 ];
 
-const { data } = reactive(await Link.getLinksRecents());
+const { data } = reactive(await http.get('links/recents/'+useAuth().user?.id));
 
 </script>
 <template>
@@ -157,15 +158,19 @@ const { data } = reactive(await Link.getLinksRecents());
     <div class="group-analytics-comments">
         <div class="blocks-analytics">
             <div class="blocks-info">
-            <BlocksInfoGeneral name="Links" action="300k">
-              <IconLink />
+              
+            <BlocksInfoGeneral action="300k">
+            <IconLink style="stroke: var(--color-text-black-soft);"/>
             </BlocksInfoGeneral>
-            <BlocksInfoGeneral name="Clicks" action="5000k">
-              <IconExternalLink />
+            
+            <BlocksInfoGeneral action="5000k">
+              <IconExternalLink style="stroke: var(--color-text-black-soft);"/>
             </BlocksInfoGeneral>
-            <BlocksInfoGeneral name="Esta semana" action="300k">
-              <IconBarChart />
+
+            <BlocksInfoGeneral action="300k">
+              <IconBarChart style="stroke: var(--color-text-black-soft);"/>
             </BlocksInfoGeneral>
+
             </div>
             <AnalyticsLink />
         </div>

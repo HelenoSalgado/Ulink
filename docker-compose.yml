@@ -13,3 +13,12 @@ services:
     container_name: frontend
     ports:
       - '8080:8080'
+
+  mongo:
+    image: mongo:4.2
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+    ports: 
+      - '27017:27017'

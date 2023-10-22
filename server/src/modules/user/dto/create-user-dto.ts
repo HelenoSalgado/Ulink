@@ -7,17 +7,15 @@ import {
 
 export class CreateUserDto {
 
-  @IsString() 
-  @IsOptional()
   id: string;
 
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   @ApiProperty()
   firstName: string;
 
+  @IsOptional()
   @IsString()
-  @IsNotEmpty()
   @ApiProperty()
   lastName: string;
 

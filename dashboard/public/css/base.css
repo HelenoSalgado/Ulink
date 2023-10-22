@@ -1,4 +1,10 @@
 /* color palette from <https://github.com/vuejs/theme> */
+@font-face {
+  font-family: 'Yeseva One';
+  src: url('../font/YesevaOne-Regular.ttf');
+  font-weight: bold;
+}
+
 :root {
   --color-text-black-soft: #383838;
   --color-text-destaque: #353535;
@@ -69,6 +75,30 @@
   }
 }
 
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-black-soft) rgb(241, 241, 241);
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(241, 241, 241);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--bkg-dark);
+  border-radius: 20px;
+  border: 1px solid rgb(241, 241, 241);
+}
+
 *,
 *::before,
 *::after {
@@ -77,18 +107,144 @@
   position: relative;
 }
 
+html{
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 body {
   position: relative;
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
-  font-family: Yeseva , -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 main{
+  max-width: 1280px;
+  padding: 0 2rem;
+  margin: auto;
   min-height: calc(90vh - 4rem); /* calculado de acordo com a margin bottom do header */
+  
+}
+
+.loading {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  /* border: 2px solid var(--bkg-dark-contrast); */
+  border-radius: 50%;
+}
+
+.loading::before {
+  position: absolute;
+  content: '';
+  width: 4rem;
+  height: 4rem;
+  border-top: 2px solid var(--bkg-dark-contrast);
+  border-radius: 50%;
+  animation: loading 700ms infinite ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+    border-top: 4px solid var(--bkg-dark);
+  }
+
+  25% {
+    border-right: 4px solid var(--bkg-dark);
+  }
+
+  50% {
+    border-bottom: 4px solid var(--bkg-dark);
+  }
+
+  75% {
+    border-left: 4px solid var(--bkg-dark);
+  }
+}
+
+.title {
+  font-family: 'Yeseva One';
+  color: var(--color-text-black-soft);
+  line-height: 1.3rem;
+}
+
+a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text-destaque);
+  transition: 0.4s;
+}
+
+.link-icon-flex {
+  display: inline-flex;
+  gap: .5rem;
+  align-items: center;
+  line-height: 0;
+}
+
+.link-animation::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-text-black-soft);
+  transition: 200ms all;
+}
+
+.link-animation:hover::before {
+  width: 100%;
+}
+
+.action-btn {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  transition: 100ms ease-in;
+  cursor: pointer;
+}
+
+.msg-error {
+  width: 100%;
+  padding: 1rem 0;
+  color: red;
+}
+
+.notification-card,
+.message-card,
+.user-card {
+  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+  font-size: 1rem;
+}
+
+.visible-notification-card,
+.visible-message-card {
+  visibility: visible;
+  top: 70px;
+  opacity: 10;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-link-hover);
+  }
 }

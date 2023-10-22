@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { name, action } = defineProps(['name', 'action']);
+const { action } = defineProps(['action']);
 </script>
 <template>
 <div class="blocks-info">
@@ -7,7 +7,6 @@ const { name, action } = defineProps(['name', 'action']);
        <slot></slot>
        <div>
         <span>{{ action }}</span>
-        <span>{{ name }}</span>
        </div>
     </div>
 </div>
@@ -31,9 +30,6 @@ const { name, action } = defineProps(['name', 'action']);
 .blocks-info > div span:nth-child(1){
     font-weight: bold;
     color: var(--color-text-black-soft)
-}
-.pi{
-    font-size: 2rem;
 }
 @media (max-width: 750px){
     .blocks-info > div{

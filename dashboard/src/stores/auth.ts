@@ -5,7 +5,7 @@ import http from '@/api/http';
 interface Token {
   user: {
     id: string;
-    firstName: string;
+    username: string;
   };
   access_token: string;
 }

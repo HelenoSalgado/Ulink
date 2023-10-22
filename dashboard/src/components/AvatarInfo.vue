@@ -16,7 +16,7 @@ function logout() {
 </script>
 <template>
     <div v-if="auth.isAuthenticated" class="user">
-    <h3>Olá, {{ auth.user.firstName }}</h3>
+    <h3>Olá, {{ auth.user.username }}</h3>
     <img 
     @click="visibleUserCard = !visibleUserCard" 
     src="@/assets/img/73316162.png" alt="avatar" title="perfil">
