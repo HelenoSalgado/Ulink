@@ -27,7 +27,15 @@ const router = createRouter({
     {
       path: '/registrar',
       name: 'registrar',
-      component: RegisterView
+      component: RegisterView,
+      children: [
+        {
+          path: '/sucesso',
+          name: 'sucess',
+          component: async() => '@/modules/register/SucessView.vue'
+
+        }
+      ]
     },
     {
       path: '/dashboard',
