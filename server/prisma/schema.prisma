@@ -11,18 +11,18 @@ datasource db {
 }
 
 model User {
-  id         String @id
-  username   String
-  firstName  String?
-  lastName   String?
-  email      String
-  password   String
-  role       Role             @default(USER)
+  id        String   @id
+  username  String
+  firstName String?
+  lastName  String?
+  email     String
+  password  String
+  role      Role     @default(USER)
   createAt  DateTime @default(now())
 }
 
 model Link {
-  id          String @id
+  id          String   @id
   idUrl       String
   idUser      String
   originUrl   String
@@ -31,16 +31,16 @@ model Link {
   description String?
   urlImg      String?
   pixel       String?
-  createAt  DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model LinkAnalytics {
-  id         String  @id 
-  idUrl      String
-  idUser     String
-  clicks     Int?
-  analytics  Json[]
+  id        String   @id
+  idUrl     String
+  idUser    String
+  clicks    Int?
+  analytics Json[]
   updatedAt DateTime @updatedAt
 }
 

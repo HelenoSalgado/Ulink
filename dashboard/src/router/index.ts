@@ -12,7 +12,7 @@ import EditLinkView from '@/modules/dashboard/views/EditLinkView.vue';
 import { useAuth } from '@/stores/auth';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.publicPath),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',

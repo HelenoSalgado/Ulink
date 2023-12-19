@@ -40,8 +40,8 @@ async function bootstrap() {
     }),
   );
 
-  const prismaService = app.get(PrismaService);
-  await prismaService.enableShutdownHooks(app);
+  app.get(PrismaService);
+  //await prismaService.enableShutdownHooks(app);
 
   // Ativar validação de erros no corpo da solicitação - class-validator
   app.useGlobalPipes(new ValidationPipe());
