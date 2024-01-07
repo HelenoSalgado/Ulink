@@ -3,6 +3,9 @@ import router from '@/router';
 import HeaderComnt from '@/components/Header.vue';
 import { reactive, ref } from 'vue';
 import http from '@/api/http';
+import IconUser from '@/components/icons/IconUser.vue';
+import IconEmail from '@/components/icons/IconEmail.vue';
+import IconKey from '@/components/icons/IconKey.vue';
 
 const user = reactive({
     username: '',
@@ -23,7 +26,7 @@ async function register(){
         message.value = error?.response?.data.message;
     }
 
-   //router.push('/registrar/sucesso')
+   router.push('/registrar/sucesso')
 }
 
 </script>
@@ -39,25 +42,25 @@ async function register(){
 
         <div>
         <div class="container-form">
-        <form class="form-register" action="" @submit.prevent="register">
+        <form class="form-register" @submit.prevent="register">
             <label>
                 <p>Nome de Usuário:</p>
                 <span>
-                <i class="pi pi-user"></i>
+                <IconUser class="input-icon"/>
                 <input type="text" v-model="user.username" />
                 </span> 
             </label>
             <label>
                 <p>Melhor Email:</p> 
                 <span>
-                <i class="pi pi-envelope"></i>
+                <IconEmail class="input-icon"/>
                 <input type="email" v-model="user.email" />
                 </span>
             </label>
             <label>
                 <p>Senha:</p>
                 <span>
-                <i class="pi pi-key"></i>
+                <IconKey class="input-icon"/>
                 <input type="text" v-model="user.password" />
                 </span>
             </label>
@@ -74,6 +77,5 @@ async function register(){
     </div>
     </div>
 </template>
-
 <style src="@/assets/css/register-login.css" scoped>
 </style>

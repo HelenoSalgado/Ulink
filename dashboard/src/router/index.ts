@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '@/modules/home/HomeView.vue';
 import LoginView from '@/modules/login/LoginView.vue';
 import RegisterView from '@/modules/register/RegisterView.vue';
@@ -26,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/registrar',
-      name: 'registrar',
+      name: 'register',
       component: RegisterView,
       children: [
         {

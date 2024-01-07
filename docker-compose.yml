@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres1234
     volumes:
-      - /mnt/postgres:/var/lib/postgresql/data
+      - /mnt/postgres/ulink:/var/lib/postgresql/data
 
   api:
     build: ./server
